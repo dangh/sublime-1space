@@ -1,4 +1,7 @@
 {
 	"color_scheme": "Packages/Theme - 1Space/Widget.stTheme",
 	"draw_shadows": false,
+	"font_size": 12,
+	"font_face": "Monosten-E",
+	"line_padding_top": 7,
 }
