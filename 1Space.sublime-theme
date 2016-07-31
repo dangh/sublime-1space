@@ -762,13 +762,6 @@
 		"attributes": ["transient"],
 		"font.face": ".SFNSText-Italic"
 	},
-	{
-		// change tab label color if disable close button
-		"class": "tab_label",
-		"settings": ["!show_tab_close_buttons", "highlight_modified_tabs"],
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"fg": [27, 156, 226],
-	},
 	// Tab Close Buttons
 	{
 		"class": "tab_close_button",
@@ -780,50 +773,10 @@
 		"layer1.tint": [27, 156, 226],
 		"layer1.opacity": 0.0,
 	},
-	// setting: show_tab_close_buttons
-	{
-		"settings": ["show_tab_close_buttons"],
-		"class": "tab_close_button",
-		"content_margin": [8, 8],
-	},
-	{
-		// force showing dirty indicator regardless show_tab_close_buttons setting
-		"class": "tab_close_button",
-		"settings": ["show_tab_close_buttons", "highlight_modified_tabs"],
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"content_margin": [8, 8],
-	},
-	// setting: 1space_show_tab_close_buttons_hover_only
-	{
-		"class": "tab_close_button",
-		"settings": ["1space_show_tab_close_buttons_hover_only"],
-		"layer0.opacity": 0.0,
-	},
-	{
-		"class": "tab_close_button",
-		"settings": ["1space_show_tab_close_buttons_hover_only"],
-		"parents": [{"class": "tab_control", "attributes": ["hover"]}],
-		"layer0.opacity": 0.5,
-	},
-	// hover state
 	{
 		"class": "tab_close_button",
 		"attributes": ["hover"],
 		"layer0.opacity": 1.0,
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"layer0.opacity": 0.0,
-		"layer1.opacity": 0.8,
-	},
-	{
-		"class": "tab_close_button",
-		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
-		"attributes": ["hover"],
-		"layer0.tint": [27, 156, 226],
-		"layer0.opacity": 1.0,
-		"layer1.opacity": 0.0,
 	},
 	// tab set scroll left scroll right
 	{
@@ -940,7 +893,7 @@
 	// },
 
 //
-// SETTING: hide_sidebar_icons
+// SETTING: 1space_hide_sidebar_icons
 //
 	{
 		"settings": ["1space_hide_sidebar_icons"],
@@ -959,7 +912,7 @@
 	},
 
 //
-// SETTING: hide_sidebar_disclosure_buttons
+// SETTING: 1space_hide_disclosure_button
 //
 	{
 		"settings": ["1space_hide_disclosure_button"],
@@ -972,5 +925,61 @@
 		"indent": 18,
 		"indent_offset": 0,
 		"row_padding": [8, 7, 8, 4],
+	},
+
+//
+// SETTING: show_tab_close_buttons
+//
+	{
+		"settings": ["show_tab_close_buttons"],
+		"class": "tab_close_button",
+		"content_margin": [8, 8],
+	},
+
+//
+// SETTING: 1space_show_tab_close_buttons_hover_only
+//
+	{
+		"settings": ["show_tab_close_buttons", "1space_show_tab_close_buttons_hover_only"],
+		"class": "tab_close_button",
+		"content_margin": [0, 0],
+	},
+	{
+		"class": "tab_close_button",
+		"settings": ["show_tab_close_buttons", "1space_show_tab_close_buttons_hover_only"],
+		"parents": [{"class": "tab_control", "attributes": ["hover"]}],
+		"content_margin": [8, 8],
+	},
+
+//
+// SETTING: highlight_modified_tabs
+//
+	{
+		// force showing dirty indicator regardless show_tab_close_buttons setting
+		"settings": ["highlight_modified_tabs"],
+		"class": "tab_close_button",
+		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+		"content_margin": [8, 8],
+	},
+	{
+		"settings": ["highlight_modified_tabs", "!show_tab_close_buttons"],
+		"class": "tab_close_button",
+		"hit_test_level": 1.0, // disable mouse click
+	},
+	{
+		"settings": ["highlight_modified_tabs"],
+		"class": "tab_close_button",
+		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+		"layer0.opacity": 0.0,
+		"layer1.opacity": 0.8,
+	},
+	{
+		"settings": ["highlight_modified_tabs"],
+		"class": "tab_close_button",
+		"parents": [{"class": "tab_control", "attributes": ["dirty"]}],
+		"attributes": ["hover"],
+		"layer0.tint": [27, 156, 226],
+		"layer0.opacity": 1.0,
+		"layer1.opacity": 0.0,
 	},
 ]
