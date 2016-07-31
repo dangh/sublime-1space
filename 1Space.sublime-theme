@@ -412,7 +412,7 @@
 	},
 
 //
-// AUTO COMPLETE…
+// AUTO COMPLETE
 //
 	{
 		"class": "popup_control",
@@ -509,6 +509,7 @@
 		"class": "sidebar_label",
 		"parents": [{"class": "tree_row", "attributes": ["selected"]}],
 		// "color": [39, 176, 98],
+		"color": [23, 23, 23],
 	},
 	{
 		"class": "sidebar_label",
@@ -519,7 +520,7 @@
 	{
 		"class": "sidebar_label",
 		"attributes": ["transient"],
-		"font.face": ".SFNSText-Italic"
+		"font.face": ".SFNSText-Italic",
 	},
 
 //
