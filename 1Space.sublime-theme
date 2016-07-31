@@ -510,6 +510,7 @@
 		"parents": [{"class": "tree_row", "attributes": ["selected"]}],
 		// "color": [39, 176, 98],
 		"color": [23, 23, 23],
+		// "font.face": ".SFNSText-Medium",
 	},
 	{
 		"class": "sidebar_label",
@@ -530,14 +531,13 @@
 		"class": "disclosure_button_control",
 		"layer0.texture": "Theme - 1Space/img/disclosure_button_control.png",
 		"layer0.tint": [71, 71, 71],
-		"layer0.opacity": 0.7,
+		"layer0.opacity": 1.0,
 		"content_margin": [8, 8],
 	},
 	{
 		"class": "disclosure_button_control",
 		"parents": [{"class": "tree_row", "attributes": ["hover"]}],
-		// "attributes": ["hover"],
-		"layer0.opacity": 1.0,
+		"layer0.tint": [46, 46, 46],
 	},
 	{
 		"class": "disclosure_button_control",
