@@ -427,8 +427,13 @@
 	},
 	{
 		"class": "table_row",
+		"attributes": ["hover"],
+		"layer0.opacity": 1.0,
+	},
+	{
+		"class": "table_row",
 		"attributes": ["selected"],
-		"layer0.opacity": 1,
+		"layer0.opacity": 1.0,
 	},
 	{
 		"class": "auto_complete",
@@ -442,6 +447,12 @@
 		"match_fg": [46, 46, 46, 255],
 		"selected_fg": [39, 176, 98, 255],
 		"selected_match_fg": [39, 176, 98, 255],
+	},
+	{
+		"class": "auto_complete_label",
+		"parents": [{"class": "table_row", "attributes": ["hover"]}],
+		"fg": [39, 176, 98, 255],
+		"match_fg": [39, 176, 98, 255],
 	},
 
 //
