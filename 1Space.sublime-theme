@@ -121,30 +121,45 @@
 	},
 	{
 		"class": "scroll_bar_control",
-		"layer0.tint": [236, 236, 236],
+		// we need a opaque background so we can apply an alpha background over it
+		// layer0 is the opaque background
+		"layer0.tint": [255, 255, 255],
 		"layer0.opacity": 1.0,
+		// layer1 is the alpha background
+		"layer1.tint": [228, 228, 228],
+		"layer1.opacity": 1.0,
+		// layer2 is the image background, used for overlay scrollbars
+		"layer2.texture": "Theme - 1Space/img/puck_control.png",
+		"layer2.inner_margin": [1, 4],
+		"layer2.tint": [0, 0, 0, 30],
+		"layer2.opacity": 0.0,
 		"blur": false,
 	},
 	{
 		"class": "scroll_bar_control",
 		"attributes": ["horizontal"],
+		"layer2.texture": "Theme - 1Space/img/puck_control--horizontal.png",
+		"layer2.inner_margin": [4, 1],
 	},
 	{
 		"class": "scroll_corner_control",
-		"layer0.tint": [236, 236, 236],
+		"layer0.tint": [228, 228, 228],
 		"layer0.opacity": 1.0,
 	},
 	{
 		"class": "puck_control",
-		"layer0.tint": [200, 200, 200],
+		"layer0.texture": "Theme - 1Space/img/puck_control.png",
+		"layer0.inner_margin": [1, 4],
+		"layer0.tint": [0, 0, 0, 127],
 		"layer0.opacity": 1.0,
-		"content_margin": [2, 0],
+		"content_margin": [4, 4],
 		"blur": false,
 	},
 	{
 		"class": "puck_control",
 		"attributes": ["horizontal"],
-		"content_margin": [0, 2],
+		"layer0.texture": "Theme - 1Space/img/puck_control--horizontal.png",
+		"layer0.inner_margin": [4, 1],
 	},
 
 //
@@ -158,8 +173,10 @@
 	{
 		"class": "scroll_bar_control",
 		"settings": ["overlay_scroll_bars"],
-		"layer0.tint": [215, 215, 215],
-		"layer0.opacity": 1.0,
+		"layer0.opacity": 0.0,
+		"layer1.opacity": 0.0,
+		"layer2.opacity": 1.0,
+		// "layer0.tint": [0, 0, 0, 30],
 		"blur": true,
 	},
 	{
@@ -170,7 +187,7 @@
 	{
 		"class": "puck_control",
 		"settings": ["overlay_scroll_bars"],
-		"layer0.tint": [0, 0, 0, 70],
+		// "layer0.tint": [0, 0, 0, 127],
 		"blur": true,
 	},
 	{
@@ -418,7 +435,6 @@
 		"class": "popup_control",
 		"layer0.tint": [255, 255, 255],
 		"layer0.opacity": 1.0,
-		"content_margin": [0, -1, 0, 0], // fix 1px extra at the top of scrollbar
 	},
 	{
 		"class": "table_row",
@@ -476,19 +492,22 @@
 //
 	{
 		"class": "sidebar_container",
-		"layer0.tint": [228, 228, 228],
+		"layer0.tint": [236, 236, 236],
 		"layer0.opacity": 1.0,
-		"layer0.inner_margin": [0, 0, 1, 0],
-		"layer1.tint": [236, 236, 236],
+		"layer1.tint": [228, 228, 228],
 		"layer1.opacity": 1.0,
-		"layer1.inner_margin": [0, 32, 0, 0],
+		"layer1.inner_margin": [0, 0, 1, 0],
 		"layer1.draw_center": false,
-		"layer2.texture": "Theme - 1Space/img/tab_control.png",
-		"layer2.tint": [222, 222, 222],
+		"layer2.tint": [236, 236, 236],
 		"layer2.opacity": 1.0,
-		"layer2.inner_margin": [0, 32, 1, 0],
+		"layer2.inner_margin": [0, 32, 0, 0],
 		"layer2.draw_center": false,
-		"content_margin": [-1, -1, 1, 0], // fix 1px extra at the top/left of scrollbar
+		"layer3.texture": "Theme - 1Space/img/tab_control.png",
+		"layer3.tint": [222, 222, 222],
+		"layer3.opacity": 1.0,
+		"layer3.inner_margin": [0, 32, 1, 0],
+		"layer3.draw_center": false,
+		"content_margin": [0, 0, 1, 0],
 	},
 	{
 		"class": "sidebar_tree",
