@@ -171,7 +171,7 @@
 		"class": "puck_control",
 		"settings": ["overlay_scroll_bars"],
 		"layer0.tint": [0, 0, 0, 70],
-		"blur": true
+		"blur": true,
 	},
 	{
 		"class": "puck_control",
@@ -493,7 +493,7 @@
 	{
 		"class": "sidebar_tree",
 		"row_padding": [8, 7, 8, 4],
-		"indent": 15,
+		"indent": 20,
 		"indent_offset": 17,
 		"indent_top_level": false,
 		"layer0.tint": [236, 236, 236],
@@ -927,7 +927,8 @@
 	{
 		"settings": ["1space_hide_disclosure_button"],
 		"class": "sidebar_tree",
-		"indent_offset": 0,
+		"indent": 18,
+		"indent_offset": 1,
 	},
 	{
 		"settings": ["1space_hide_disclosure_button"],
