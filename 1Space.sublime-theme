@@ -143,7 +143,7 @@
 	},
 	{
 		"class": "scroll_corner_control",
-		"layer0.tint": [236, 236, 236],
+		"layer0.tint": [255, 255, 255],
 		"layer0.opacity": 1.0,
 	},
 	{
@@ -167,6 +167,11 @@
 //
 	{
 		"class": "scroll_bar_control",
+		"parents": [{"class": "sidebar_container"}],
+		"layer0.tint": [236, 236, 236],
+	},
+	{
+		"class": "scroll_corner_control",
 		"parents": [{"class": "sidebar_container"}],
 		"layer0.tint": [236, 236, 236],
 	},
