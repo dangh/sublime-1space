@@ -127,39 +127,53 @@
 		"layer0.opacity": 1.0,
 		// layer1 is the alpha background
 		"layer1.tint": [228, 228, 228],
-		"layer1.opacity": 1.0,
+		"layer1.opacity": 0.0,
 		// layer2 is the image background, used for overlay scrollbars
 		"layer2.texture": "Theme - 1Space/img/puck_control.png",
-		"layer2.inner_margin": [1, 4],
+		"layer2.inner_margin": [4, 4],
 		"layer2.tint": [0, 0, 0, 30],
-		"layer2.opacity": 0.0,
+		"layer2.opacity": 1.0,
 		"blur": false,
 	},
 	{
 		"class": "scroll_bar_control",
 		"attributes": ["horizontal"],
 		"layer2.texture": "Theme - 1Space/img/puck_control--horizontal.png",
-		"layer2.inner_margin": [4, 1],
+		"layer2.inner_margin": [4, 4],
 	},
 	{
 		"class": "scroll_corner_control",
-		"layer0.tint": [228, 228, 228],
+		"layer0.tint": [236, 236, 236],
 		"layer0.opacity": 1.0,
 	},
 	{
 		"class": "puck_control",
 		"layer0.texture": "Theme - 1Space/img/puck_control.png",
-		"layer0.inner_margin": [1, 4],
+		"layer0.inner_margin": [4, 4],
 		"layer0.tint": [0, 0, 0, 127],
 		"layer0.opacity": 1.0,
-		"content_margin": [4, 4],
+		"content_margin": [9, 4, 0, 4],
 		"blur": false,
 	},
 	{
 		"class": "puck_control",
 		"attributes": ["horizontal"],
 		"layer0.texture": "Theme - 1Space/img/puck_control--horizontal.png",
-		"layer0.inner_margin": [4, 1],
+		"content_margin": [4, 9, 4, 0],
+	},
+
+//
+// SCROLLER: SIDEBAR
+//
+	{
+		"class": "scroll_bar_control",
+		"parents": [{"class": "sidebar_container"}],
+		"layer0.tint": [236, 236, 236],
+	},
+	{
+		"class": "puck_control",
+		"parents": [{"class": "sidebar_container"}],
+		"layer0.tint": [0, 0, 0, 107],
 	},
 
 //
