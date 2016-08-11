@@ -1028,4 +1028,18 @@
 		"layer0.opacity": 1.0,
 		"layer1.opacity": 0.0,
 	},
+
+//
+// SETTING: 1space_hide_tab_scroll_buttons
+//
+	{
+		"settings": ["1space_hide_tabs_scroll_buttons"],
+		"class": "scroll_tabs_left_button",
+		"content_margin": 0,
+	},
+	{
+		"settings": ["1space_hide_tabs_scroll_buttons"],
+		"class": "scroll_tabs_right_button",
+		"content_margin": 0,
+	},
 ]
