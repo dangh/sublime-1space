@@ -376,8 +376,8 @@
 		"class": "overlay_control",
 		"layer0.texture": "Theme - 1Space/img/overlay_control.png",
 		"layer0.opacity": 1.0,
-		"layer0.inner_margin": [20, 0, 20, 27],
-		"content_margin": [20, 8, 20, 27]
+		"layer0.inner_margin": [18, 0, 18, 25],
+		"content_margin": [18, 8, 18, 25]
 	},
 	// Quick Panel
 	{
