@@ -164,7 +164,7 @@
 	},
 
 //
-// SCROLLER: SIDEBAR
+// SCROLLBARS: SIDEBAR
 //
 	{
 		"class": "scroll_bar_control",
@@ -756,11 +756,12 @@
 		"layer1.inner_margin": [0, 0, 0, 1],
 		"layer1.draw_center": false,
 		// "content_margin": [0, 0, 0, 1],
-		"tab_overlap": 0,
+		"tab_overlap": 1,
 		"tab_width": 255,
 		"tab_min_width": 48,
 		"tab_height": 32,
 		"mouse_wheel_switch": false,
+		"content_margin": [-1, 0, -1, 0], // overlap left-most, right-most tab borders
 	},
 	{
 		"class": "tabset_control",
@@ -779,14 +780,14 @@
 		"layer1.opacity": 1.0,
 		"layer1.inner_margin": [0, 0, 0, 1],
 		"layer1.draw_center": false,
-		// right border
+		// left right border
 		"layer2.tint": [236, 236, 236],
 		"layer2.opacity": 1.0,
-		"layer2.inner_margin": [0, 0, 1, 0],
+		"layer2.inner_margin": [1, 0, 1, 0],
 		"layer2.draw_center": false,
 		"layer3.texture": "Theme - 1Space/img/tab_control.png",
 		"layer3.tint": [214, 214, 214],
-		"layer3.inner_margin": [0, 0, 1, 1],
+		"layer3.inner_margin": [1, 0, 1, 0],
 		"layer3.opacity": 1.0,
 	},
 	{
@@ -830,9 +831,10 @@
 	// tab set scroll left scroll right
 	{
 		"class": "scroll_tabs_left_button",
-		"content_margin": [18, 31, 0, 0],
+		"content_margin": [19, 31, 0, 0], // add 1px to the left because tabset already swallow 1px
 		"layer0.texture": "Theme - 1Space/img/scroll_tabs_left_button.png",
 		"layer0.tint": [71, 71, 71, 150],
+		"layer0.inner_margin": [0, 0, 18, 0],
 		"layer0.opacity": 0.3,
 	},
 	{
@@ -846,11 +848,6 @@
 		"layer0.texture": "Theme - 1Space/img/scroll_tabs_right_button.png",
 		"layer0.tint": [71, 71, 71, 150],
 		"layer0.opacity": 0.3,
-		"layer1.texture": "Theme - 1Space/img/tab_control.png",
-		"layer1.tint": [214, 214, 214],
-		"layer1.opacity": 1.0,
-		"layer1.inner_margin": [0, 0, 1, 0],
-		"layer1.draw_center": false,
 	},
 	{
 		"class": "scroll_tabs_right_button",
