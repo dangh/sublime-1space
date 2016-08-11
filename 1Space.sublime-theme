@@ -152,14 +152,15 @@
 		"layer0.inner_margin": [4, 4],
 		"layer0.tint": [0, 0, 0, 127],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 4, 0, 4],
+		"content_margin": [9, 15, 0, 15],
 		"blur": false,
 	},
 	{
 		"class": "puck_control",
 		"attributes": ["horizontal"],
 		"layer0.texture": "Theme - 1Space/img/puck_control--horizontal.png",
-		"content_margin": [4, 9, 4, 0],
+		"layer0.inner_margin": [4, 4],
+		"content_margin": [15, 9, 15, 0],
 	},
 
 //
