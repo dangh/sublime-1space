@@ -60,6 +60,7 @@
 	{
 		"class": "button_control",
 		"attributes": ["hover"],
+		"layer0.tint": [220, 220, 220],
 	},
 	{
 		"parents": [{ "class": "button_control" }],
