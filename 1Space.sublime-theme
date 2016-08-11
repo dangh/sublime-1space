@@ -714,7 +714,7 @@
 	},
 	{
 		"class": "status_container",
-		"content_margin": [0, 3, 0, 4]
+		"content_margin": [0, 3, 0, 3]
 	},
 	{
 		"class": "status_button",
@@ -727,13 +727,14 @@
 	{
 		"class": "panel_button_control",
 		"layer0.texture": "Theme - 1Space/img/panel_button_control.png",
-		"layer0.tint": [71, 71, 71, 71],
+		"layer0.tint": [102, 102, 102],
+		"layer0.opacity": 0.5,
 		"content_margin": [10, 8],
 	},
 	{
 		"class": "panel_button_control",
 		"attributes": ["hover"],
-		"layer0.tint": [39, 176, 98],
+		"layer0.opacity": 0.6,
 	},
 
 //
