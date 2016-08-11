@@ -761,9 +761,9 @@
 		"tab_overlap": 1,
 		"tab_width": 255,
 		"tab_min_width": 48,
-		"tab_height": 32,
+		"tab_height": 34,
 		"mouse_wheel_switch": false,
-		"content_margin": [-1, 0, -1, 0], // overlap left-most, right-most tab borders
+		"content_margin": [-1, -1, -1, -1], // overlap left-most, right-most tab borders
 	},
 	{
 		"class": "tabset_control",
@@ -780,16 +780,16 @@
 		// bottom border
 		"layer1.tint": [224, 224, 224],
 		"layer1.opacity": 1.0,
-		"layer1.inner_margin": [0, 0, 0, 1],
+		"layer1.inner_margin": [0, 0, 0, 2],
 		"layer1.draw_center": false,
 		// left right border
 		"layer2.tint": [236, 236, 236],
 		"layer2.opacity": 1.0,
-		"layer2.inner_margin": [1, 0, 1, 0],
+		"layer2.inner_margin": [1, 1, 1, 1],
 		"layer2.draw_center": false,
 		"layer3.texture": "Theme - 1Space/img/tab_control.png",
 		"layer3.tint": [214, 214, 214],
-		"layer3.inner_margin": [1, 0, 1, 0],
+		"layer3.inner_margin": [1, 1, 1, 1],
 		"layer3.opacity": 1.0,
 	},
 	{
