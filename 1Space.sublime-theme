@@ -1042,4 +1042,13 @@
 		"class": "scroll_tabs_right_button",
 		"content_margin": 0,
 	},
+
+//
+// SETTING: 1space_hide_tab_dropdown_button
+//
+	{
+		"settings": ["1space_hide_tabs_dropdown_button"],
+		"class": "show_tabs_dropdown_button",
+		"content_margin": 0,
+	},
 ]
