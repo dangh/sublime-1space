@@ -858,8 +858,9 @@
 	// tab set dropdown
 	{
 		"class": "show_tabs_dropdown_button",
-		"content_margin": [28, 31, 0, 0],
+		"content_margin": [31, 31, 0, 0],
 		"layer0.texture": "Theme - 1Space/img/show_tabs_dropdown_button.png",
+		"layer0.inner_margin": [28, 0, 0, 0],
 		"layer0.tint": [71, 71, 71, 150],
 		"layer0.opacity": 0.4,
 	},
