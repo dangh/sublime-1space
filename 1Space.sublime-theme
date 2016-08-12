@@ -238,11 +238,7 @@
 		"class": "panel_control",
 		"layer0.tint": [228, 228, 228],
 		"layer0.opacity": 1.0,
-		"layer1.tint": [224, 224, 224],
-		"layer1.opacity": 1,
-		"layer1.inner_margin": [0, 1, 0, 0],
-		"layer1.draw_center": false,
-		"content_margin": [4, 4],
+		"content_margin": [4, 3, 4, 2],
 	},
 
 //
