@@ -1,0 +1,6 @@
+scope: >-
+  text,
+  text.html.markdown,
+  text.plain
+settings:
+  icon: file_type_text
