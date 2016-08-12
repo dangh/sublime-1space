@@ -73,7 +73,7 @@
 //
 	{
 		"class": "icon_button_control",
-		"content_margin": [10, 6]
+		"content_margin": [10, 6],
 	},
 	{
 		"class": "icon_button_control",
@@ -249,7 +249,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_regex.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_regex",
@@ -261,7 +261,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_case.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_case",
@@ -273,7 +273,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_highlight.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_highlight",
@@ -285,7 +285,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_in_selection.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_in_selection",
@@ -297,7 +297,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_reverse.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_reverse",
@@ -309,7 +309,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_whole_word.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_whole_word",
@@ -321,7 +321,7 @@
 		"layer0.texture": "Theme - 1Space/img/icon_wrap.png",
 		"layer0.tint": [71, 71, 71],
 		"layer0.opacity": 1.0,
-		"content_margin": [9, 9]
+		"content_margin": [9, 9],
 	},
 	{
 		"class": "icon_wrap",
@@ -373,7 +373,7 @@
 		"layer0.texture": "Theme - 1Space/img/overlay_control.png",
 		"layer0.opacity": 1.0,
 		"layer0.inner_margin": [18, 0, 18, 25],
-		"content_margin": [18, 8, 18, 25]
+		"content_margin": [18, 8, 18, 25],
 	},
 	// Quick Panel
 	{
@@ -495,7 +495,7 @@
 		"class": "tool_tip_control",
 		"layer0.tint": [239, 245, 238],
 		"layer0.opacity": 1.0,
-		"content_margin": [5, 3]
+		"content_margin": [5, 3],
 	},
 	{
 		"class": "tool_tip_label_control",
@@ -598,7 +598,7 @@
 	{
 		"class": "disclosure_button_control",
 		"attributes": ["expanded"],
-		"layer0.texture": "Theme - 1Space/img/disclosure_button_control--expanded.png"
+		"layer0.texture": "Theme - 1Space/img/disclosure_button_control--expanded.png",
 	},
 
 //
@@ -614,7 +614,7 @@
 	{
 		"class": "close_button",
 		"attributes": ["dirty"],
-		// "layer0.texture": "Theme - 1Space/img/close_button--dirty.png"
+		// "layer0.texture": "Theme - 1Space/img/close_button--dirty.png",
 		"layer0.texture": "Theme - 1Space/img/tab_close_button--dirty.png",
 		"layer0.tint": [27, 156, 226],
 		"layer0.opacity": 0.6,
@@ -668,13 +668,13 @@
 		},
 		"layer0.tint": [71, 71, 71, 150],
 		"layer0.opacity": 1.0,
-		"content_margin": [8, 8]
+		"content_margin": [8, 8],
 	},
 	{
 		"class": "icon_folder_dup",
 		"layer0.texture": "Theme - 1Space/icon_folder_dup.png",
 		"layer0.opacity": 1.0,
-		"content_margin": [8, 8]
+		"content_margin": [8, 8],
 	},
 
 //
@@ -714,7 +714,7 @@
 	},
 	{
 		"class": "status_container",
-		"content_margin": [0, 3, 0, 3]
+		"content_margin": [0, 3, 0, 3],
 	},
 	{
 		"class": "status_button",
@@ -743,7 +743,7 @@
 	{
 		"class": "sheet_container_control",
 		"layer0.tint": [236, 236, 236],
-		"layer0.opacity": 1.0
+		"layer0.opacity": 1.0,
 	},
 
 //
@@ -812,7 +812,7 @@
 	{
 		"class": "tab_label",
 		"attributes": ["transient"],
-		"font.face": ".SFNSText-Italic"
+		"font.face": ".SFNSText-Italic",
 	},
 	// Tab Close Buttons
 	{
@@ -896,7 +896,7 @@
 	{
 		"class": "grid_layout_control",
 		"border_size": 1,
-		"border_color": [214, 214, 214]
+		"border_color": [214, 214, 214],
 	},
 
 //
@@ -916,14 +916,14 @@
 		"class": "progress_gauge_control",
 		"layer0.tint": [43, 102, 201],
 		"layer0.opacity": 1.0,
-		"content_margin": [0, 6]
+		"content_margin": [0, 6],
 	},
 
 // check
 	{
 		"class": "dialog",
 		"layer0.tint": [236, 236, 236],
-		"layer0.opacity": 1.0
+		"layer0.opacity": 1.0,
 	},
 
 //
