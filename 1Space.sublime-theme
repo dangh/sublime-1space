@@ -710,6 +710,10 @@
 		"class": "status_bar",
 		"layer0.tint": [220, 220, 220],
 		"layer0.opacity": 1.0,
+		"layer1.texture": "Theme - 1Space/img/status_bar.png",
+		"layer1.tint": [220, 220, 220],
+		"layer1.inner_margin": [5, 0, 5, 5],
+		"layer1.opacity": 1.0,
 		"content_margin": [6, 3, 10, 3],
 	},
 	{
