@@ -714,7 +714,7 @@
 		"layer1.tint": [220, 220, 220],
 		"layer1.inner_margin": [5, 0, 5, 5],
 		"layer1.opacity": 1.0,
-		"content_margin": [6, 3, 10, 3],
+		"content_margin": [6, 2, 10, 2],
 	},
 	{
 		"class": "status_container",
