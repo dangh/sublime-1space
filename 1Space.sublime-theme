@@ -16,7 +16,7 @@
 		"class": "text_line_control",
 		"layer0.texture": "Theme - 1Space/img/text_line_control.png",
 		"layer0.opacity": 1.0,
-		"layer0.inner_margin": [3, 3],
+		"layer0.inner_margin": [5, 5],
 		"content_margin": [8, 4, 8, 3],
 	},
 
