@@ -43,7 +43,7 @@
 	{
 		"class": "button_control",
 		"content_margin": [6, 6, 6, 5],
-		"min_size": [75, 20],
+		"min_size": [65, 16],
 		"layer0.texture": "Theme - 1Space/img/button_control.png",
 		"layer0.tint": [228, 228, 228],
 		"layer0.inner_margin": [2, 2],
@@ -73,7 +73,7 @@
 //
 	{
 		"class": "icon_button_control",
-		"content_margin": [10, 6],
+		"content_margin": [8, 4],
 	},
 	{
 		"class": "icon_button_control",
