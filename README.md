@@ -1,7 +1,7 @@
 # 1Space Theme
-A Sublime Text 3 theme based on [Atom One light UI](https://github.com/atom/one-light-ui) and inspired by [Spacegray Light](https://github.com/kkga/spacegray)
+Sublime Text 3 theme based on [Atom One light UI](https://github.com/atom/one-light-ui) and inspired by [Spacegray Light](https://github.com/kkga/spacegray)
 
-![Screenshot](https://raw.githubusercontent.com/dangh/sublime-1space/master/screenshots/2016-08-11.png)
+![Screenshot](https://raw.githubusercontent.com/dangh/sublime-1space/master/screenshots/2016-08-13.png)
 
 ## Settings
 - `1space_bold_active_file_label`
