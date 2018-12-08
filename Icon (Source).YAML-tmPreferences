@@ -1,6 +1,7 @@
 scope: >-
   source,
   source.applescript,
+  source.c,
   source.c++,
   source.css,
   source.java,
@@ -13,6 +14,8 @@ scope: >-
   source.sass,
   source.scss,
   source.shell,
-  source.swift
+  source.sql,
+  source.swift,
+  source.ts
 settings:
   icon: file_type_source

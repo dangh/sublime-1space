@@ -1,4 +1,5 @@
 scope: >-
+  embedding.php,
   source.yaml,
   text.html,
   text.html.basic,
