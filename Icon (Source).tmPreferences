@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<string>source, source.applescript, source.c, source.c++, source.css, source.groovy, source.java, source.js, source.json, source.less, source.lua, source.ocaml, source.php, source.python, source.ruby, source.rust, source.sass, source.scss, source.shell, source.sql, source.swift, source.ts, embedding.php</string>
+	<key>settings</key>
+	<dict>
+		<key>icon</key>
+		<string>file_type_source</string>
+	</dict>
+</dict>
+</plist>

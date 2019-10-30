@@ -1,0 +1,9 @@
+{
+  "extends": "1Space.sublime-theme",
+  "variables": {
+    "font.size.large": 11,
+    "font.face": "Code Saver",
+    "font.face.italic": "Code Saver Italic",
+    "font.face.bold": "Code Saver Medium",
+  }
+}
