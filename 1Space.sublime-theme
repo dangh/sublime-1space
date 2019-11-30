@@ -717,7 +717,8 @@
 		},
 		{
 			"class": "icon_folder_dup",
-			"layer0.texture": "sublime-1space/icon_folder_dup.png",
+			"layer0.texture": "sublime-1space/img/icon_folder_dup.png",
+			"layer0.tint": [71, 71, 71, 150],
 			"layer0.opacity": 1.0,
 			"content_margin": [8, 8],
 		},
