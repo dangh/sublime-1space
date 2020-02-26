@@ -834,6 +834,7 @@
 			"layer3.tint": [214, 214, 214],
 			"layer3.inner_margin": [1, 1, 1, 1],
 			"layer3.opacity": 1.0,
+			"layer3.draw_center": false,
 		},
 		{
 			"class": "tab_control",
