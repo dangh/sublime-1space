@@ -678,7 +678,7 @@
 			"class": "icon_file_type",
 			// layer0.texture is filled in by code with the relevant icon name
 			"layer0.opacity": 1.0,
-			"layer0.tint": [90, 90, 90],
+			"layer0.tint": "rgb(90, 90, 90)",
 			"content_margin": [8, 8],
 		},
 		{
@@ -1216,6 +1216,15 @@
 			"class": "icon_folder",
 			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
 			"layer0.texture": "sublime-1space/img/icon_folder--expanded--alfred.png",
+		},
+
+		//
+		// SETTING: 1space_icon_monochrome
+		//
+		{
+			"settings": ["!1space_icon_monochrome"],
+			"class": "icon_file_type",
+			"layer0.tint": "rgb(255, 255, 255)",
 		},
 	]
 }
