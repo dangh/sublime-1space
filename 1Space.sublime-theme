@@ -1121,8 +1121,13 @@
 		},
 		{
 			"settings": ["1space_hide_status_button"],
+			"class": "sidebar_button_control",
+			"content_margin": 0,
+		},
+		{
+			"settings": ["1space_hide_status_button"],
 			"class": "status_bar",
-			"content_margin": [8, 0, 10, 0],
+			"content_margin": [10, 0, 10, 0],
 		},
 
 		//
