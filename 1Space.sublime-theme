@@ -419,10 +419,6 @@
 			"layer0.opacity": 1.0,
 			"layer0.inner_margin": [23, 10, 23, 21],
 			"content_margin": [15, 0, 15, 20], // 57x79
-			"layer1.texture": "sublime-1space/img/overlay_control--alfred--separator.png",
-			"layer1.tint": "var(lightgreen)",
-			"layer1.opacity": 0.0,
-			"layer1.inner_margin": [23, 45, 23, 0],
 		},
 		// Quick Panel
 		{
@@ -1139,8 +1135,6 @@
 			"layer0.texture": "sublime-1space/img/overlay_control--alfred-float.png",
 			"layer0.inner_margin": [23, 60, 23, 25],
 			"content_margin": [17, 48, 17, 21], // 57x79
-			"layer1.texture": "sublime-1space/img/overlay_control--alfred-float--separator.png",
-			"layer1.inner_margin": [23, 90, 23, 0],
 		},
 
 		//
