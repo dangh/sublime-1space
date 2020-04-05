@@ -968,20 +968,20 @@
 		},
 
 		//
-		// SETTING: 1space_bold_active_file_label
+		// SETTING: 1space.bold_active_file_label
 		//
 		{
-			"settings": ["1space_bold_active_file_label"],
+			"settings": ["1space.bold_active_file_label"],
 			"class": "sidebar_label",
 			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
 			"font.face": "var(font.face.bold)",
 		},
 
 		//
-		// SETTING: 1space_highlight_active_file
+		// SETTING: 1space.highlight_active_file
 		//
 		{
-			"settings": ["1space_highlight_active_file"],
+			"settings": ["1space.highlight_active_file"],
 			"class": "tree_row",
 			"attributes": ["selected"],
 			"layer1.tint": "var(green)",
@@ -991,39 +991,39 @@
 		},
 
 		//
-		// SETTING: 1space_hide_sidebar_icons
+		// SETTING: 1space.hide_sidebar_icons
 		//
 		{
-			"settings": ["1space_hide_sidebar_icons"],
+			"settings": ["1space.hide_sidebar_icons"],
 			"class": "icon_file_type",
 			"content_margin": 0,
 		},
 		{
-			"settings": ["1space_hide_sidebar_icons"],
+			"settings": ["1space.hide_sidebar_icons"],
 			"class": "icon_folder",
 			"content_margin": 0,
 		},
 		{
-			"settings": ["1space_hide_sidebar_icons"],
+			"settings": ["1space.hide_sidebar_icons"],
 			"class": "icon_folder_loading",
 			"content_margin": 0,
 		},
 
 		//
-		// SETTING: 1space_hide_disclosure_button
+		// SETTING: 1space.hide_disclosure_button
 		//
 		{
-			"settings": ["1space_hide_disclosure_button"],
+			"settings": ["1space.hide_disclosure_button"],
 			"class": "disclosure_button_control",
 			"content_margin": [0, 0],
 		},
 		{
-			"settings": ["1space_hide_disclosure_button"],
+			"settings": ["1space.hide_disclosure_button"],
 			"class": "sidebar_tree",
 			"indent_offset": 1,
 		},
 		{
-			"settings": ["1space_hide_disclosure_button"],
+			"settings": ["1space.hide_disclosure_button"],
 			"class": "close_button",
 			"content_margin": [0, 0],
 		},
@@ -1038,16 +1038,16 @@
 		},
 
 		//
-		// SETTING: 1space_show_tab_close_buttons_hover_only
+		// SETTING: 1space.show_tab_close_buttons_hover_only
 		//
 		{
-			"settings": ["show_tab_close_buttons", "1space_show_tab_close_buttons_hover_only"],
+			"settings": ["show_tab_close_buttons", "1space.show_tab_close_buttons_hover_only"],
 			"class": "tab_close_button",
 			"layer0.opacity": 0,
 		},
 		{
 			"class": "tab_close_button",
-			"settings": ["show_tab_close_buttons", "1space_show_tab_close_buttons_hover_only"],
+			"settings": ["show_tab_close_buttons", "1space.show_tab_close_buttons_hover_only"],
 			"parents": [{"class": "tab_control", "attributes": ["hover"]}],
 			"layer0.opacity": 0.5,
 		},
@@ -1085,52 +1085,52 @@
 		},
 
 		//
-		// SETTING: 1space_hide_tab_scroll_buttons
+		// SETTING: 1space.hide_tabs_scroll_buttons
 		//
 		{
-			"settings": ["1space_hide_tabs_scroll_buttons"],
+			"settings": ["1space.hide_tabs_scroll_buttons"],
 			"class": "scroll_tabs_left_button",
 			"content_margin": 0,
 		},
 		{
-			"settings": ["1space_hide_tabs_scroll_buttons"],
+			"settings": ["1space.hide_tabs_scroll_buttons"],
 			"class": "scroll_tabs_right_button",
 			"content_margin": 0,
 		},
 
 		//
-		// SETTING: 1space_hide_tab_dropdown_button
+		// SETTING: 1space.hide_tabs_dropdown_button
 		//
 		{
-			"settings": ["1space_hide_tabs_dropdown_button"],
+			"settings": ["1space.hide_tabs_dropdown_button"],
 			"class": "show_tabs_dropdown_button",
 			"content_margin": 0,
 		},
 
 		//
-		// SETTING: 1space_hide_status_button
+		// SETTING: 1space.hide_status_button
 		//
 		{
-			"settings": ["1space_hide_status_button"],
+			"settings": ["1space.hide_status_button"],
 			"class": "panel_button_control",
 			"content_margin": 0,
 		},
 		{
-			"settings": ["1space_hide_status_button"],
+			"settings": ["1space.hide_status_button"],
 			"class": "sidebar_button_control",
 			"content_margin": 0,
 		},
 		{
-			"settings": ["1space_hide_status_button"],
+			"settings": ["1space.hide_status_button"],
 			"class": "status_bar",
 			"content_margin": [10, 0, 10, 0],
 		},
 
 		//
-		// SETTING: 1space_floating_command_palette
+		// SETTING: 1space.floating_command_palette
 		//
 		{
-			"settings": ["1space_floating_command_palette"],
+			"settings": ["1space.floating_command_palette"],
 			"class": "overlay_control",
 			"layer0.texture": "sublime-1space/img/overlay_control--alfred-float.png",
 			"layer0.inner_margin": [23, 60, 23, 25],
@@ -1138,19 +1138,19 @@
 		},
 
 		//
-		// SETTING: 1space_sidebar_compact_indent
+		// SETTING: 1space.sidebar_compact_indent
 		//
 		{
-			"settings": ["1space_sidebar_compact_indent"],
+			"settings": ["1space.sidebar_compact_indent"],
 			"class": "sidebar_tree",
 			"indent": 11,
 		},
 
 		//
-		// SETTING: 1space_round_corners_hack
+		// SETTING: 1space.round_corners_hack
 		//
 		{
-			"settings": ["1space_round_corners_hack"],
+			"settings": ["1space.round_corners_hack"],
 			"class": "status_bar",
 			"layer1.tint": [0, 0, 0],
 			"layer1.opacity": 1.0,
@@ -1161,10 +1161,10 @@
 		},
 
 		//
-		// SETTING: 1space_active_tab_bottom_border
+		// SETTING: 1space.active_tab_bottom_border
 		//
 		{
-			"settings": ["1space_active_tab_bottom_border"],
+			"settings": ["1space.active_tab_bottom_border"],
 			"class": "tab_control",
 			"attributes": ["selected"],
 			"layer0.tint": [250, 250, 250],
@@ -1175,53 +1175,53 @@
 		},
 
 		//
-		// SETTING: 1space_tab_size_s
+		// SETTING: 1space.tab_size_s
 		//
 		{
-			"settings": ["1space_tab_size_s"],
+			"settings": ["1space.tab_size_s"],
 			"class": "tabset_control",
 			"tab_height": 26,
 		},
 
 		//
-		// SETTING: 1space_tab_size_m
+		// SETTING: 1space.tab_size_m
 		//
 		{
-			"settings": ["1space_tab_size_m"],
+			"settings": ["1space.tab_size_m"],
 			"class": "tabset_control",
 			"tab_height": 30,
 		},
 
 		//
-		// SETTING: 1space_statusbar_size_s
+		// SETTING: 1space.statusbar_size_s
 		//
 		{
-			"settings": ["1space_statusbar_size_s"],
+			"settings": ["1space.statusbar_size_s"],
 			"class": "status_bar",
 			"content_margin": [4, -2, 4, -2],
 		},
 
 		//
-		// SETTING: 1space_icon_macos
+		// SETTING: 1space.icon_macos
 		//
 		{
-			"settings": ["1space_icon_macos"],
+			"settings": ["1space.icon_macos"],
 			"class": "icon_folder",
 			"layer0.texture": "sublime-1space/img/icon_folder--alfred.png",
 			"layer0.tint": [102, 102, 102],
 		},
 		{
-			"settings": ["1space_icon_macos"],
+			"settings": ["1space.icon_macos"],
 			"class": "icon_folder",
 			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
 			"layer0.texture": "sublime-1space/img/icon_folder--expanded--alfred.png",
 		},
 
 		//
-		// SETTING: 1space_icon_monochrome
+		// SETTING: 1space.icon_monochrome
 		//
 		{
-			"settings": ["!1space_icon_monochrome"],
+			"settings": ["!1space.icon_monochrome"],
 			"class": "icon_file_type",
 			"layer0.tint": "rgb(255, 255, 255)",
 		},
