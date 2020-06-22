@@ -6,11 +6,11 @@
 		"green_text": "rgb(39, 176, 98)",
 		"lightgreen": "rgb(239, 245, 238)",
 		"gray_background": "rgb(236, 236, 236)",
-		"font.size": 11,
-		"font.size.large": 13,
-		"font.face": "SF Compact Display",
-		"font.face.italic": "SF Compact Text Italic",
-		"font.face.bold": "SF Compact Text Medium"
+		"font_size": 11,
+		"font_size_lg": 13,
+		"font_face": "system",
+		"font_face_italic": "var(font_face)",
+		"font_face_bold": "var(font_face)"
 	},
 	"rules": [
 		//
@@ -19,7 +19,7 @@
 		{
 			"class": "title_label_control",
 			"color": [71, 71, 71, 0],
-			"font.face": "var(font.face)",
+			"font.face": "var(font_face)",
 			"font.size": 1,
 		},
 
@@ -29,8 +29,8 @@
 		{
 			"class": "label_control",
 			"color": "#222", // "var(icon_fg)",
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size)",
 		},
 
 		//
@@ -89,7 +89,7 @@
 		{
 			"parents": [{ "class": "button_control" }],
 			"class": "label_control",
-			"font.face": "var(font.face.bold)",
+			"font.face": "var(font_face_bold)",
 		},
 
 		//
@@ -445,8 +445,8 @@
 			"match_fg": [23, 170, 90],
 			"selected_fg": [25, 177, 94],
 			"selected_match_fg": [23, 170, 90],
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size.large)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size_lg)",
 		},
 		{
 			"class": "quick_panel_path_label",
@@ -454,8 +454,8 @@
 			"match_fg": [23, 170, 90],
 			"selected_fg": [25, 177, 94],
 			"selected_match_fg": [23, 170, 90],
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size)",
 		},
 		{
 			"class": "mini_quick_panel_row",
@@ -581,8 +581,8 @@
 		{
 			"class": "sidebar_heading",
 			"color": [46, 46, 46, 150],
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size)",
 		},
 		{
 			"class": "sidebar_heading",
@@ -602,8 +602,8 @@
 		{
 			"class": "sidebar_label",
 			// "color": [0, 0, 0, 0],
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size)",
 			"color": "#000" // [46, 46, 46],
 		},
 		{
@@ -620,7 +620,7 @@
 		{
 			"class": "sidebar_label",
 			"attributes": ["transient"],
-			"font.face": "var(font.face.italic)",
+			"font.face": "var(font_face_italic)",
 		},
 
 		//
@@ -842,8 +842,8 @@
 		{
 			"class": "tab_label",
 			"fg": "#000", // "var(icon_fg)",
-			"font.face": "var(font.face)",
-			"font.size": "var(font.size)",
+			"font.face": "var(font_face)",
+			"font.size": "var(font_size)",
 		},
 		{
 			"class": "tab_label",
@@ -853,7 +853,7 @@
 		{
 			"class": "tab_label",
 			"attributes": ["transient"],
-			"font.face": "var(font.face.italic)",
+			"font.face": "var(font_face_italic)",
 		},
 		// Tab Close Buttons
 		{
@@ -974,7 +974,7 @@
 			"settings": ["1space.bold_active_file_label"],
 			"class": "sidebar_label",
 			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
-			"font.face": "var(font.face.bold)",
+			"font.face": "var(font_face_bold)",
 		},
 
 		//
