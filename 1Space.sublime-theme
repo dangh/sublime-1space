@@ -7,10 +7,7 @@
 		"lightgreen": "rgb(239, 245, 238)",
 		"gray_background": "rgb(236, 236, 236)",
 		"font_size": 11,
-		"font_size_lg": 13,
-		"font_face": "system",
-		"font_face_italic": "var(font_face)",
-		"font_face_bold": "var(font_face)"
+		"font_face": "Code Saver",
 	},
 	"rules": [
 		//
@@ -89,7 +86,8 @@
 		{
 			"parents": [{ "class": "button_control" }],
 			"class": "label_control",
-			"font.face": "var(font_face_bold)",
+			"font.face": "var(font_face)",
+			"font.bold": true,
 		},
 
 		//
@@ -446,7 +444,7 @@
 			"selected_fg": [25, 177, 94],
 			"selected_match_fg": [23, 170, 90],
 			"font.face": "var(font_face)",
-			"font.size": "var(font_size_lg)",
+			"font.size": "var(font_size)",
 		},
 		{
 			"class": "quick_panel_path_label",
@@ -620,7 +618,8 @@
 		{
 			"class": "sidebar_label",
 			"attributes": ["transient"],
-			"font.face": "var(font_face_italic)",
+			"font.face": "var(font_face)",
+			"font.italic": true,
 		},
 
 		//
@@ -853,7 +852,8 @@
 		{
 			"class": "tab_label",
 			"attributes": ["transient"],
-			"font.face": "var(font_face_italic)",
+			"font.face": "var(font_face)",
+			"font.italic": true,
 		},
 		// Tab Close Buttons
 		{
@@ -974,7 +974,8 @@
 			"settings": ["1space.bold_active_file_label"],
 			"class": "sidebar_label",
 			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
-			"font.face": "var(font_face_bold)",
+			"font.face": "var(font_face)",
+			"font.bold": true,
 		},
 
 		//
