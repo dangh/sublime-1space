@@ -35,7 +35,7 @@
 		"--sidebar_tree.bg": "var(--sidebar_container.bg)",
 		"--sidebar_tree.indent": 16, //indent between parent/child row
 		"--tree_row.bg@selected": "hsl(0, 0%, 88%)",
-		"--sidebar_heading.fg": "hsla(0, 0%, 18%, 0.59)",
+		"--sidebar_heading.fg": "color(var(--fg) a(0.5))",
 		"--sidebar_heading.font.face": "var(--font_face)",
 		"--sidebar_heading.font.size": "var(--font_size)",
 		"--sidebar_label.font.face": "var(--font_face)",
@@ -46,6 +46,11 @@
 		"--sidebar_label.font.bold": "var(--font_bold)",
 		"--sidebar_label.font.italic": "var(--font_italic)",
 		"--sidebar_label.fg": "var(--fg)",
+		"--close_button.tint": "color(var(--icon_tint) a(0.5))",
+		"--close_button.tint@hover": "color(var(--icon_tint) a(1.0))",
+		"--close_button--dirty.tint": "var(--accent_fg#match)",
+		"--close_button.opacity$0.0": "var(--opacity$0.0)",
+		"--close_button.opacity$1.0": "var(--opacity$1.0)",
 		"--disclosure_button_control.tint": "var(--icon_tint)",
 		"--disclosure_button_control.tint@hover": "var(--disclosure_button_control.tint)",
 		"--icon_folder.tint": "var(--icon_tint)",
@@ -244,25 +249,36 @@
 			"font.face": "var(--sidebar_label.font.face@expandable)",
 			"font.bold": "var(--sidebar_label.font.bold)",
 		},
-		//TODO: why close_button not showing?
 		{
 			"class": "close_button",
 			"layer0.texture": "sublime-1space/img/close_button.png",
-			"layer0.tint": "hsla(0, 0%, 28%, 0.59)",
+			"layer0.tint": "var(--close_button.tint)",
 			"layer0.opacity": 0.0,
-			"content_margin": 8,
+			//FIX: push to the left 4px to be aligned with disclosure_button_control
+			"layer0.inner_margin": [12, 12, 0, 0], //stick texture to top-left corner
+			"content_margin": [16, 12, 0, 0], //add 4px to the width
 		},
 		{
 			"class": "close_button",
-			"attributes": ["dirty"],
-			"layer0.texture": "sublime-1space/img/close_button--dirty.png",
-			"layer0.tint": [27, 156, 226],
-			"layer0.opacity": 0.6,
+			"settings": ["show_tab_close_buttons"],
+			"layer0.opacity": "var(--close_button.opacity$1.0)",
 		},
 		{
 			"class": "close_button",
 			"attributes": ["hover"],
-			"layer0.opacity": 0.7,
+			"settings": ["show_tab_close_buttons"],
+			"layer0.tint": "var(--close_button.tint@hover)",
+			"layer0.opacity": "var(--close_button.opacity$1.0)",
+		},
+		{
+			"class": "close_button",
+			"settings": ["!show_tab_close_buttons"],
+			"content_margin": 0, //get rid of the button when none of the settings enabled
+		},
+		{
+			"class": "close_button",
+			"settings": ["!show_tab_close_buttons"],
+			"hit_test_level": 1.0, //disable mouse click
 		},
 		{
 			"class": "disclosure_button_control",
@@ -336,6 +352,14 @@
 			"class": "vcs_status_badge",
 			//TODO
 		},
+		//SETTING: 1space.highlight_active_file
+		{
+			"settings": ["1space.highlight_active_file"],
+			"class": "tree_row",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--tree_row.bg@selected)",
+			"layer0.opacity": 1.0,
+		},
 		//SETTING: 1space.bold_active_file_label
 		{
 			"settings": ["1space.bold_active_file_label"],
@@ -344,13 +368,17 @@
 			"font.face": "var(--sidebar_label.font.face@selected)",
 			"font.bold": "var(--sidebar_label.font.bold)",
 		},
-		//SETTING: 1space.highlight_active_file
+		//SETTING: 1space.show_tab_close_buttons_hover_only
 		{
-			"settings": ["1space.highlight_active_file"],
-			"class": "tree_row",
-			"attributes": ["selected"],
-			"layer0.tint": "var(--tree_row.bg@selected)",
-			"layer0.opacity": 1.0,
+			"settings": ["1space.show_tab_close_buttons_hover_only", "show_tab_close_buttons"],
+			"class": "close_button",
+			"layer0.opacity": "var(--close_button.opacity$0.0)",
+		},
+		{
+			"settings": ["1space.show_tab_close_buttons_hover_only", "show_tab_close_buttons"],
+			"class": "close_button",
+			"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
+			"layer0.opacity": "var(--close_button.opacity$1.0)",
 		},
 		//SETTING: 1space.show_sidebar_icons
 		{
