@@ -96,6 +96,7 @@
 		"--dialog.bg": "var(--bg)",
 		"--scroll_track_control.bg": "hsla(0, 0%, 0%, 0.1)",
 		"--puck_control.bg": "color(hsl(0, 0%, 0%) blend(var(--bg) 30%))",
+		"--puck_control.bg--overlay": "hsla(0, 0%, 0%, 0.2)",
 		"--button_control.bg": "transparent",
 		"--button_control.bg@hover": "hsla(0, 0%, 0%, 0.06)",
 		"--button_control.font.face": "var(--font_face)",
@@ -700,7 +701,11 @@
 			"settings": ["!overlay_scroll_bars"],
 			"overlay": false,
 			//TODO: check docs
-			"layer0.opacity": 0.0,
+		},
+		{
+			"class": "scroll_area_control",
+			"settings": ["overlay_scroll_bars"],
+			"overlay": true,
 		},
 		{
 			"class": "scroll_bar_control",
@@ -754,6 +759,11 @@
 		{
 			"class": "puck_control",
 			"attributes": ["dark"],
+		},
+		{
+			"class": "puck_control",
+			"settings": ["overlay_scroll_bars"],
+			"layer0.tint": "var(--puck_control.bg--overlay)",
 		},
 
 		/////////////////////////
@@ -1013,70 +1023,6 @@
 
 
 
-
-
-		//
-		// SCROLLBARS: SIDEBAR
-		//
-		// {
-		// 	"class": "scroll_bar_control",
-		// 	"parents": [{"class": "sidebar_container"}],
-		// 	// "layer0.tint": "var(--sidebar_container.bg)",
-		// },
-		// {
-		// 	"class": "scroll_corner_control",
-		// 	"parents": [{"class": "sidebar_container"}],
-		// 	// "layer0.tint": "var(--sidebar_container.bg)",
-		// },
-		// {
-		// 	"class": "puck_control",
-		// 	"parents": [{"class": "sidebar_container"}],
-		// 	// "layer0.opacity": 0,
-		// },
-
-		// //
-		// // SCROLLBARS: OVERLAY
-		// //
-		// {
-		// 	"class": "scroll_area_control",
-		// 	"settings": ["overlay_scroll_bars"],
-		// 	"overlay": true,
-		// },
-		// {
-		// 	"class": "scroll_bar_control",
-		// 	"settings": ["overlay_scroll_bars"],
-		// 	// "layer0.opacity": 0.0,
-		// 	// "layer1.opacity": 0.0,
-		// },
-		// {
-		// 	"class": "scroll_bar_control",
-		// 	"settings": ["overlay_scroll_bars"],
-		// 	"attributes": ["horizontal"],
-		// },
-		// {
-		// 	"class": "puck_control",
-		// 	"settings": ["overlay_scroll_bars"],
-		// 	"parents": [{"class": "sidebar_container"}],
-		// },
-		// {
-		// 	"class": "puck_control",
-		// 	"settings": ["overlay_scroll_bars"],
-		// 	"attributes": ["horizontal"],
-		// },
-
-		//
-		// SCROLLBARS: DARK
-		//
-		{
-			"class": "puck_control",
-			"settings": ["overlay_scroll_bars"],
-			"attributes": ["dark"],
-		},
-		{
-			"class": "puck_control",
-			"settings": ["overlay_scroll_bars"],
-			"attributes": ["horizontal", "dark"],
-		},
 
 		//
 		// COMMAND PALETTE
