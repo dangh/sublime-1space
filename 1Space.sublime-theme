@@ -563,12 +563,11 @@
 		},
 		{
 			"class": "scroll_tabs_left_button",
-			"content_margin": [10, 13, 9, 13], //add 1px to the left because tabset_control already swallow 1px
 			"layer0.texture": "sublime-1space/img/scroll_tabs_left_button.png",
 			"layer0.tint": "var(--scroll_tabs_left_button.tint)",
-			"layer0.inner_margin": [0, -3, 10, 0], //adjust top for vertical alignment
-			"layer0.repeat": true,
 			"layer0.opacity": "var(--scroll_tabs_left_button.opacity)",
+			"layer0.inner_margin": [0, 16, 16, 0], //fix texture to top-right corner
+			"content_margin": [23, 16, 0, 0], //add 6px + 1px to the width (tabset_control always swallow 1px)
 		},
 		{
 			"class": "scroll_tabs_left_button",
@@ -577,12 +576,11 @@
 		},
 		{
 			"class": "scroll_tabs_right_button",
-			"content_margin": [9, 13],
 			"layer0.texture": "sublime-1space/img/scroll_tabs_right_button.png",
 			"layer0.tint": "var(--scroll_tabs_right_button.tint)",
-			"layer0.inner_margin": [10, -3, 0, 0], //adjust top for vertical alignment
-			"layer0.repeat": true,
 			"layer0.opacity": "var(--scroll_tabs_right_button.opacity)",
+			"layer0.inner_margin": [16, 16, 0, 0], //fix texture to top-left corner
+			"content_margin": [22, 16, 0, 0], //add 6px to the width
 		},
 		{
 			"class": "scroll_tabs_right_button",
@@ -591,12 +589,11 @@
 		},
 		{
 			"class": "show_tabs_dropdown_button",
-			"content_margin": [18, 13],
 			"layer0.texture": "sublime-1space/img/show_tabs_dropdown_button.png",
-			"layer0.inner_margin": [9, -3, 13, 0], //adjust top for vertical alignment
 			"layer0.tint": "var(--show_tabs_dropdown_button.tint)",
 			"layer0.opacity": "var(--show_tabs_dropdown_button.opacity)",
-			"layer0.repeat": true,
+			"layer0.inner_margin": [36, 16, 0, 0], //fix texture to top-left corner
+			"content_margin": [38, 16, 0, 0], //add 2px to the width
 		},
 		{
 			"class": "show_tabs_dropdown_button",
