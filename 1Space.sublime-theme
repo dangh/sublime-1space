@@ -1,38 +1,765 @@
 {
 	"variables": {
-		"white": "#fff",
-		"icon_fg": "rgb(71, 71, 71)",
-		"green": "rgb(52, 199, 73)",
-		"green_text": "rgb(39, 176, 98)",
-		"lightgreen": "rgb(239, 245, 238)",
-		"gray_background": "rgb(236, 236, 236)",
-		"font_size": 11,
-		"font_face": "Code Saver",
+		//base
+		"--font_size": 11,
+		"--font_face": "Code Saver",
+		"--fg": "hsl(0, 0%, 0%)",
+		"--bg": "hsl(0, 0%, 93%)",
+		"--border": "hsl(0, 0%, 88%)",
+		"--icon_tint": "hsl(0, 0%, 28%)",
+		"--accent_bg": "hsl(111, 26%, 95%)",
+		"--accent_fg": "hsl(147, 75%, 40%)",
+		"--accent_fg@match": "hsl(147, 76%, 38%)",
+		"white": "hsl(0, 0%, 100%)",
+		"green": "hsl(129, 59%, 49%)",
+		//elements
+		"--title_bar.fg": "var(--fg)",
+		"--title_bar.bg": "var(--bg)",
+		"--sidebar_container.bg": "var(--bg)",
+		"--sidebar_container.border": "var(--border)",
+		"--sidebar_container.tab_border_gradient": "hsl(0, 0%, 87%)",
+		"--sidebar_tree.bg": "var(--sidebar_container.bg)",
+		"--tree_row.bg@selected": "hsl(0, 0%, 88%)",
+		"--sidebar_heading.fg": "hsla(0, 0%, 18%, 0.59)",
+		"--sidebar_heading.font.face": "var(--font_face)",
+		"--sidebar_heading.font.size": "var(--font_size)",
+		"--sidebar_label.font.face": "var(--font_face)",
+		"--sidebar_label.font.size": "var(--font_size)",
+		"--sidebar_label.fg": "var(--fg)",
+		"--disclosure_button_control.tint": "var(--icon_tint)",
+		"--disclosure_button_control.tint@hover": "hsl(0, 0%, 18%)",
+		"--icon_folder.tint": "var(--icon_tint)",
+		"--icon_folder_loading.tint": "color(var(--icon_tint) a(0.59))",
+		"--icon_folder_dup.tint": "color(var(--icon_tint) a(0.59))",
+		"--tabset_control.bg": "var(--bg)",
+		"--tabset_control.border_bottom": "var(--border)",
+		"--tabset_control.tab_width": 225,
+		"--tabset_control.tab_min_width": 48,
+		"--tabset_control.tab_height": 28,
+		"--tab_control.bg": "var(--tabset_control.bg)",
+		"--tab_control.bg@selected": "hsl(0, 0%, 100%)",
+		"--tab_control.border_bottom": "var(--tabset_control.border_bottom)",
+		"--tab_control.border_gradient": "hsl(0, 0%, 84%)",
+		"--tab_label.fg": "var(--fg)",
+		"--tab_label.fg@selected": "var(--tab_label.fg)",
+		"--tab_label.font.face": "var(--font_face)",
+		"--tab_label.font.size": "var(--font_size)",
+		"--tab_close_button.tint": "color(var(--icon_tint) a(0.5))",
+		"--tab_close_button.tint@hover": "color(var(--icon_tint) a(1.0))",
+		"--tabs_button.tint": "color(var(--icon_tint) a(0.59))",
+		"--tabs_button.opacity": { "target": 0.3, "speed": 5.0, "interpolation": "smoothstep" },
+		"--tabs_button.opacity@hover": { "target": 1.0, "speed": 5.0, "interpolation": "smoothstep" },
+		"--scroll_tabs_left_button.tint": "var(--tabs_button.tint)",
+		"--scroll_tabs_left_button.opacity": "var(--tabs_button.opacity)",
+		"--scroll_tabs_left_button.opacity@hover": "var(--tabs_button.opacity@hover)",
+		"--scroll_tabs_right_button.tint": "var(--tabs_button.tint)",
+		"--scroll_tabs_right_button.opacity": "var(--tabs_button.opacity)",
+		"--scroll_tabs_right_button.opacity@hover": "var(--tabs_button.opacity@hover)",
+		"--show_tabs_dropdown_button.tint": "var(--tabs_button.tint)",
+		"--show_tabs_dropdown_button.opacity": "var(--tabs_button.opacity)",
+		"--show_tabs_dropdown_button.opacity@hover": "var(--tabs_button.opacity@hover)",
+		"--quick_panel_row.bg": "transparent",
+		"--quick_panel_row.bg@selected": "var(--accent_bg)",
+		"--quick_panel_row.border": "var(--accent_bg)",
+		"--mini_quick_panel_row.bg": "var(--quick_panel_row.bg)",
+		"--mini_quick_panel_row.bg@selected": "var(--quick_panel_row.bg@selected)",
+		"--mini_quick_panel_row.border": "var(--quick_panel_row.border)",
+		"--quick_panel_label.fg": "var(--fg)",
+		"--quick_panel_label.font.face": "var(--font_face)",
+		"--quick_panel_label.font.size": "var(--font_size)",
+		"--quick_panel_label.selected_fg": "var(--accent_fg)",
+		"--quick_panel_label.match_fg": "var(--accent_fg@match)",
+		"--quick_panel_label.selected_match_fg": "var(--accent_fg@match)",
+		"--quick_panel_path_label.fg": "color(var(--quick_panel_label.fg) l(0.9))",
+		"--quick_panel_path_label.font.face": "var(--quick_panel_label.font.face)",
+		"--quick_panel_path_label.font.size": "var(--quick_panel_label.font.size)",
+		"--quick_panel_path_label.selected_fg": "var(--quick_panel_label.selected_fg)",
+		"--quick_panel_path_label.match_fg": "var(--quick_panel_label.match_fg)",
+		"--quick_panel_path_label.selected_match_fg": "var(--quick_panel_label.selected_match_fg)",
+		"--grid_layout_control.border": "var(--border)",
+		"--minimap_control.viewport_color": "hsla(0, 0%, 0%, 0.12)",
+		"--fold_button_control.tint": "color(var(--icon_tint) a(0.39))",
+		"--popup_control.bg": "#fff",
+		"--auto_complete.bg": "transparent",
+		"--table_row.bg": "transparent",
+		"--table_row.bg@hover": "var(--accent_bg)",
+		"--table_row.bg@selected": "var(--accent_bg)",
+		"--auto_complete_label.fg": "var(--fg)",
+		"--auto_complete_label.fg@hover": "var(--accent_fg)",
+		"--auto_complete_label.match_fg": "var(--fg)",
+		"--auto_complete_label.match_fg@hover": "var(--accent_fg)",
+		"--auto_complete_label.selected_fg": "var(--accent_fg)",
+		"--auto_complete_label.selected_match_fg": "var(--accent_fg)",
+		"--panel_control.bg": "hsl(0, 0%, 89%)",
+		"--status_bar.bg": "hsl(0, 0%, 86%)",
+		"--panel_button_control.tint": "hsl(0, 0%, 40%)",
+		"--dialog.bg": "var(--bg)",
+		"--scroll_track_control.bg": "hsla(0, 0%, 0%, 0.1)",
+		"--puck_control.bg": "color(hsl(0, 0%, 0%) blend(var(--bg) 30%))",
+		"--button_control.bg": "transparent",
+		"--button_control.bg@hover": "hsla(0, 0%, 0%, 0.06)",
+		"--button_control.font.face": "var(--font_face)",
+		"--icon_regex.tint": "var(--icon_tint)",
+		"--icon_regex.tint@selected": "var(--accent_fg)",
+		"--icon_case.tint": "var(--icon_tint)",
+		"--icon_case.tint@selected": "var(--accent_fg)",
+		"--icon_whole_word.tint": "var(--icon_tint)",
+		"--icon_whole_word.tint@selected": "var(--accent_fg)",
+		"--icon_wrap.tint": "var(--icon_tint)",
+		"--icon_wrap.tint@selected": "var(--accent_fg)",
+		"--icon_in_selection.tint": "var(--icon_tint)",
+		"--icon_in_selection.tint@selected": "var(--accent_fg)",
+		"--icon_highlight.tint": "var(--icon_tint)",
+		"--icon_highlight.tint@selected": "var(--accent_fg)",
+		"--icon_preserve_case.tint": "var(--icon_tint)",
+		"--icon_preserve_case.tint@selected": "var(--accent_fg)",
+		"--icon_context.tint": "var(--icon_tint)",
+		"--icon_context.tint@selected": "var(--accent_fg)",
+		"--icon_use_buffer.tint": "var(--icon_tint)",
+		"--icon_use_buffer.tint@selected": "var(--accent_fg)",
+		"--label_control.color": "var(--fg)",
+		"--label_control.font.face": "var(--font_face)",
+		"--label_control.font.size": "var(--font_size)",
+		"--title_label_control.color": "var(--bg)",
+		"--title_label_control.font.face": "var(--font_face)",
+		"--title_label_control.font.size": 1,
+		"--tool_tip_control.bg": "var(--accent_bg)",
+		"--tool_tip_label_control.color": "var(--accent_fg)",
 	},
 	"rules": [
-		//
-		// ABOUT WINDOW
-		//
+
+		///////////////////
+		// WINDOWS
+		///////////////////
+
 		{
-			"class": "title_label_control",
-			"color": [71, 71, 71, 0],
-			"font.face": "var(font_face)",
-			"font.size": 1,
+			"class": "title_bar",
+			"fg": "var(--title_bar.fg)",
+			"bg": "var(--title_bar.bg)",
 		},
 
-		//
-		// LABEL
-		//
+		////////////////////
+		// SIDEBAR
+		////////////////////
+		
 		{
-			"class": "label_control",
-			"color": "#222", // "var(icon_fg)",
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
+			"class": "sidebar_container",
+			"content_margin": [0, 0, 1, 0],
+			"layer0.tint": "var(--sidebar_container.bg)",
+			"layer0.opacity": 1.0,
+			"layer1.texture": "sublime-1space/img/tab_control.png",
+			"layer1.tint": "var(--sidebar_container.tab_border_gradient)",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [1, 32, 1, 0],//tab_size
+			"layer1.draw_center": false,
+			"layer1.repeat": true,
+			"layer2.texture": "sublime-1space/img/sidebar_container.png",
+			"layer2.tint": "var(--sidebar_container.bg)",
+			"layer2.opacity": 1.0,
+			"layer2.inner_margin": [0, 0, 1, 0],
+		},
+		{
+			"class": "sidebar_tree",
+			"row_padding": [8, 5, 8, 2],
+			"indent": 20,
+			"indent_offset": 17,
+			"indent_top_level": false,
+			"spacer_rows": false,
+			"layer0.tint": "var(--sidebar_tree.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "tree_row",
+			"layer0.opacity": 0.0,
+			"layer1.opacity": 0.0,
+		},
+		{
+			"class": "tree_row",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--tree_row.bg@selected)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "sidebar_heading",
+			"fg": "var(--sidebar_heading.fg)",
+			"font.face": "var(--sidebar_heading.font.face)",
+			"font.size": "var(--sidebar_heading.font.size)",
+		},
+		{
+			"class": "file_system_entry",
+			//TODO
+		},
+		{
+			"class": "sidebar_label",
+			"font.face": "var(--sidebar_label.font.face)",
+			"font.size": "var(--sidebar_label.font.size)",
+			"fg": "var(--sidebar_label.fg)",
+		},
+		{
+			"class": "sidebar_label",
+			"parents": [{ "class": "tree_row", "attributes": ["expandable"] }],
+			"settings": ["bold_folder_labels"],
+			"font.bold": true,
+		},
+		{
+			"class": "sidebar_label",
+			"attributes": ["transient"],
+			"font.italic": true,
+		},
+		//TODO: why close_button not showing?
+		{
+			"class": "close_button",
+			"layer0.texture": "sublime-1space/img/close_button.png",
+			"layer0.tint": "hsla(0, 0%, 28%, 0.59)",
+			"layer0.opacity": 0.0,
+			"content_margin": 8,
+		},
+		{
+			"class": "close_button",
+			"attributes": ["dirty"],
+			"layer0.texture": "sublime-1space/img/close_button--dirty.png",
+			"layer0.tint": [27, 156, 226],
+			"layer0.opacity": 0.6,
+		},
+		{
+			"class": "close_button",
+			"attributes": ["hover"],
+			"layer0.opacity": 0.7,
+		},
+		{
+			"class": "disclosure_button_control",
+			"layer0.texture": "sublime-1space/img/disclosure_button_control.png",
+			"layer0.tint": "var(--disclosure_button_control.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": 8,
+		},
+		{
+			"class": "disclosure_button_control",
+			"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
+			"layer0.tint": "var(--disclosure_button_control.tint@hover)",
+		},
+		{
+			"class": "disclosure_button_control",
+			"attributes": ["expanded"],
+			"layer0.texture": "sublime-1space/img/disclosure_button_control--expanded.png",
+		},
+		{
+			"class": "icon_folder",
+			"layer0.texture": "sublime-1space/img/icon_folder.png",
+			"layer0.tint": "var(--icon_folder.tint)",
+			"content_margin": 8,
+		},
+		{
+			"class": "icon_folder",
+			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
+			"layer0.texture": "sublime-1space/img/icon_folder--expanded.png",
+		},
+		{
+			"class": "icon_folder_loading",
+			"layer0.texture":
+			{
+				"keyframes":
+				[
+					"sublime-1space/img/icon_folder_loading--frame1.png",
+					"sublime-1space/img/icon_folder_loading--frame2.png",
+					"sublime-1space/img/icon_folder_loading--frame3.png",
+					"sublime-1space/img/icon_folder_loading--frame4.png",
+					"sublime-1space/img/icon_folder_loading--frame5.png",
+					"sublime-1space/img/icon_folder_loading--frame6.png",
+					"sublime-1space/img/icon_folder_loading--frame7.png",
+					"sublime-1space/img/icon_folder_loading--frame8.png",
+				],
+				"loop": true,
+				"frame_time": 0.075,
+			},
+			"layer0.tint": "var(--icon_folder_loading.tint)",
+			"content_margin": 8,
+		},
+		{
+			"class": "icon_folder_dup",
+			"layer0.texture": "sublime-1space/img/icon_folder_dup.png",
+			"layer0.tint": "var(--icon_folder_dup.tint)",
+			"content_margin": 8,
+		},
+		{
+			"class": "icon_file_type",
+			// layer0.texture is filled in by code with the relevant icon name
+			"layer0.opacity": 1.0,
+			"layer0.tint": "rgb(90, 90, 90)",
+			"content_margin": 8,
+		},
+		{
+			"class": "vcs_status_badge",
+			//TODO
 		},
 
-		//
-		// TEXT FIELD
-		//
+		////////////////////
+		// TABS
+		////////////////////
+
+		{
+			"class": "tabset_control",
+			"layer0.tint": "var(--tabset_control.bg)",
+			"layer0.opacity": 1.0,
+			"layer1.tint": "var(--tabset_control.border_bottom)",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [0, 0, 0, 1],
+			"layer1.draw_center": false,
+			"tab_overlap": 1,
+			"tab_width": "var(--tabset_control.tab_width)",
+			"tab_min_width": "var(--tabset_control.tab_min_width)",
+			"tab_height": "var(--tabset_control.tab_height)",
+			"mouse_wheel_switch": false,
+			"content_margin": [-1, 0, -1, -1], // overlap left-most, right-most tab borders
+		},
+		{
+			"class": "tabset_control",
+			"settings": ["mouse_wheel_switches_tabs", "!enable_tab_scrolling"],
+			"mouse_wheel_switch": true,
+		},
+		{
+			"class": "tab_control",
+			"content_margin": [10, 4, 10, 5],
+			// background
+			"layer0.tint": "var(--tab_control.bg)",
+			"layer0.opacity": 1.0,
+			// bottom border
+			"layer1.texture": "",
+			"layer1.tint": "var(--tab_control.border_bottom)",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [0, 0, 0, 2],
+			"layer1.draw_center": false,
+			// gradient left/right borders
+			"layer2.tint": "var(--tab_control.bg)",
+			"layer2.opacity": 1.0,
+			"layer2.inner_margin": [1, 1, 1, 1],
+			"layer2.draw_center": false,
+			"layer3.texture": "sublime-1space/img/tab_control.png",
+			"layer3.tint": "var(--tab_control.border_gradient)",
+			"layer3.inner_margin": [1, 1, 1, 1],
+			"layer3.opacity": 1.0,
+			"layer3.draw_center": false,
+		},
+		{
+			"class": "tab_control",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--tab_control.bg@selected)",
+			"layer1.opacity": 0.0,
+		},
+		{
+			"class": "tab_label",
+			"fg": "var(--tab_label.fg)",
+			"font.face": "var(--tab_label.font.face)",
+			"font.size": "var(--tab_label.font.size)",
+		},
+		{
+			"class": "tab_label",
+			"parents": [{ "class": "tab_control", "attributes": ["selected"] }],
+			"fg": "var(--tab_label.fg@selected)",
+		},
+		{
+			"class": "tab_label",
+			"attributes": ["transient"],
+			"font.face": "var(--tab_label.font.face)",
+			"font.italic": true,
+		},
+		{
+			"class": "tab_close_button",
+			"content_margin": 0,
+			"layer0.texture": "sublime-1space/img/tab_close_button.png",
+			"layer0.tint": "var(--tab_close_button.tint)",
+			"layer0.opacity": 1.0,
+			"layer1.texture": "sublime-1space/img/tab_close_button--dirty.png",
+			"layer1.tint": [27, 156, 226],
+			"layer1.opacity": 0.0,
+		},
+		{
+			"class": "tab_close_button",
+			"attributes": ["hover"],
+			"layer0.tint": "var(--tab_close_button.tint@hover)",
+		},
+		{
+			"class": "scroll_tabs_left_button",
+			"content_margin": [10, 13, 9, 13], //add 1px to the left because tabset_control already swallow 1px
+			"layer0.texture": "sublime-1space/img/scroll_tabs_left_button.png",
+			"layer0.tint": "var(--scroll_tabs_left_button.tint)",
+			"layer0.inner_margin": [0, -3, 10, 0], //adjust top for vertical alignment
+			"layer0.repeat": true,
+			"layer0.opacity": "var(--scroll_tabs_left_button.opacity)",
+		},
+		{
+			"class": "scroll_tabs_left_button",
+			"attributes": ["hover"],
+			"layer0.opacity": "var(--scroll_tabs_left_button.opacity@hover)",
+		},
+		{
+			"class": "scroll_tabs_right_button",
+			"content_margin": [9, 13],
+			"layer0.texture": "sublime-1space/img/scroll_tabs_right_button.png",
+			"layer0.tint": "var(--scroll_tabs_right_button.tint)",
+			"layer0.inner_margin": [10, -3, 0, 0], //adjust top for vertical alignment
+			"layer0.repeat": true,
+			"layer0.opacity": "var(--scroll_tabs_right_button.opacity)",
+		},
+		{
+			"class": "scroll_tabs_right_button",
+			"attributes": ["hover"],
+			"layer0.opacity": "var(--scroll_tabs_right_button.opacity@hover)",
+		},
+		{
+			"class": "show_tabs_dropdown_button",
+			"content_margin": [18, 13],
+			"layer0.texture": "sublime-1space/img/show_tabs_dropdown_button.png",
+			"layer0.inner_margin": [9, -3, 13, 0], //adjust top for vertical alignment
+			"layer0.tint": "var(--show_tabs_dropdown_button.tint)",
+			"layer0.opacity": "var(--show_tabs_dropdown_button.opacity)",
+			"layer0.repeat": true,
+		},
+		{
+			"class": "show_tabs_dropdown_button",
+			"attributes": ["hover"],
+			"layer0.opacity": "var(--show_tabs_dropdown_button.opacity@hover)",
+		},
+
+		////////////////////////////////
+		// QUICK PANEL
+		////////////////////////////////
+
+		{
+			"class": "overlay_control",
+			"layer0.texture": "sublime-1space/img/overlay_control.png",
+			"layer0.opacity": 1.0,
+			"layer0.inner_margin": [23, 60, 23, 25],
+			"content_margin": [17, 48, 17, 21], // 57x79
+		},
+		{
+			"class": "quick_panel",
+			"row_padding": [10, 9, 10, 8],
+		},
+		{
+			"class": "mini_quick_panel_row",
+			"layer0.tint": "var(--mini_quick_panel_row.bg)",
+			"layer0.opacity": 1.0,
+			"layer1.tint": "var(--mini_quick_panel_row.border)",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [0, 1, 0, 0],
+			"layer1.draw_center": false,
+		},
+		{
+			"class": "mini_quick_panel_row",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--mini_quick_panel_row.bg@selected)",
+		},
+		{
+			"class": "quick_panel_row",
+			"layer0.tint": "var(--quick_panel_row.bg)",
+			"layer0.opacity": 1.0,
+			"layer1.tint": "var(--quick_panel_row.border)",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [0, 1, 0, 0],
+			"layer1.draw_center": false,
+		},
+		{
+			"class": "quick_panel_row",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--quick_panel_row.bg@selected)",
+		},
+		{
+			"class": "quick_panel_label",
+			"fg": "var(--quick_panel_label.fg)",
+			"match_fg": "var(--quick_panel_label.match_fg)",
+			"selected_fg": "var(--quick_panel_label.selected_fg)",
+			"selected_match_fg": "var(--quick_panel_label.selected_match_fg)",
+			"font.face": "var(--quick_panel_label.font.face)",
+			"font.size": "var(--quick_panel_label.font.size)",
+		},
+		{
+			"class": "quick_panel_path_label",
+			"fg": "var(--quick_panel_path_label.fg)", //TODO: why it's not working?
+			"match_fg": "var(--quick_panel_path_label.match_fg)",
+			"selected_fg": "var(--quick_panel_path_label.selected_fg)",
+			"selected_match_fg": "var(--quick_panel_path_label.selected_match_fg)",
+			"font.face": "var(--quick_panel_path_label.font.face)",
+			"font.size": "var(--quick_panel_path_label.font.size)",
+		},
+
+		///////////////////////////////
+		// VIEWS
+		///////////////////////////////
+
+		{
+			"class": "grid_layout_control",
+			"border_size": 1,
+			"border_color": "var(--grid_layout_control.border)",
+		},
+		{
+			"class": "minimap_control",
+			"settings": ["always_show_minimap_viewport"],
+			"viewport_color": "var(--minimap_control.viewport_color)",
+			"viewport_opacity": 1.0,
+		},
+		{
+			"class": "minimap_control",
+			"settings": ["!always_show_minimap_viewport"],
+			"viewport_opacity": { "target": 0.0, "speed": 4.0, "interpolation": "smoothstep" },
+		},
+		{
+			"class": "minimap_control",
+			"attributes": ["hover"],
+			"settings": ["!always_show_minimap_viewport"],
+			"viewport_opacity": { "target": 1.0, "speed": 20.0, "interpolation": "smoothstep" },
+		},
+		{
+			"class": "fold_button_control",
+			"content_margin": [10, 7, 10, 8],
+			"layer0.texture": "sublime-1space/img/fold_button_control.png",
+			"layer0.tint": "var(--fold_button_control.tint)",
+			"layer0.opacity": { "target": 0.5, "speed": 3.0, "interpolation": "smoothstep" },
+		},
+		{
+			"class": "fold_button_control",
+			"attributes": ["hover"],
+			"layer0.opacity": { "target": 1.0, "speed": 3.0, "interpolation": "smoothstep" },
+		},
+		{
+			"class": "fold_button_control",
+			"attributes": ["expanded"],
+			"layer0.texture": "sublime-1space/img/fold_button_control--expanded.png",
+		},
+		{
+			"class": "popup_control",
+			"layer0.tint": "var(--popup_control.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "popup_control auto_complete_popup",
+		},
+		{
+			"class": "popup_control html_popup",
+		},
+		{
+			"class": "auto_complete",
+			"row_padding": [8, 7, 8, 5],
+			"layer0.tint": "var(--auto_complete.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "table_row",
+			"layer0.tint": "var(--table_row.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "table_row",
+			"attributes": ["hover"],
+			"layer0.tint": "var(--table_row.bg@hover)",
+		},
+		{
+			"class": "table_row",
+			"attributes": ["selected"],
+			"layer0.tint": "var(--table_row.bg@selected)",
+		},
+		{
+			"class": "auto_complete_label",
+			"fg": "var(--auto_complete_label.fg)",
+			"match_fg": "var(--auto_complete_label.match_fg)",
+			"selected_fg": "var(--auto_complete_label.selected_fg)",
+			"selected_match_fg": "var(--auto_complete_label.selected_match_fg)",
+			// TODO
+			// "fg_blend": ""
+		},
+		{
+			"class": "auto_complete_label",
+			"parents": [{ "class": "table_row", "attributes": ["hover"] }],
+			"fg": "var(--auto_complete_label.fg@hover)",
+			"match_fg": "var(--auto_complete_label.match_fg@hover)",
+		},
+
+		///////////////////////////
+		// PANELS
+		///////////////////////////
+
+		{
+			"class": "panel_control",
+			"layer0.tint": "var(--panel_control.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "panel_control find_panel",
+		},
+		{
+			"class": "panel_control replace_panel",
+		},
+		{
+			"class": "panel_control find_in_files_panel",
+		},
+		{
+			"class": "panel_control input_panel",
+			"content_margin": [4, 0, 4, 0],
+		},
+		{
+			"class": "panel_control console_panel",
+			"content_margin": [0, -3, 0, -4],
+		},
+		{
+			"class": "panel_control output_panel",
+			"content_margin": [0, -3, 0, -4],
+		},
+		{
+			"class": "panel_control switch_project_panel",
+		},
+		{
+			"class": "panel_grid_control",
+			"inside_spacing": 4,
+			"outside_vspacing": 4,
+			"outside_hspacing": 4,
+		},
+		{
+			"class": "panel_close_button",
+		},
+
+		/////////////////////////
+		// STATUS BAR
+		/////////////////////////
+
+		{
+			"class": "status_bar",
+			"layer0.tint": "var(--status_bar.bg)",
+			"layer0.opacity": 1.0,
+			"content_margin": [6, 0, 10, 0],
+		},
+		{
+			"class": "status_bar",
+			"attributes": ["panel_visible"],
+		},
+		{
+			"class": "panel_button_control",
+			"layer0.texture": "sublime-1space/img/panel_button_control.png",
+			"layer0.tint": "var(--panel_button_control.tint)",
+			"layer0.opacity": 0.5,
+			"content_margin": [10, 8],
+		},
+		{
+			"class": "panel_button_control",
+			"attributes": ["hover"],
+			"layer0.opacity": 0.6,
+		},
+		{
+			"class": "status_container",
+			"content_margin": [0, 3, 0, 3],
+		},
+		{
+			"class": "status_button",
+			"min_size": [75, 0],
+		},
+		{
+			"class": "vcs_status",
+			//TODO
+		},
+		{
+			"class": "vcs_branch_icon",
+			//TODO
+		},
+		{
+			"class": "vcs_changes_annotation",
+			//TODO
+		},
+
+		////////////////////////
+		// DIALOGS
+		////////////////////////
+
+		{
+			"class": "dialog",
+			"layer0.tint": "var(--dialog.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "progress_bar_control",
+			//TODO
+			"layer0.tint": [250, 250, 250],
+			"layer0.opacity": 1.0,
+			"layer1.tint": [214, 214, 214],
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": [1, 1],
+			"layer1.draw_center": false,
+		},
+		{
+			"class": "progress_gauge_control",
+			"layer0.tint": [43, 102, 201],
+			//TODO
+			"layer0.opacity": 1.0,
+			"content_margin": [0, 6],
+		},
+
+		//////////////////////////
+		// SCROLL BARS
+		//////////////////////////
+
+		{
+			"class": "scroll_area_control",
+			"settings": ["!overlay_scroll_bars"],
+			"overlay": false,
+			//TODO: check docs
+			"layer0.opacity": 0.0,
+		},
+		{
+			"class": "scroll_bar_control",
+			"content_margin": 0,
+		},
+		{
+			"class": "scroll_bar_control",
+			"attributes": ["horizontal"],
+		},
+		{
+			"class": "scroll_bar_control",
+			"attributes": ["dark"],
+		},
+		{
+			"class": "scroll_track_control",
+			"layer0.texture": "sublime-1space/img/scroll_bar_control.png",
+			"layer0.inner_margin": 3,
+			"layer0.tint": "var(--scroll_track_control.bg)",
+			"layer0.opacity": 1.0,
+		},
+		{
+			"class": "scroll_track_control",
+			"attributes": ["horizontal"],
+		},
+		{
+			"class": "scroll_track_control",
+			"attributes": ["dark"],
+		},
+		{
+			"class": "scroll_corner_control",
+			//TODO
+			// "layer0.tint": "var(white)",
+			// "layer0.opacity": 0.0,
+		},
+		{
+			"class": "scroll_corner_control",
+			"attributes": ["dark"],
+		},
+		{
+			"class": "puck_control",
+			"layer0.texture": "sublime-1space/img/scroll_bar_control.png",
+			"layer0.inner_margin": 3,
+			"layer0.tint": "var(--puck_control.bg)",
+			"layer0.opacity": 1.0,
+			"content_margin": 4, //adjust scroll bar size
+		},
+		{
+			"class": "puck_control",
+			"attributes": ["horizontal"],
+		},
+		{
+			"class": "puck_control",
+			"attributes": ["dark"],
+		},
+
+		/////////////////////////
+		// INPUTS
+		/////////////////////////
+
 		{
 			"class": "text_line_control",
 			"layer0.texture": "sublime-1space/img/text_line_control.png",
@@ -40,14 +767,11 @@
 			"layer0.inner_margin": [5, 5],
 			"content_margin": [8, 4, 8, 3],
 		},
-
-		//
-		// TEXT FIELD: DROPDOWN BUTTON
-		//
 		{
 			"class": "dropdown_button_control",
 			"content_margin": [8, 8],
 			"layer0.texture": "sublime-1space/img/dropdown_button_control.png",
+			//TODO
 			"layer0.tint": [71, 71, 71, 100],
 			"layer0.opacity": 1.0,
 			"layer0.inner_margin": [4, 4],
@@ -55,20 +779,22 @@
 		{
 			"class": "dropdown_button_control",
 			"attributes": ["hover"],
+			//TODO
 			"layer0.tint": [71, 71, 71, 200],
 		},
 
-		//
-		// TEXT BUTTONS
-		//
+		//////////////////////
+		// BUTTONS
+		//////////////////////
+
 		{
 			"class": "button_control",
 			"content_margin": [6, 6, 6, 5],
 			"min_size": [65, 16],
 			"layer0.texture": "sublime-1space/img/button_control.png",
-			"layer0.tint": [0, 0, 0],
+			"layer0.tint": "var(--button_control.bg)",
 			"layer0.inner_margin": [2, 2],
-			"layer0.opacity": 0.0,
+			"layer0.opacity": 1.0,
 		},
 		{
 			"class": "button_control",
@@ -76,23 +802,19 @@
 		},
 		{
 			"class": "button_control",
-			"attributes": ["pressed", "hover"],
-		},
-		{
-			"class": "button_control",
 			"attributes": ["hover"],
-			"layer0.opacity": 0.06,
+			"layer0.tint": "var(--button_control.bg@hover)",
 		},
 		{
 			"parents": [{ "class": "button_control" }],
 			"class": "label_control",
-			"font.face": "var(font_face)",
+			"font.face": "var(--button_control.font.face)",
 			"font.bold": true,
 		},
-
-		//
-		// ICON BUTTONS
-		//
+		{
+			"class": "icon_button_group",
+			//TODO
+		},
 		{
 			"class": "icon_button_control",
 			"content_margin": [8, 4],
@@ -133,114 +855,214 @@
 			"class": "icon_button_control",
 			"attributes": ["right", "left", "selected"],
 		},
+		{
+			"class": "icon_regex",
+			"layer0.texture": "sublime-1space/img/icon_regex.png",
+			"layer0.tint": "var(--icon_regex.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_regex",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_regex.tint@selected)",
+		},
+		{
+			"class": "icon_case",
+			"layer0.texture": "sublime-1space/img/icon_case.png",
+			"layer0.tint": "var(--icon_case.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_case",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_case.tint@selected)",
+		},
+		{
+			"class": "icon_whole_word",
+			"layer0.texture": "sublime-1space/img/icon_whole_word.png",
+			"layer0.tint": "var(--icon_whole_word.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_whole_word",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_whole_word.tint@selected)",
+		},
+		{
+			"class": "icon_wrap",
+			"layer0.texture": "sublime-1space/img/icon_wrap.png",
+			"layer0.tint": "var(--icon_wrap.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_wrap",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_wrap.tint@selected)",
+		},
+		{
+			"class": "icon_in_selection",
+			"layer0.texture": "sublime-1space/img/icon_in_selection.png",
+			"layer0.tint": "var(--icon_in_selection.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_in_selection",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_in_selection.tint@selected)",
+		},
+		{
+			"class": "icon_highlight",
+			"layer0.texture": "sublime-1space/img/icon_highlight.png",
+			"layer0.tint": "var(--icon_highlight.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_highlight",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_highlight.tint@selected)",
+		},
+		{
+			"class": "icon_preserve_case",
+			"layer0.texture": "sublime-1space/img/icon_preserve_case.png",
+			"layer0.tint": "var(--icon_preserve_case.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_preserve_case",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_preserve_case.tint@selected)",
+		},
+		{
+			"class": "icon_context",
+			"layer0.texture": "sublime-1space/img/icon_context.png",
+			"layer0.tint": "var(--icon_context.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_context",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_context.tint@selected)",
+		},
+		{
+			"class": "icon_use_buffer",
+			"layer0.texture": "sublime-1space/img/icon_use_buffer.png",
+			"layer0.tint": "var(--icon_use_buffer.tint)",
+			"layer0.opacity": 1.0,
+			"content_margin": [9, 9],
+		},
+		{
+			"class": "icon_use_buffer",
+			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+			"layer0.tint": "var(--icon_use_buffer.tint@selected)",
+		},
 
-		//
-		// SCROLLBARS
-		//
+		////////////////////////////
+		// LABELS
+		////////////////////////////
+
 		{
-			"class": "scroll_area_control",
-			"settings": ["!overlay_scroll_bars"],
-			"overlay": false,
+			"class": "label_control",
+			"color": "var(--label_control.color)",
+			"font.face": "var(--label_control.font.face)",
+			"font.size": "var(--label_control.font.size)",
 		},
 		{
-			"class": "scroll_bar_control",
-			// we need a opaque background so we can apply an alpha background over it
-			// layer0 is the opaque background
-			"layer0.tint": "var(white)",
+			"class": "title_label_control",
+			"color": "var(--title_label_control.color)",
+			"font.face": "var(--title_label_control.font.face)",
+			"font.size": "var(--title_label_control.font.size)",
+		},
+
+		///////////////////////////
+		// TOOL TIPS
+		///////////////////////////
+
+		{
+			"class": "tool_tip_control",
+			"layer0.tint": "var(--tool_tip_control.bg)",
 			"layer0.opacity": 1.0,
-			// layer1 is the alpha background
-			"layer1.tint": [228, 228, 228],
-			"layer1.opacity": 0.0,
-			// layer2 is the image background, used for overlay scrollbars
-			"layer2.texture": "sublime-1space/img/puck_control--inner.png",
-			"layer2.inner_margin": [0, 5],
-			"layer2.tint": [0, 0, 0, 30],
-			"layer2.opacity": 1.0,
-			"blur": false,
+			"content_margin": [5, 3],
 		},
 		{
-			"class": "scroll_bar_control",
-			"attributes": ["horizontal"],
-			"layer2.texture": "sublime-1space/img/puck_control--horizontal-inner.png",
-			"layer2.inner_margin": [5, 0],
+			"class": "tool_tip_label_control",
+			"color": "var(--tool_tip_label_control.color)",
 		},
-		{
-			"class": "scroll_corner_control",
-			"layer0.tint": "var(white)",
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "puck_control",
-			"layer0.texture": "sublime-1space/img/puck_control.png",
-			"layer0.inner_margin": [0, 5],
-			"layer0.tint": "var(white)",
-			"layer0.opacity": 0.0,
-			"layer1.texture": "sublime-1space/img/puck_control--inner.png",
-			"layer1.inner_margin": [0, 5],
-			"layer1.tint": [0, 0, 0],
-			"layer1.opacity": 0.3,
-			"content_margin": [11, 15, 0, 15],
-			"blur": false,
-		},
-		{
-			"class": "puck_control",
-			"attributes": ["horizontal"],
-			"layer0.texture": "sublime-1space/img/puck_control--horizontal.png",
-			"layer0.inner_margin": [5, 0],
-			"layer1.texture": "sublime-1space/img/puck_control--horizontal-inner.png",
-			"layer1.inner_margin": [5, 0],
-			"content_margin": [15, 11, 15, 0],
-		},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		//
 		// SCROLLBARS: SIDEBAR
 		//
-		{
-			"class": "scroll_bar_control",
-			"parents": [{"class": "sidebar_container"}],
-			"layer0.tint": "var(gray_background)",
-		},
-		{
-			"class": "scroll_corner_control",
-			"parents": [{"class": "sidebar_container"}],
-			"layer0.tint": "var(gray_background)",
-		},
-		{
-			"class": "puck_control",
-			"parents": [{"class": "sidebar_container"}],
-			"layer0.opacity": 0,
-		},
+		// {
+		// 	"class": "scroll_bar_control",
+		// 	"parents": [{"class": "sidebar_container"}],
+		// 	// "layer0.tint": "var(--sidebar_container.bg)",
+		// },
+		// {
+		// 	"class": "scroll_corner_control",
+		// 	"parents": [{"class": "sidebar_container"}],
+		// 	// "layer0.tint": "var(--sidebar_container.bg)",
+		// },
+		// {
+		// 	"class": "puck_control",
+		// 	"parents": [{"class": "sidebar_container"}],
+		// 	// "layer0.opacity": 0,
+		// },
 
-		//
-		// SCROLLBARS: OVERLAY
-		//
-		{
-			"class": "scroll_area_control",
-			"settings": ["overlay_scroll_bars"],
-			"overlay": true,
-		},
-		{
-			"class": "scroll_bar_control",
-			"settings": ["overlay_scroll_bars"],
-			"layer0.opacity": 0.0,
-			"layer1.opacity": 0.0,
-			"blur": true,
-		},
-		{
-			"class": "scroll_bar_control",
-			"settings": ["overlay_scroll_bars"],
-			"attributes": ["horizontal"],
-		},
-		{
-			"class": "puck_control",
-			"settings": ["overlay_scroll_bars"],
-			"parents": [{"class": "sidebar_container"}],
-		},
-		{
-			"class": "puck_control",
-			"settings": ["overlay_scroll_bars"],
-			"attributes": ["horizontal"],
-		},
+		// //
+		// // SCROLLBARS: OVERLAY
+		// //
+		// {
+		// 	"class": "scroll_area_control",
+		// 	"settings": ["overlay_scroll_bars"],
+		// 	"overlay": true,
+		// },
+		// {
+		// 	"class": "scroll_bar_control",
+		// 	"settings": ["overlay_scroll_bars"],
+		// 	// "layer0.opacity": 0.0,
+		// 	// "layer1.opacity": 0.0,
+		// },
+		// {
+		// 	"class": "scroll_bar_control",
+		// 	"settings": ["overlay_scroll_bars"],
+		// 	"attributes": ["horizontal"],
+		// },
+		// {
+		// 	"class": "puck_control",
+		// 	"settings": ["overlay_scroll_bars"],
+		// 	"parents": [{"class": "sidebar_container"}],
+		// },
+		// {
+		// 	"class": "puck_control",
+		// 	"settings": ["overlay_scroll_bars"],
+		// 	"attributes": ["horizontal"],
+		// },
 
 		//
 		// SCROLLBARS: DARK
@@ -257,714 +1079,18 @@
 		},
 
 		//
-		// SEARCH PANEL
-		//
-		{
-			"class": "panel_control",
-			"layer0.tint": [228, 228, 228],
-			"layer0.opacity": 1.0,
-			"content_margin": [0, 0, 0, 0],
-		},
-		{
-			"class": "panel_grid_control",
-			"inside_spacing": 4,
-			"outside_vspacing": 4,
-			"outside_hspacing": 4,
-		},
-		{
-			"class": "panel_control console_panel",
-			"content_margin": [0, -3, 0, -4],
-		},
-		{
-			"class": "panel_control output_panel",
-			"content_margin": [0, -3, 0, -4],
-		},
-		{
-			"class": "panel_control input_panel",
-			"content_margin": [4, 0, 4, 0],
-		},
-
-		//
-		// SEARCH PANEL: ICONS
-		//
-		{
-			"class": "icon_regex",
-			"layer0.texture": "sublime-1space/img/icon_regex.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_regex",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_case",
-			"layer0.texture": "sublime-1space/img/icon_case.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_case",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_highlight",
-			"layer0.texture": "sublime-1space/img/icon_highlight.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_highlight",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_in_selection",
-			"layer0.texture": "sublime-1space/img/icon_in_selection.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_in_selection",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_reverse",
-			"layer0.texture": "sublime-1space/img/icon_reverse.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_reverse",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_whole_word",
-			"layer0.texture": "sublime-1space/img/icon_whole_word.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_whole_word",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_wrap",
-			"layer0.texture": "sublime-1space/img/icon_wrap.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_wrap",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_preserve_case",
-			"layer0.texture": "sublime-1space/img/icon_preserve_case.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_preserve_case",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_context",
-			"layer0.texture": "sublime-1space/img/icon_context.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_context",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-		{
-			"class": "icon_use_buffer",
-			"layer0.texture": "sublime-1space/img/icon_use_buffer.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [9, 9],
-		},
-		{
-			"class": "icon_use_buffer",
-			"parents": [{"class": "icon_button_control","attributes": ["selected"]}],
-			"layer0.tint": [27, 156, 226],
-		},
-
-		//
 		// COMMAND PALETTE
 		//
-		{
-			"class": "overlay_control",
-			"layer0.texture": "sublime-1space/img/overlay_control--alfred.png",
-			"layer0.opacity": 1.0,
-			"layer0.inner_margin": [23, 10, 23, 21],
-			"content_margin": [15, 0, 15, 20], // 57x79
-		},
 		// Quick Panel
-		{
-			"class": "quick_panel",
-			"row_padding": [10, 9, 10, 8],
-		},
-		{
-			"class": "quick_panel_row",
-			"layer0.tint": "var(lightgreen)",
-			"layer0.opacity": 0.0,
-			"layer1.tint": "var(lightgreen)",
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [0, 1, 0, 0],
-			"layer1.draw_center": false,
-		},
-		{
-			"class": "quick_panel_row",
-			"attributes": ["selected"],
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "quick_panel_label",
-			"fg": "#000", // "var(icon_fg)",
-			"match_fg": [23, 170, 90],
-			"selected_fg": [25, 177, 94],
-			"selected_match_fg": [23, 170, 90],
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
-		},
-		{
-			"class": "quick_panel_path_label",
-			"fg": [121, 121, 121],
-			"match_fg": [23, 170, 90],
-			"selected_fg": [25, 177, 94],
-			"selected_match_fg": [23, 170, 90],
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
-		},
-		{
-			"class": "mini_quick_panel_row",
-			"layer0.tint": "var(lightgreen)",
-			"layer0.opacity": 0.0,
-			"layer1.tint": "var(lightgreen)",
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [0, 1, 0, 0],
-			"layer1.draw_center": false,
-		},
-		{
-			"class": "mini_quick_panel_row",
-			"attributes": ["selected"],
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "quick_panel_label",
-			"parents": [{"class": "mini_quick_panel_row", "attributes": ["selected"]}],
-		},
-		{
-			"class": "quick_panel_path_label",
-			"parents": [{"class": "mini_quick_panel_row", "attributes": ["selected"]}],
-		},
 		{
 			"class": "text_line_control",
 			"parents": [{"class": "overlay_control"}],
 			"layer0.opacity": 0,
 			"content_margin": [8, 8, 8, 4],
-			"layer1.tint": "var(lightgreen)",
+			"layer1.tint": "var(--accent_bg)",
 			"layer1.opacity": 0.0,
 			"layer1.inner_margin": [0, 0, 0, 1],
 			"layer1.draw_center": false,
-		},
-
-		//
-		// AUTO COMPLETE
-		//
-		{
-			"class": "popup_control",
-			"layer0.tint": "var(white)",
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "table_row",
-			"layer0.tint": "var(lightgreen)",
-			"layer0.opacity": 0.0,
-		},
-		{
-			"class": "table_row",
-			"attributes": ["hover"],
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "table_row",
-			"attributes": ["selected"],
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "auto_complete",
-			"row_padding": [8, 7, 8, 5],
-			"layer0.tint": "var(white)",
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "auto_complete_label",
-			"fg": [46, 46, 46, 255],
-			"match_fg": [46, 46, 46, 255],
-			"selected_fg": [39, 176, 98, 255],
-			"selected_match_fg": [39, 176, 98, 255],
-		},
-		{
-			"class": "auto_complete_label",
-			"parents": [{"class": "table_row", "attributes": ["hover"]}],
-			"fg": [39, 176, 98, 255],
-			"match_fg": [39, 176, 98, 255],
-		},
-
-		//
-		// TOOLTIP
-		//
-		{
-			"class": "tool_tip_control",
-			"layer0.tint": "var(lightgreen)",
-			"layer0.opacity": 1.0,
-			"content_margin": [5, 3],
-		},
-		{
-			"class": "tool_tip_label_control",
-			"color": "var(green_text)",
-		},
-
-		//
-		// SIDEBAR
-		//
-		{
-			"class": "sidebar_container",
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
-			"layer1.tint": [228, 228, 228],
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [0, 0, 1, 0],
-			"layer1.draw_center": false,
-			"layer2.tint": "var(gray_background)",
-			"layer2.opacity": 1.0,
-			"layer2.inner_margin": [0, 32, 0, 0],
-			"layer2.draw_center": false,
-			"layer3.texture": "sublime-1space/img/tab_control.png",
-			"layer3.tint": [222, 222, 222],
-			"layer3.opacity": 1.0,
-			"layer3.inner_margin": [0, 32, 1, 0],
-			"layer3.draw_center": false,
-			"content_margin": [0, 0, 1, 0],
-		},
-		{
-			"class": "sidebar_tree",
-			"row_padding": [8, 5, 8, 2],
-			"indent": 20,
-			"indent_offset": 17,
-			"indent_top_level": false,
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "sidebar_heading",
-			"color": [46, 46, 46, 150],
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
-		},
-		{
-			"class": "sidebar_heading",
-			"parents": [{ "class": "tree_row", "attributes": ["selected"] }],
-		},
-		{
-			"class": "tree_row",
-			"layer0.opacity": 0.0,
-			"layer1.opacity": 0.0,
-		},
-		{
-			"class": "tree_row",
-			"attributes": ["selected"],
-			"layer0.tint": [225, 225, 225],
-			"layer0.opacity": 1.0,
-		},
-		{
-			"class": "sidebar_label",
-			// "color": [0, 0, 0, 0],
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
-			"color": "#000" // [46, 46, 46],
-		},
-		{
-			"class": "sidebar_label",
-			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
-			"color": "#000" // [23, 23, 23],
-		},
-		{
-			"class": "sidebar_label",
-			"parents": [{"class": "tree_row", "attributes": ["expandable"]}],
-			"settings": ["bold_folder_labels"],
-			"font.bold": true,
-		},
-		{
-			"class": "sidebar_label",
-			"attributes": ["transient"],
-			"font.face": "var(font_face)",
-			"font.italic": true,
-		},
-
-		//
-		// SIDEBAR: FOLD/EXPAND FOLDER
-		//
-		{
-			"class": "disclosure_button_control",
-			"layer0.texture": "sublime-1space/img/disclosure_button_control.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 1.0,
-			"content_margin": [8, 8],
-		},
-		{
-			"class": "disclosure_button_control",
-			"parents": [{ "class": "tree_row", "attributes": ["hover"] }],
-			"layer0.tint": [46, 46, 46],
-		},
-		{
-			"class": "disclosure_button_control",
-			"attributes": ["expanded"],
-			"layer0.texture": "sublime-1space/img/disclosure_button_control--expanded.png",
-		},
-
-		//
-		// SIDEBAR: OPEN FILES
-		//
-		{
-			"class": "close_button",
-			"layer0.texture": "sublime-1space/img/close_button.png",
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.opacity": 0.0,
-			"content_margin": [8, 8],
-		},
-		{
-			"class": "close_button",
-			"attributes": ["dirty"],
-			"layer0.texture": "sublime-1space/img/tab_close_button--dirty.png",
-			"layer0.tint": [27, 156, 226],
-			"layer0.opacity": 0.6,
-		},
-		{
-			"class": "close_button",
-			"attributes": ["hover"],
-			"layer0.opacity": 0.7,
-		},
-
-		//
-		// SIDEBAR: FILE AND FOLDER ICONS
-		//
-		{
-			"class": "icon_file_type",
-			// layer0.texture is filled in by code with the relevant icon name
-			"layer0.opacity": 1.0,
-			"layer0.tint": "rgb(90, 90, 90)",
-			"content_margin": [8, 8],
-		},
-		{
-			"class": "icon_folder",
-			"layer0.texture": "sublime-1space/img/icon_folder.png",
-			"layer0.opacity": 1.0,
-			"layer0.tint": [71, 71, 71],
-			"content_margin": [8, 8],
-		},
-		{
-			"class": "icon_folder",
-			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
-			"layer0.texture": "sublime-1space/img/icon_folder--expanded.png",
-		},
-		{
-			"class": "icon_folder_loading",
-			"layer0.texture":
-			{
-				"keyframes":
-				[
-					"sublime-1space/img/icon_folder_loading--frame1.png",
-					"sublime-1space/img/icon_folder_loading--frame2.png",
-					"sublime-1space/img/icon_folder_loading--frame3.png",
-					"sublime-1space/img/icon_folder_loading--frame4.png",
-					"sublime-1space/img/icon_folder_loading--frame5.png",
-					"sublime-1space/img/icon_folder_loading--frame6.png",
-					"sublime-1space/img/icon_folder_loading--frame7.png",
-					"sublime-1space/img/icon_folder_loading--frame8.png",
-				],
-				"loop": true,
-				"frame_time": 0.075,
-			},
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.opacity": 1.0,
-			"content_margin": [8, 8],
-		},
-		{
-			"class": "icon_folder_dup",
-			"layer0.texture": "sublime-1space/img/icon_folder_dup.png",
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.opacity": 1.0,
-			"content_margin": [8, 8],
-		},
-
-		//
-		// MINIMAP
-		//
-		{
-			"class": "minimap_control",
-			"settings": ["always_show_minimap_viewport"],
-			"viewport_color": [0, 0, 0, 30],
-			"viewport_opacity": 1.0,
-		},
-		{
-			"class": "minimap_control",
-			"settings": ["!always_show_minimap_viewport"],
-			"viewport_color": [0, 0, 0, 128],
-			"viewport_opacity": { "target": 0.0, "speed": 4.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "minimap_control",
-			"attributes": ["hover"],
-			"settings": ["!always_show_minimap_viewport"],
-			"viewport_opacity": { "target": 1.0, "speed": 20.0, "interpolation": "smoothstep" },
-		},
-
-		//
-		// STATUS BAR
-		//
-		{
-			"class": "status_bar",
-			"layer0.tint": [220, 220, 220],
-			"layer0.opacity": 1.0,
-			"content_margin": [6, 0, 10, 0],
-		},
-		{
-			"class": "status_container",
-			"content_margin": [0, 3, 0, 3],
-		},
-		{
-			"class": "status_button",
-			"min_size": [75, 0],
-		},
-
-		//
-		// STATUSBAR: PANEL BUTTON
-		//
-		{
-			"class": "panel_button_control",
-			"layer0.texture": "sublime-1space/img/panel_button_control.png",
-			"layer0.tint": [102, 102, 102],
-			"layer0.opacity": 0.5,
-			"content_margin": [10, 8],
-		},
-		{
-			"class": "panel_button_control",
-			"attributes": ["hover"],
-			"layer0.opacity": 0.6,
-		},
-
-		//
-		// EMPTY WINDOW BACKGROUND
-		//
-		{
-			"class": "sheet_container_control",
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
-		},
-
-		//
-		// TABS
-		//
-		{
-			"class": "tabset_control",
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
-			"layer1.tint": [224, 224, 224],
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [0, 0, 0, 1],
-			"layer1.draw_center": false,
-			// "content_margin": [0, 0, 0, 1],
-			"tab_overlap": 1,
-			"tab_width": 225,
-			"tab_min_width": 48,
-			"tab_height": 34,
-			"mouse_wheel_switch": false,
-			"content_margin": [-1, -1, -1, -1], // overlap left-most, right-most tab borders
-		},
-		{
-			"class": "tabset_control",
-			"settings": ["mouse_wheel_switches_tabs", "!enable_tab_scrolling"],
-			"mouse_wheel_switch": true,
-		},
-		// Tabs
-		{
-			"class": "tab_control",
-			"content_margin": [10, 4, 10, 5],
-			// background
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
-			// bottom border
-			"layer1.texture": "",
-			"layer1.tint": [224, 224, 224],
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [0, 0, 0, 2],
-			"layer1.draw_center": false,
-			// left right border
-			"layer2.tint": "var(gray_background)",
-			"layer2.opacity": 1.0,
-			"layer2.inner_margin": [1, 1, 1, 1],
-			"layer2.draw_center": false,
-			"layer3.texture": "sublime-1space/img/tab_control.png",
-			"layer3.tint": [214, 214, 214],
-			"layer3.inner_margin": [1, 1, 1, 1],
-			"layer3.opacity": 1.0,
-			"layer3.draw_center": false,
-		},
-		{
-			"class": "tab_control",
-			"attributes": ["selected"],
-			"layer0.tint": "var(white)",
-			"layer1.opacity": 0.0,
-		},
-		// Tab Labels
-		{
-			"class": "tab_label",
-			"fg": "#000", // "var(icon_fg)",
-			"font.face": "var(font_face)",
-			"font.size": "var(font_size)",
-		},
-		{
-			"class": "tab_label",
-			"parents": [{"class": "tab_control", "attributes": ["selected"]}],
-			"fg": "#000", // [46, 46, 46],
-		},
-		{
-			"class": "tab_label",
-			"attributes": ["transient"],
-			"font.face": "var(font_face)",
-			"font.italic": true,
-		},
-		// Tab Close Buttons
-		{
-			"class": "tab_close_button",
-			"content_margin": [0, 0],
-			"layer0.texture": "sublime-1space/img/tab_close_button.png",
-			"layer0.tint": "var(icon_fg)",
-			"layer0.opacity": 0.5,
-			"layer1.texture": "sublime-1space/img/tab_close_button--dirty.png",
-			"layer1.tint": [27, 156, 226],
-			"layer1.opacity": 0.0,
-		},
-		{
-			"class": "tab_close_button",
-			"attributes": ["hover"],
-			"layer0.opacity": 1.0,
-		},
-		// tab set scroll left scroll right
-		{
-			"class": "scroll_tabs_left_button",
-			"content_margin": [19, 31, 0, 0], // add 1px to the left because tabset already swallow 1px
-			"layer0.texture": "sublime-1space/img/scroll_tabs_left_button.png",
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.inner_margin": [0, 0, 18, 0],
-			"layer0.opacity": { "target": 0.3, "speed": 5.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "scroll_tabs_left_button",
-			"attributes": ["hover"],
-			"layer0.opacity": { "target": 1.0, "speed": 5.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "scroll_tabs_right_button",
-			"content_margin": [18, 31, 0, 0],
-			"layer0.texture": "sublime-1space/img/scroll_tabs_right_button.png",
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.opacity": { "target": 0.3, "speed": 5.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "scroll_tabs_right_button",
-			"attributes": ["hover"],
-			"layer0.opacity": { "target": 1.0, "speed": 5.0, "interpolation": "smoothstep" },
-		},
-		// tab set dropdown
-		{
-			"class": "show_tabs_dropdown_button",
-			"content_margin": [37, 31, 0, 0],
-			"layer0.texture": "sublime-1space/img/show_tabs_dropdown_button.png",
-			"layer0.inner_margin": [36, 0, 0, 0],
-			"layer0.tint": [71, 71, 71, 150],
-			"layer0.opacity": { "target": 0.4, "speed": 2.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "show_tabs_dropdown_button",
-			"attributes": ["hover"],
-			"layer0.opacity": { "target": 0.7, "speed": 2.0, "interpolation": "smoothstep" },
-		},
-
-		//
-		// FOLD/EXPAND ICONS
-		//
-		{
-			"class": "fold_button_control",
-			"content_margin": [10, 7, 10, 8],
-			"layer0.texture": "sublime-1space/img/fold_button_control.png",
-			"layer0.tint": [71, 71, 71, 100],
-			"layer0.opacity": { "target": 0.5, "speed": 3.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "fold_button_control",
-			"attributes": ["hover"],
-			"layer0.opacity": { "target": 1.0, "speed": 3.0, "interpolation": "smoothstep" },
-		},
-		{
-			"class": "fold_button_control",
-			"attributes": ["expanded"],
-			"layer0.texture": "sublime-1space/img/fold_button_control--expanded.png",
-		},
-
-		//check
-		{
-			"class": "grid_layout_control",
-			"border_size": 1,
-			"border_color": [214, 214, 214],
-		},
-
-		//
-		// UPDATE PROGRESS
-		//
-		{
-			"class": "progress_bar_control",
-			"layer0.tint": [250, 250, 250],
-			"layer0.opacity": 1.0,
-			"layer1.tint": [214, 214, 214],
-			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [1, 1],
-			"layer1.draw_center": false,
-		},
-
-		{
-			"class": "progress_gauge_control",
-			"layer0.tint": [43, 102, 201],
-			"layer0.opacity": 1.0,
-			"content_margin": [0, 6],
-		},
-
-		// check
-		{
-			"class": "dialog",
-			"layer0.tint": "var(gray_background)",
-			"layer0.opacity": 1.0,
 		},
 
 		//
@@ -974,7 +1100,7 @@
 			"settings": ["1space.bold_active_file_label"],
 			"class": "sidebar_label",
 			"parents": [{"class": "tree_row", "attributes": ["selected"]}],
-			"font.face": "var(font_face)",
+			"font.face": "var(--font_face)",
 			"font.bold": true,
 		},
 
@@ -1022,11 +1148,6 @@
 			"settings": ["1space.hide_disclosure_button"],
 			"class": "sidebar_tree",
 			"indent_offset": 1,
-		},
-		{
-			"settings": ["1space.hide_disclosure_button"],
-			"class": "close_button",
-			"content_margin": [0, 0],
 		},
 
 		//
@@ -1128,51 +1249,12 @@
 		},
 
 		//
-		// SETTING: 1space.floating_command_palette
-		//
-		{
-			"settings": ["1space.floating_command_palette"],
-			"class": "overlay_control",
-			"layer0.texture": "sublime-1space/img/overlay_control--alfred-float.png",
-			"layer0.inner_margin": [23, 60, 23, 25],
-			"content_margin": [17, 48, 17, 21], // 57x79
-		},
-
-		//
 		// SETTING: 1space.sidebar_compact_indent
 		//
 		{
 			"settings": ["1space.sidebar_compact_indent"],
 			"class": "sidebar_tree",
 			"indent": 11,
-		},
-
-		//
-		// SETTING: 1space.round_corners_hack
-		//
-		{
-			"settings": ["1space.round_corners_hack"],
-			"class": "status_bar",
-			"layer1.tint": [0, 0, 0],
-			"layer1.opacity": 1.0,
-			"layer2.texture": "sublime-1space/img/status_bar.png",
-			"layer2.tint": [220, 220, 220],
-			"layer2.inner_margin": [5, 0, 5, 5],
-			"layer2.opacity": 1.0,
-		},
-
-		//
-		// SETTING: 1space.active_tab_bottom_border
-		//
-		{
-			"settings": ["1space.active_tab_bottom_border"],
-			"class": "tab_control",
-			"attributes": ["selected"],
-			"layer0.tint": [250, 250, 250],
-			"layer1.texture": "sublime-1space/img/tab_control--selected.png",
-			"layer1.tint": "var(gray_background)",
-			"layer1.inner_margin": [2, 0, 2, 2],
-			"layer1.opacity": 1.0,
 		},
 
 		//
@@ -1200,22 +1282,6 @@
 			"settings": ["1space.statusbar_size_s"],
 			"class": "status_bar",
 			"content_margin": [4, -2, 4, -2],
-		},
-
-		//
-		// SETTING: 1space.icon_macos
-		//
-		{
-			"settings": ["1space.icon_macos"],
-			"class": "icon_folder",
-			"layer0.texture": "sublime-1space/img/icon_folder--alfred.png",
-			"layer0.tint": [102, 102, 102],
-		},
-		{
-			"settings": ["1space.icon_macos"],
-			"class": "icon_folder",
-			"parents": [{ "class": "tree_row", "attributes": ["expanded"] }],
-			"layer0.texture": "sublime-1space/img/icon_folder--expanded--alfred.png",
 		},
 
 		//
