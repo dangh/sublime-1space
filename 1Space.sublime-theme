@@ -1204,33 +1204,6 @@
 		},
 
 		//
-		// SETTING: 1space.tab_size_s
-		//
-		{
-			"settings": ["1space.tab_size_s"],
-			"class": "tabset_control",
-			"tab_height": 26,
-		},
-
-		//
-		// SETTING: 1space.tab_size_m
-		//
-		{
-			"settings": ["1space.tab_size_m"],
-			"class": "tabset_control",
-			"tab_height": 30,
-		},
-
-		//
-		// SETTING: 1space.statusbar_size_s
-		//
-		{
-			"settings": ["1space.statusbar_size_s"],
-			"class": "status_bar",
-			"content_margin": [4, -2, 4, -2],
-		},
-
-		//
 		// SETTING: 1space.icon_monochrome
 		//
 		{
