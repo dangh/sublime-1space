@@ -724,10 +724,11 @@
 		},
 		{
 			"class": "fold_button_control",
-			"content_margin": [10, 7, 10, 8],
 			"layer0.texture": "sublime-1space/img/fold_button_control.png",
 			"layer0.tint": "var(--fold_button_control.tint)",
 			"layer0.opacity": "var(--fold_button_control.opacity)",
+			"layer0.inner_margin": [0, 16, 16, 0], //fix texture to top-right corner
+			"content_margin": [19, 16, 0, 0], //add 3px to the width
 		},
 		{
 			"class": "fold_button_control",
@@ -1004,11 +1005,11 @@
 		},
 		{
 			"class": "dropdown_button_control",
-			"content_margin": [8, 8],
+			"content_margin": 6,
 			"layer0.texture": "sublime-1space/img/dropdown_button_control.png",
 			"layer0.tint": "var(--dropdown_button_control.tint)",
 			"layer0.opacity": "var(--dropdown_button_control.opacity)",
-			"layer0.inner_margin": 4,
+			"layer0.inner_margin": 6,
 		},
 		{
 			"class": "dropdown_button_control",
