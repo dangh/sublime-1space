@@ -1005,11 +1005,11 @@
 		},
 		{
 			"class": "dropdown_button_control",
-			"content_margin": 6,
 			"layer0.texture": "sublime-1space/img/dropdown_button_control.png",
 			"layer0.tint": "var(--dropdown_button_control.tint)",
 			"layer0.opacity": "var(--dropdown_button_control.opacity)",
-			"layer0.inner_margin": 6,
+			"layer0.inner_margin": [12, 12, 0, 0], //fix texture to top-left corner
+			"content_margin": [12, 14, 0, 0], //add 2px to the height to push the texture up 1px;
 		},
 		{
 			"class": "dropdown_button_control",
