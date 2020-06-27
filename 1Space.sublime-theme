@@ -1173,7 +1173,6 @@
 		{
 			"class": "icon_preserve_case",
 			"parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
-			"layer0.texture": "sublime-1space/img/icon_preserve_case--selected.png",
 			"layer0.tint": "var(--icon_preserve_case.tint@selected)",
 		},
 		{
