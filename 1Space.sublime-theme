@@ -138,6 +138,7 @@
 		"--puck_control.bg": "color(hsl(0, 0%, 0%) blend(var(--bg) 30%))",
 		"--puck_control.bg--overlay": "hsla(0, 0%, 0%, 0.2)",
 		"--text_line_control.bg": "var(--background)",
+		"--text_line_control.border": "color(var(--background) l(- 13%))",
 		"--dropdown_button_control.tint": "var(--icon_tint)",
 		"--dropdown_button_control.opacity": "var(--opacity$0.5)",
 		"--dropdown_button_control.opacity@hover": "var(--opacity$1.0)",
@@ -999,10 +1000,14 @@
 
 		{
 			"class": "text_line_control",
-			"layer0.texture": "sublime-1space/img/text_line_control.png",
+			"layer0.texture": "sublime-1space/img/rounded_rectangle--r4--border.png",
 			"layer0.opacity": 1.0,
-			"layer0.inner_margin": [5, 5],
-			"layer0.tint": "var(--text_line_control.bg)",
+			"layer0.inner_margin": 5,
+			"layer0.tint": "var(--text_line_control.border)",
+			"layer1.texture": "sublime-1space/img/rounded_rectangle--r4--bg.png",
+			"layer1.opacity": 1.0,
+			"layer1.inner_margin": 5,
+			"layer1.tint": "var(--text_line_control.bg)",
 			"content_margin": [8, 4, 8, 3],
 		},
 		{
