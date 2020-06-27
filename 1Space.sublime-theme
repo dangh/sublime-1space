@@ -194,18 +194,19 @@
 		{
 			"class": "sidebar_container",
 			"content_margin": [0, 0, 1, 0],
+			//background, serve as gradient backdrop
 			"layer0.tint": "var(--sidebar_container.bg)",
 			"layer0.opacity": 1.0,
-			"layer1.texture": "sublime-1space/img/tab_control.png",
+			//gradient as tabset_control right-top border
+			"layer1.texture": "sublime-1space/img/tab_control_gradient.png",
 			"layer1.tint": "var(--sidebar_container.tab_border_gradient)",
 			"layer1.opacity": 1.0,
-			"layer1.inner_margin": [1, 28, 1, 0],//tab_size
-			"layer1.draw_center": false,
-			"layer1.repeat": true,
-			"layer2.texture": "sublime-1space/img/sidebar_container.png",
+			"layer1.inner_margin": [0, 28, 0, 0],//tab_size
+			//background
+			"layer2.texture": "sublime-1space/img/mask_pixel_left.png",
 			"layer2.tint": "var(--sidebar_container.bg)",
+			"layer2.inner_margin": [0, 0, 2, 0], //keep 2px on the right to prevent ST including the right most pixel (transparent) when stretching texture
 			"layer2.opacity": 1.0,
-			"layer2.inner_margin": [0, 0, 1, 0],
 		},
 		{
 			"class": "sidebar_tree",
@@ -454,7 +455,7 @@
 			"tab_min_width": "var(--tabset_control.tab_min_width)",
 			"tab_height": "var(--tabset_control.tab_height)",
 			"mouse_wheel_switch": false,
-			"content_margin": [-1, 0, -1, -1], //overlap left-most, right-most tab borders
+			"content_margin": [-1, 0, -1, 0], //overlap left-most, right-most tab borders
 		},
 		{
 			"class": "tabset_control",
@@ -464,31 +465,32 @@
 		{
 			"class": "tab_control",
 			"content_margin": [8, 1, 8, 0], //push content down 1px for better aesthetic
-			//background
+			//background, serve as backdrop for left/right border
 			"layer0.tint": "var(--tab_control.bg)",
 			"layer0.opacity": 1.0,
 			//bottom border
-			"layer1.texture": "",
-			"layer1.tint": "var(--tab_control.border_bottom)",
-			"layer1.opacity": 1.0,
+			"layer1.texture": "sublime-1space/img/mask_pixel_bottom.png",
 			"layer1.inner_margin": [0, 0, 0, 2],
+			"layer1.tint": "var(--tab_control.border_gradient)",
+			"layer1.opacity": 1.0,
 			"layer1.draw_center": false,
-			//gradient left/right borders
-			"layer2.tint": "var(--tab_control.bg)",
+			//left/right border
+			"layer2.texture": "sublime-1space/img/tab_control.png",
+			"layer2.inner_margin": [1, 0, 1, 0],
+			"layer2.tint": "var(--tab_control.border_gradient)",
 			"layer2.opacity": 1.0,
-			"layer2.inner_margin": [1, 1, 1, 1],
 			"layer2.draw_center": false,
-			"layer3.texture": "sublime-1space/img/tab_control.png",
-			"layer3.tint": "var(--tab_control.border_gradient)",
-			"layer3.inner_margin": [1, 0, 1, 0],
+			//background
+			"layer3.texture": "sublime-1space/img/mask_pixel.png",
+			"layer3.tint": "var(--tab_control.bg)",
 			"layer3.opacity": 1.0,
-			"layer3.draw_center": false,
+			"layer3.inner_margin": 2,
 		},
 		{
 			"class": "tab_control",
 			"attributes": ["selected"],
-			"layer0.tint": "var(--tab_control.bg@selected)",
-			"layer1.opacity": 0.0,
+			"layer1.tint": "var(--tab_control.bg@selected)",
+			"layer3.tint": "var(--tab_control.bg@selected)",
 		},
 		{
 			"class": "tab_label",
