@@ -13,5 +13,6 @@
     "--button_control.border": "hsl(223, 13%, 11%)",
     "--button_control.bg": "hsl(218, 13%, 24%)",
     "--button_control.bg@hover": "hsl(221, 13%, 27%)",
+    "--status_button.bg@hover": "hsl(223, 13%, 21%)",
   },
 }
