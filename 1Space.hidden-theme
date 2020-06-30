@@ -73,6 +73,7 @@
 		"--tab_control.border_bottom": "var(--tabset_control.border_bottom)",
 		"--tab_label.fg": "var(--fg)",
 		"--tab_label.fg@selected": "var(--foreground)",
+		"--tab_label.fg@dirty": "var(--accent_fg)",
 		"--tab_label.font.face": "var(--font_face)",
 		"--tab_label.font.face@transient": "var(--font_face#italic)",
 		"--tab_label.font.italic@transient": "var(--font_italic)",
@@ -525,6 +526,12 @@
 			"font.italic": "var(--tab_label.font.italic@transient)",
 		},
 		{
+			"class": "tab_label",
+			"settings": ["highlight_modified_tabs", "!show_tab_close_buttons"],
+			"attributes": ["dirty"],
+			"fg": "var(--tab_label.fg@dirty)",
+		},
+		{
 			"class": "tab_close_button",
 			"layer0.texture": "sublime-1space/img/tab_close_button.png",
 			"layer0.tint": "var(--tab_close_button.tint)",
@@ -570,13 +577,9 @@
 		},
 		{
 			"class": "tab_close_button",
-			"settings": ["!show_tab_close_buttons", "!highlight_modified_tabs"],
-			"content_margin": 0, //get rid of the button when none of the settings enabled
-		},
-		{
-			"class": "tab_close_button",
 			"settings": ["!show_tab_close_buttons"],
 			"hit_test_level": 1.0, //disable mouse click
+			"content_margin": 0,
 		},
 		{
 			"class": "scroll_tabs_left_button",

@@ -4,6 +4,7 @@
     "--bg": "hsl(0, 0%, 93%)",
     "--border": "hsl(0, 0%, 88%)",
     "--icon_tint": "hsl(0, 0%, 28%)",
+    "--tab_label.fg@dirty": "color(var(--accent_fg) l(- 1%))",
     "--tab_control.border_gradient": "color(var(--border) l(85%))",
     "--tree_row.bg@selected": "color(var(--bg) l(- 4%))",
     "--icon_folder_loading.tint": "color(var(--icon_tint) a(0.59))",
