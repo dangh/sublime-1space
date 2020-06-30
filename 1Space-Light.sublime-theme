@@ -1,0 +1,21 @@
+{
+  "extends": "1Space.hidden-theme",
+  "variables": {
+    "--bg": "hsl(0, 0%, 93%)",
+    "--border": "hsl(0, 0%, 88%)",
+    "--icon_tint": "hsl(0, 0%, 28%)",
+    "--tab_control.border_gradient": "color(var(--border) l(85%))",
+    "--tree_row.bg@selected": "color(var(--bg) l(- 4%))",
+    "--icon_folder_loading.tint": "color(var(--icon_tint) a(0.59))",
+    "--icon_folder_dup.tint": "color(var(--icon_tint) a(0.59))",
+    "--quick_panel_path_label.fg": "color(var(--fg) a(0.6))",
+    "--quick_panel_path_label.selected_fg": "color(var(--accent_fg) l(+ 0%))",
+    "--panel_control.bg": "color(var(--bg) l(89%))",
+    "--panel_control.border": "transparent",
+    "--status_bar.bg": "color(var(--bg) l(85%))",
+    "--status_bar.border": "transparent",
+    "--text_line_control.border": "color(var(--background) l(- 13%))",
+    "--button_control.border": "transparent",
+    "--button_control.border@hover": "hsla(0, 0%, 0%, 0.06)",
+  },
+}
