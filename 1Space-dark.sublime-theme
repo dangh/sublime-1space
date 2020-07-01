@@ -7,6 +7,7 @@
     "--icon_tint": "var(--fg)",
     "--accent_bg": "hsla(98, 34%, 83%, 0.05)",
     "--tree_row.bg@selected": "hsl(222, 13%, 26%)",
+    "--sidebar_label.fg@selected": "hsl(220, 13%, 86%)",
     "--quick_panel_path_label.fg": "hsl(219, 13%, 66%)",
     "--quick_panel_path_label.selected_fg": "color(var(--accent_fg) a(0.8))",
     "--tab_control.border_gradient": "var(--border)",

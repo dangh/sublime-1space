@@ -52,6 +52,7 @@
 		"--sidebar_heading.fg": "color(var(--fg) a(0.5))",
 		"--sidebar_heading.font.face": "var(--font_face)",
 		"--sidebar_heading.font.size": "var(--font_size)",
+		"--file_system_entry.spacing": 4,
 		"--sidebar_label.font.face": "var(--font_face)",
 		"--sidebar_label.font.face@expandable": "var(--font_face#bold)",
 		"--sidebar_label.font.face@transient": "var(--font_face#italic)",
@@ -60,6 +61,7 @@
 		"--sidebar_label.font.bold": "var(--font_bold)",
 		"--sidebar_label.font.italic": "var(--font_italic)",
 		"--sidebar_label.fg": "var(--fg)",
+		"--sidebar_label.fg@selected": "var(--fg)",
 		"--sidebar_label.fg@ignored": "var(--vcs_status@ignored)",
 		"--sidebar_label.fg@untracked": "var(--vcs_status@untracked)",
 		"--sidebar_label.fg@modified": "var(--vcs_status@modified)",
@@ -307,7 +309,8 @@
 		},
 		{
 			"class": "file_system_entry",
-			//TODO
+			"content_margin": 0,
+			"spacing": "var(--file_system_entry.spacing)",
 		},
 		{
 			"class": "sidebar_label",
@@ -327,6 +330,12 @@
 			"parents": [{ "class": "tree_row", "attributes": ["expandable"] }],
 			"font.face": "var(--sidebar_label.font.face@expandable)",
 			"font.bold": "var(--sidebar_label.font.bold)",
+		},
+		{
+			"settings": ["1space.highlight_active_file"],
+			"class": "sidebar_label",
+			"parents": [{ "class": "tree_row", "attributes": ["selected"] }],
+			"fg": "var(--sidebar_label.fg@selected)",
 		},
 		{
 		  "class": "sidebar_label",
