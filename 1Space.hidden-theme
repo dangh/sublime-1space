@@ -34,7 +34,7 @@
 		"--vcs_status@modified": "hsl(36, 59%, 72%)",
 		"--vcs_status@missing": "var(--fg)",
 		"--vcs_status@added": "hsl(140, 44%, 62%)",
-		"--vcs_status@staged": "var(--fg)",
+		"--vcs_status@staged": "hsl(36, 59%, 72%)",
 		"--vcs_status@deleted": "hsl(9, 100%, 64%)",
 		"--vcs_status@unmerged": "var(--fg)",
 		//shared elements
