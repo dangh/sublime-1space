@@ -1,5 +1,5 @@
 {
-  "1space.bold_active_file_label": true,
+  "1space.bold_active_file_label": false,
   "1space.highlight_active_file": true,
   "1space.show_sidebar_icons": true,
   "1space.show_disclosure_button": false,
@@ -10,5 +10,6 @@
   "1space.show_tabs_dropdown_button": false,
   "1space.show_status_buttons": false,
   "1space.sidebar_compact_indent": false,
-  "1space.icon_monochrome": true,
+  "1space.icon_monochrome": false,
+  "margin": 0,
 }

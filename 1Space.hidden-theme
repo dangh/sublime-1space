@@ -593,48 +593,60 @@
 			"class": "icon_file_type",
 			//layer0.texture is filled in by code with the relevant icon name
 			"layer0.opacity": 1.0,
+			"content_margin": 7,
+		},
+		{
+			"class": "icon_file_type",
 			"layer0.tint": "var(--icon_file_type.tint)",
-			"content_margin": 8,
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["ignored"] }],
 			"layer0.tint": "var(--icon_file_type.tint@ignored)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["untracked"] }],
 			"layer0.tint": "var(--icon_file_type.tint@untracked)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["modified"] }],
 			"layer0.tint": "var(--icon_file_type.tint@modified)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["missing"] }],
 			"layer0.tint": "var(--icon_file_type.tint@missing)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["added"] }],
 			"layer0.tint": "var(--icon_file_type.tint@added)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["staged"] }],
 			"layer0.tint": "var(--icon_file_type.tint@staged)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["deleted"] }],
 			"layer0.tint": "var(--icon_file_type.tint@deleted)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "icon_file_type",
 			"parents": [{ "class": "file_system_entry", "attributes": ["unmerged"] }],
 			"layer0.tint": "var(--icon_file_type.tint@unmerged)",
+			"settings": ["1space.icon_monochrome"],
 		},
 		{
 			"class": "vcs_status_badge",
@@ -758,12 +770,6 @@
 			"settings": ["!1space.show_disclosure_button", "!1space.show_sidebar_icons"],
 			"class": "sidebar_tree",
 			"indent_offset": -4, //remove 4px indent
-		},
-		//SETTING: 1space.icon_monochrome
-		{
-			"settings": ["!1space.icon_monochrome"],
-			"class": "icon_file_type",
-			"layer0.tint": "transparent",
 		},
 
 		////////////////////

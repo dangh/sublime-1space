@@ -16,4 +16,6 @@
     "--button_control.bg@hover": "hsl(221, 13%, 27%)",
     "--status_button.bg@hover": "hsl(223, 13%, 21%)",
   },
+  "rules": [
+  ],
 }

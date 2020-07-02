@@ -19,4 +19,6 @@
     "--button_control.border": "transparent",
     "--button_control.border@hover": "hsla(0, 0%, 0%, 0.06)",
   },
+  "rules": [
+  ],
 }
