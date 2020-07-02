@@ -1,0 +1,18 @@
+[submodule "modules/MFixx"]
+	path = modules/MFixx
+	url = git@github.com:file-icons/MFixx.git
+[submodule "modules/icons"]
+	path = modules/icons
+	url = git@github.com:file-icons/icons.git
+[submodule "modules/sublime-github-color"]
+	path = modules/sublime-github-color
+	url = git@github.com:dangh/sublime-github-color.git
+[submodule "modules/atom"]
+	path = modules/atom
+	url = git@github.com:file-icons/atom.git
+[submodule "modules/DevOpicons"]
+	path = modules/DevOpicons
+	url = git@github.com:file-icons/DevOpicons.git
+[submodule "modules/AFileIcon"]
+	path = modules/AFileIcon
+	url = git@github.com:SublimeText/AFileIcon.git
