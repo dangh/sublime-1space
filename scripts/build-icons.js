@@ -35,17 +35,24 @@ async function main() {
   }
   log.debug({ injectCss });
 
+  let iconsToGenerate = process.argv.slice(2);
+  if(iconsToGenerate.length == 0) iconsToGenerate = supportedIcons;
+
   //generate pngs
   let tasks = {};
-  for(let [icon, { svg, color }] of Object.entries(icons)) {
-    if(!supportedIcons.includes(icon)) {
-      log.warn(`${icon} is not supported by AFileIcon!`);
+  for(let icon of iconsToGenerate) {
+    if(!(icon in icons)) {
+      log.error(icon, '[no icon]');
       continue;
     }
+
+    let { svg, color } = icons[icon];
     if(!svg) {
-      log.warn(`${icon} does not have svg source!`);
+      log.warn(icon, '[no svg]');
       continue;
     }
+
+    log.info(icon, '[ok]');
     let input = svg;
     if(input.filename) input.filename = path.resolve(input.filename);
     tasks[icon] = {
@@ -61,16 +68,6 @@ async function main() {
   await SVG.toPNG(tasks);
 }
 
-async function lessToCss(opts) {
-  let source = opts, options = undefined;
-  if(opts.filename) {
-    source = (await fs.readFile(opts.filename, 'utf8'));
-    options = opts;
-  }
-  let result = (await LESS.render(source, options));
-  return result.css;
-}
-
 async function getColors() {
   let less = await fs.readFile('../modules/atom/styles/colours.less', 'utf8');
   let variables = lessToJs(less, { resolveVariables: true, stripPrefix: true });
@@ -81,42 +78,47 @@ async function getColors() {
       less += `.${variable}{color:@${variable}}`;
     }
   }
-  let css = await lessToCss(less);
-  let ast = await CSS.parse(css);
+  let rules = (await parseLess(less));
   let colors = {};
-  for(let rule of ast.stylesheet.rules) {
-    let name = rule.selectors[0].slice(1);
-    let color = rule.declarations[0].value;
-    colors[name] = color;
+  for(let [selector, properties] of Object.entries(rules)) {
+    let color = selector.replace(/^\./, '');
+    let value = properties['color'];
+    colors[color] = value;
   }
   return colors;
 }
 
 async function getIcons() {
-  let css = await lessToCss({ filename: '../modules/atom/styles/icons.less' });
-  let ast = await CSS.parse(css);
-  let rules = {};
-  for(let rule of ast.stylesheet.rules) {
-    if(rule.type != 'rule') continue;
+  // get icons from atom's file-icons package
+  let rules = (await loadLess('../modules/atom/styles/icons.less'));
+  let icons = {};
+  for(let [selector, properties] of Object.entries(rules)) {
     let match;
-    if((match = /^.(?<icon>[\w-]+)-icon:before$/.exec(rule.selectors[0]))) {
+    if((match = /^.(?<icon>[\w-]+)-icon:before$/.exec(selector))) {
       let icon = match.groups.icon;
-      let fontFamily = rule.declarations.find(x => ((x.type == 'declaration') && (x.property == 'font-family'))).value;
-      let content = rule.declarations.find(x => ((x.type == 'declaration') && (x.property == 'content'))).value.replace(/['"]/g, '');
+      let fontFamily = properties['font-family'];
+      let content = properties['content'].replace(/['"]/g, '');
       let codePoint;
       if(content.startsWith('\\')) codePoint = parseInt(content.slice(1), 16);
       else if(content.length == 1) codePoint = content.charCodeAt(0);
       else log.warn(`unknown code point: ${content}`)
-      rules[icon] = {
+      icons[icon] = {
         fontFamily,
         codePoint,
-        svg: await resolveSVG(icon, fontFamily, codePoint),
-        color: await resolveColor(icon),
+        svg: (await resolveSVG(icon, fontFamily, codePoint)),
+        color: (await resolveColor(icon)),
       };
-      if(!rules[icon].svg) log.warn(`unresolved icon: ${icon} | ${fontFamily}`);
     }
   }
-  return rules;
+  // get override icons
+  let overrides = (await loadYaml('./icons.yml'));
+  for(let [icon, override] of Object.entries(overrides)) {
+    if(!override) continue;
+    let { alias, ...config } = override;
+    if(alias) icons[icon] = Object.assign({}, icons[alias], config);
+    else icons[icon] = Object.assign({}, icons[icon], config);
+  }
+  return icons;
 }
 
 async function resolveSVG(icon, fontFamily, codePoint) {
@@ -201,9 +203,8 @@ let _tsvMap = {};
 async function resolveTsv(tsvFile, icon) {
   if(!_tsvMap[tsvFile]) {
     _tsvMap[tsvFile] = {};
-    let tsv = await fs.readFile(tsvFile, 'utf8');
-    let icons = TSV.parse(tsv);
-    for(let row of icons) {
+    let tsv = (await loadTsv(tsvFile));
+    for(let row of tsv) {
       let svg = row['SVG file'];
       let name = row['CSS class'];
       if(svg && name) {
@@ -242,4 +243,44 @@ async function getSupportedIcons() {
     result.push(name);
   }
   return result;
+}
+
+async function parseYaml(yaml) {
+  let json = (await YAML.load(yaml));
+  return json;
+}
+
+async function loadYaml(file) {
+  let yaml = (await fs.readFile(file, 'utf8'));
+  return (await parseYaml(yaml));
+}
+
+async function parseLess(less) {
+  let result = (await LESS.render(less));
+  return (await parseCss(result.css));
+}
+
+async function loadLess(file) {
+  let less = (await fs.readFile(file, 'utf8'));
+  return (await parseLess(less));
+}
+
+async function parseCss(css) {
+  let ast = await CSS.parse(css);
+  let rules = {};
+  for(let rule of ast.stylesheet.rules) {
+    if(rule.type != 'rule') continue;
+    let selector = rule.selectors.join(',');
+    if(!rules[selector]) rules[selector] = {};
+    for(let declaration of rule.declarations) {
+      if(declaration.type != 'declaration') continue;
+      rules[selector][declaration.property] = declaration.value;
+    }
+  }
+  return rules;
+}
+
+async function loadTsv(file) {
+  let tsv = (await fs.readFile(file, 'utf8'));
+  return TSV.parse(tsv);
 }

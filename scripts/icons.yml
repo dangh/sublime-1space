@@ -1,0 +1,138 @@
+# this file is the additional set of icons
+# we aim to resolve the icons automatically but it's not always working correctly
+# these icons will merge/override the resolved set
+# syntax:
+#   [icon]:  # name of the icon
+#     alias: [string]  # name of the source icon, this icon is an alias of the source icon with some modifies
+#     color: [string]  # name of the color
+#     svg:
+#       filename: [string]  # path to the svg file
+#       fontFamily: [string]  # name of the font face
+
+js:
+  color: medium-yellow
+
+actionscript: null
+
+applescript: null
+
+archive:
+  color: light-grey
+  svg:
+    filename: ../modules/octoicons/icons/file-zip-24.svg
+
+binary:
+  svg:
+    filename: ../modules/octoicons/icons/file-binary-24.svg
+
+blade: null
+
+coffeescript:
+  alias: coffee
+
+c++:
+  alias: cpp
+
+c#:
+  alias: csharp
+
+css:
+  alias: css3
+
+csv: null
+
+default:
+  color: light-grey
+  svg:
+    filename: ../modules/octoicons/icons/file-24.svg
+
+diff:
+  svg:
+    filename: ../modules/octoicons/icons/file-diff-24.svg
+
+dotnet: null
+
+ex:
+  alias: elixir
+
+gruntfile:
+  alias: grunt
+
+gulpfile:
+  alias: gulp
+
+html:
+  alias: html5
+
+image:
+  color: dark-cyan
+  svg:
+    filename: ../modules/octoicons/icons/file-media-24.svg
+
+jsp: null
+
+less:
+  alias: css
+  color: dark-blue
+
+license: null
+
+liquid: null
+
+log: null
+
+markdownx:
+  alias: markdown
+
+markup:
+  color: light-grey
+  svg:
+    filename: ../modules/octoicons/icons/file-code-24.svg
+
+nodejs:
+  alias: node
+
+note:
+  alias: markdown
+
+pdf: null
+
+plist: null
+
+preferences: null
+
+procfile: null
+
+registry: null
+
+restructuredtext: null
+
+scss:
+  alias: sass
+
+settings: null
+
+shell: null
+
+slim: null
+
+test_js:
+  alias: test-js
+
+test_jsx:
+  alias: test-react
+
+test_tsx:
+  alias: test-react
+
+test_typescript:
+  alias: test-ts
+
+todo:
+  alias: checklist
+
+typescript:
+  alias: ts
+
+visualstudio:
+  alias: vs
