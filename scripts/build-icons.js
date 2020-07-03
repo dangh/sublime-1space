@@ -9,41 +9,41 @@ const LESS = require('less');
 const TSV = require('tsv');
 const YAML = require('js-yaml');
 const SVG = require('./svg');
-const { dump, dd } = require('./util');
+const log = require('./log');
 
 const ICON_SIZE = 14;
 
-main().catch(console.error);
+main().catch(log.error);
 
 async function main() {
   //get all icons supported by A File Icon
   let supportedIcons = await getSupportedIcons();
-  dump({ supportedIcons });
+  log.debug({ supportedIcons });
 
   //extract all colors from Atom file-icons package
   let colors = await getColors();
-  dump({ colors });
+  log.debug({ colors });
 
   //extract list of icons from Atom file-icons package
   let icons = await getIcons();
-  dump({ icons });
+  log.debug({ icons });
 
   //build inject css map
   let injectCss = {};
   for(let color in colors) {
     injectCss[color] = `svg * { fill: ${colors[color]}; }`;
   }
-  dump({ injectCss });
+  log.debug({ injectCss });
 
   //generate pngs
   let tasks = {};
   for(let [icon, { svg, color }] of Object.entries(icons)) {
     if(!supportedIcons.includes(icon)) {
-      dump(`${icon} is not supported by AFileIcon!`);
+      log.warn(`${icon} is not supported by AFileIcon!`);
       continue;
     }
     if(!svg) {
-      dump(`${icon} does not have svg source!`);
+      log.warn(`${icon} does not have svg source!`);
       continue;
     }
     let input = svg;
@@ -57,20 +57,17 @@ async function main() {
       }
     }
   }
-  dump({ tasks });
+  log.debug({ tasks });
   await SVG.toPNG(tasks);
 }
 
 async function lessToCss(opts) {
   let source = opts, options = undefined;
   if(opts.filename) {
-    source = await fs.readFile(opts.filename, 'utf8');
+    source = (await fs.readFile(opts.filename, 'utf8'));
     options = opts;
   }
-  let result = await LESS.render(source, options).catch(err => {
-    console.error(err)
-    throw err
-  });
+  let result = (await LESS.render(source, options));
   return result.css;
 }
 
@@ -109,14 +106,14 @@ async function getIcons() {
       let codePoint;
       if(content.startsWith('\\')) codePoint = parseInt(content.slice(1), 16);
       else if(content.length == 1) codePoint = content.charCodeAt(0);
-      else dump(`unknown code point: ${content}`)
+      else log.warn(`unknown code point: ${content}`)
       rules[icon] = {
         fontFamily,
         codePoint,
         svg: await resolveSVG(icon, fontFamily, codePoint),
         color: await resolveColor(icon),
       };
-      if(!rules[icon].svg) dump(`unresolved icon: ${icon} | ${fontFamily}`);
+      if(!rules[icon].svg) log.warn(`unresolved icon: ${icon} | ${fontFamily}`);
     }
   }
   return rules;
