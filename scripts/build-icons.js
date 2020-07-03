@@ -39,7 +39,7 @@ async function main() {
   let tasks = {};
   for(let [icon, { svg, color }] of Object.entries(icons)) {
     if(!supportedIcons.includes(icon)) {
-      dump(`${icon} is not supported!`);
+      dump(`${icon} is not supported by AFileIcon!`);
       continue;
     }
     if(!svg) {
@@ -116,6 +116,7 @@ async function getIcons() {
         svg: await resolveSVG(icon, fontFamily, codePoint),
         color: await resolveColor(icon),
       };
+      if(!rules[icon].svg) dump(`unresolved icon: ${icon} | ${fontFamily}`);
     }
   }
   return rules;
@@ -123,9 +124,11 @@ async function getIcons() {
 
 async function resolveSVG(icon, fontFamily, codePoint) {
   switch(fontFamily) {
-    case 'Mfizz': return await resolveMFixx(icon, codePoint);
-    case 'Devicons': return await resolveDevicons(icon, codePoint);
-    case 'file-icons': return await resolveFileIcons(icon, codePoint);
+    case 'Mfizz': return (await resolveMFixx(icon, codePoint));
+    case 'Devicons': return (await resolveDevicons(icon, codePoint));
+    case 'file-icons': return (await resolveFileIcons(icon, codePoint));
+    case '"Octicons Regular"': return (await resolveOctoicons(icon, codePoint));
+    case 'FontAwesome': return (await resolveFontAwesome(icon, codePoint));
     default:
       return;
       // throw new Error('Unknown font: ' + fontFamily);
@@ -142,12 +145,44 @@ async function resolveDevicons(icon, codePoint) {
   if(source) return { source };
 }
 
+async function resolveOctoicons(icon, codePoint) {
+  for(let filename of [
+    `../modules/octoicons/icons/${icon}-16.svg`,
+    `../modules/octoicons/icons/file-${icon}-16.svg`,
+  ]) {
+    if((await fs.access(filename).then(() => true, () => false))) return { filename };
+  }
+}
+
+let _fontAwesome;
+let _fontAwesomeSearch;
+async function resolveFontAwesome(icon, codePoint) {
+  if(!_fontAwesome) {
+    _fontAwesome = {};
+    _fontAwesomeSearch = {};
+    let icons = require('../modules/Font-Awesome/metadata/icons.json');
+    for(let [icon, metadata] of Object.entries(icons)) {
+      _fontAwesome[icon] = (metadata.svg.regular || metadata.svg.solid || metadata.svg.brands).raw;
+      for(let [index, term] of metadata.search.terms.entries()) {
+        if(!_fontAwesomeSearch[term]) _fontAwesomeSearch[term] = [];
+        if(!_fontAwesomeSearch[term][index]) _fontAwesomeSearch[term][index] = icon;
+      }
+    }
+  }
+  let source = _fontAwesome[icon];
+  if(!source) {
+    let aliases = _fontAwesomeSearch[icon];
+    if(aliases) source = _fontAwesome[aliases[0]];
+  }
+  if(source) return { source };
+}
+
 async function resolveFileIcons(icon, codePoint) {
   let source = resolveIcomoon('../modules/icons/icomoon.json', codePoint);
   if(source) return { source };
   let name = resolveTsv('../modules/icons/icons.tsv', icon);
   let filename = `../modules/icons/svg/${name}.svg`;
-  if(await fs.access(filename)) return { filename };
+  if((await fs.access(filename).then(() => true, () => false))) return { filename };
 }
 
 let _icomoonMap = {};
