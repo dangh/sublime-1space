@@ -65,7 +65,7 @@ html:
   alias: html5
 
 image:
-  color: dark-cyan
+  color: medium-cyan
   svg:
     filename: ../modules/octoicons/icons/file-media-24.svg
 
@@ -105,6 +105,9 @@ procfile: null
 
 registry: null
 
+rails:
+  color: medium-red
+
 restructuredtext: null
 
 scss:
@@ -112,9 +115,13 @@ scss:
 
 settings: null
 
-shell: null
+shell:
+  alias: terminal
 
 slim: null
+
+source:
+  alias: default
 
 test_js:
   alias: test-js

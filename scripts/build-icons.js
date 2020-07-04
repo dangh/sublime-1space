@@ -11,8 +11,6 @@ const YAML = require('js-yaml');
 const SVG = require('./svg');
 const log = require('./log');
 
-const ICON_SIZE = 14;
-
 main().catch(log.error);
 
 async function main() {
@@ -40,6 +38,7 @@ async function main() {
 
   //generate pngs
   let tasks = {};
+  let iconSize = (await getIconSize());
   for(let icon of iconsToGenerate) {
     if(!(icon in icons)) {
       log.error(icon, '[no icon]');
@@ -58,9 +57,9 @@ async function main() {
     tasks[icon] = {
       input: svg,
       outputs: {
-        [path.resolve('../icons/file_type_' + icon + '.png')]: { width: ICON_SIZE, height: ICON_SIZE, css: injectCss[color] },
-        [path.resolve('../icons/file_type_' + icon + '@2x.png')]: { width: (ICON_SIZE * 2), height: (ICON_SIZE * 2), css: injectCss[color] },
-        [path.resolve('../icons/file_type_' + icon + '@3x.png')]: { width: (ICON_SIZE * 3), height: (ICON_SIZE * 3), css: injectCss[color] },
+        [path.resolve('../icons/file_type_' + icon + '.png')]: { width: iconSize, height: iconSize, css: injectCss[color] },
+        [path.resolve('../icons/file_type_' + icon + '@2x.png')]: { width: (iconSize * 2), height: (iconSize * 2), css: injectCss[color] },
+        [path.resolve('../icons/file_type_' + icon + '@3x.png')]: { width: (iconSize * 3), height: (iconSize * 3), css: injectCss[color] },
       }
     }
   }
@@ -115,8 +114,10 @@ async function getIcons() {
   for(let [icon, override] of Object.entries(overrides)) {
     if(!override) continue;
     let { alias, ...config } = override;
-    if(alias) icons[icon] = Object.assign({}, icons[alias], config);
-    else icons[icon] = Object.assign({}, icons[icon], config);
+    if(alias) {
+      if(!icons[icon]) icons[icon] = Object.assign({}, icons[alias], config);
+      else Object.assign(icons[icon], { svg: icons[alias].svg }, config);
+    } else icons[icon] = Object.assign({}, icons[icon], config);
   }
   return icons;
 }
@@ -146,6 +147,8 @@ async function resolveDevicons(icon, codePoint) {
 
 async function resolveOctoicons(icon, codePoint) {
   for(let filename of [
+    `../modules/octoicons/icons/${icon}-24.svg`,
+    `../modules/octoicons/icons/file-${icon}-24.svg`,
     `../modules/octoicons/icons/${icon}-16.svg`,
     `../modules/octoicons/icons/file-${icon}-16.svg`,
   ]) {
@@ -243,6 +246,13 @@ async function getSupportedIcons() {
     result.push(name);
   }
   return result;
+}
+
+async function getIconSize() {
+  let theme = (await fs.readFile('../1Space.hidden-theme', 'utf8'));
+  eval(`theme = ${theme}`);  // sublime-theme is not valid JSON, but an JS object
+  let contentMargin = theme.variables['--icon_file_type.content_margin'];
+  return (contentMargin * 2);
 }
 
 async function parseYaml(yaml) {
