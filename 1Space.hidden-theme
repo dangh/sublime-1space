@@ -1203,7 +1203,7 @@
 			"layer1.opacity": 1.0,
 			"layer1.inner_margin": [0, 1, 0, 0],
 			"layer1.draw_center": false,
-			"content_margin": [0, 1, 0, 0],
+			"content_margin": [0, 1, 0, 0],  //1px at the top is the border
 		},
 		{
 			"class": "panel_control find_panel",
@@ -1216,24 +1216,42 @@
 		},
 		{
 			"class": "panel_control input_panel",
-			"content_margin": [4, 0, 4, 0],
 		},
 		{
 			"class": "panel_control console_panel",
-			"content_margin": [0, -3, 0, -4],
 		},
 		{
 			"class": "panel_control output_panel",
-			"content_margin": [0, -3, 0, -4],
 		},
 		{
 			"class": "panel_control switch_project_panel",
 		},
 		{
 			"class": "panel_grid_control",
+			"inside_spacing": 0,
+			"outside_vspacing": 0,
+			"outside_hspacing": 0,
+		},
+		{
+			"class": "panel_grid_control",
+			"parents": [{ "class": "panel_control find_panel" }],
 			"inside_spacing": 4,
 			"outside_vspacing": 4,
-			"outside_hspacing": 4,
+			"outside_hspacing": 1,
+		},
+		{
+			"class": "panel_grid_control",
+			"parents": [{ "class": "panel_control replace_panel" }],
+			"inside_spacing": 4,
+			"outside_vspacing": 4,
+			"outside_hspacing": 1,
+		},
+		{
+			"class": "panel_grid_control",
+			"parents": [{ "class": "panel_control find_in_files_panel" }],
+			"inside_spacing": 4,
+			"outside_vspacing": 4,
+			"outside_hspacing": 1,
 		},
 		{
 			"class": "panel_close_button",
@@ -1251,7 +1269,7 @@
 			"layer1.opacity": 1.0,
 			"layer1.inner_margin": [0, 1, 0, 0],
 			"layer1.draw_center": false,
-			"content_margin": [0, 1, 0, 1],
+			"content_margin": [6, 1, 0, 1],
 		},
 		{
 			"class": "status_bar",
@@ -1308,6 +1326,11 @@
 			"settings": ["!1space.show_status_buttons"],
 			"class": "sidebar_button_control",
 			"content_margin": 0,
+		},
+		{
+			"settings": ["!1space.show_status_buttons"],
+			"class": "status_bar",
+			"content_margin": [0, 1, 0, 1],
 		},
 
 		////////////////////////
@@ -1699,6 +1722,18 @@
 			"class": "text_line_control",
 			"parents": [{ "class": "overlay_control", }],
 			"layer0.opacity": 0.0,
+		},
+
+		//FIX: remove text_line_control border/background in console panel
+		{
+			"class": "text_line_control",
+			"parents": [{ "class": "panel_control console_panel" }],
+			"layer0.texture": null,
+			"layer0.tint": "var(--background)",
+			"layer1.texture": null,
+			"layer1.inner_margin": [0, 1, 0, 0],
+			"layer1.tint": "var(--text_line_control.border)",
+			"layer1.draw_center": false,
 		},
 	]
 }
