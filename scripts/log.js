@@ -19,7 +19,7 @@ function log(level, ...args) {
 }
 
 //dump and die
-function dd(obj) {
+function dd(...args) {
   log('debug', ...args);
   process.exit(0);
 }

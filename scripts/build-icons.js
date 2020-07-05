@@ -57,9 +57,9 @@ async function main() {
     tasks[icon] = {
       input: svg,
       outputs: {
-        [path.resolve('../icons/file_type_' + icon + '.png')]: { width: iconSize, height: iconSize, css: injectCss[color] },
-        [path.resolve('../icons/file_type_' + icon + '@2x.png')]: { width: (iconSize * 2), height: (iconSize * 2), css: injectCss[color] },
-        [path.resolve('../icons/file_type_' + icon + '@3x.png')]: { width: (iconSize * 3), height: (iconSize * 3), css: injectCss[color] },
+        [`../icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 1 },
+        [`../icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 2 },
+        [`../icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 3 },
       }
     }
   }
@@ -136,13 +136,13 @@ async function resolveSVG(icon, fontFamily, codePoint) {
 }
 
 async function resolveMFixx(icon, codePoint) {
-  let source = resolveIcomoon('../modules/MFixx/icomoon.json', codePoint);
-  if(source) return { source };
+  let raw = resolveIcomoon('../modules/MFixx/icomoon.json', codePoint);
+  if(raw) return { raw };
 }
 
 async function resolveDevicons(icon, codePoint) {
-  let source = resolveIcomoon('../modules/DevOpicons/icomoon.json', codePoint);
-  if(source) return { source };
+  let raw = resolveIcomoon('../modules/DevOpicons/icomoon.json', codePoint);
+  if(raw) return { raw };
 }
 
 async function resolveOctoicons(icon, codePoint) {
@@ -171,17 +171,17 @@ async function resolveFontAwesome(icon, codePoint) {
       }
     }
   }
-  let source = _fontAwesome[icon];
-  if(!source) {
+  let raw = _fontAwesome[icon];
+  if(!raw) {
     let aliases = _fontAwesomeSearch[icon];
-    if(aliases) source = _fontAwesome[aliases[0]];
+    if(aliases) raw = _fontAwesome[aliases[0]];
   }
-  if(source) return { source };
+  if(raw) return { raw };
 }
 
 async function resolveFileIcons(icon, codePoint) {
-  let source = resolveIcomoon('../modules/icons/icomoon.json', codePoint);
-  if(source) return { source };
+  let raw = resolveIcomoon('../modules/icons/icomoon.json', codePoint);
+  if(raw) return { raw };
   let name = resolveTsv('../modules/icons/icons.tsv', icon);
   let filename = `../modules/icons/svg/${name}.svg`;
   if((await fs.access(filename).then(() => true, () => false))) return { filename };
@@ -195,8 +195,8 @@ function resolveIcomoon(icomoonFile, code) {
     for(let data of icomoon.icons) {
       let { code } = data.properties;
       let { paths } = data.icon;
-      let source = `<svg>${paths.map(d => `<path d="${d}"/>`).join('')}</svg>`;
-      _icomoonMap[icomoonFile][code] = source;
+      let raw = `<svg>${paths.map(d => `<path d="${d}"/>`).join('')}</svg>`;
+      _icomoonMap[icomoonFile][code] = raw;
     }
   }
   return _icomoonMap[icomoonFile][code];
