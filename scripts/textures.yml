@@ -134,7 +134,7 @@ rounded_rectangle--r4: &rounded-rectangle-r4
             <use xlink:href="#borderShape"/>
           </clipPath>
         </defs>
-        <use id='border' xlink:href='#borderShape' stroke-width='3' clip-path='url(#borderClip)'/>
+        <use id='border' xlink:href='#borderShape' stroke-width='2' clip-path='url(#borderClip)'/>
         <rect id='background' x='1' y='1' width='8' height='8' rx='3'/>
       </svg>
   width: 10
