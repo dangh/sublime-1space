@@ -20,13 +20,15 @@ dropdown_button_control:
 
 fold_button_control:
   svg:
-    filename: ../modules/octoicons/icons/unfold-16.svg
+    filename: ../modules/octoicons/icons/chevron-right-16.svg
   width: 16
+  padding: 2 3 2 1
 
 fold_button_control--expanded:
   svg:
-    filename: ../modules/octoicons/icons/fold-16.svg
+    filename: ../modules/octoicons/icons/chevron-down-16.svg
   width: 16
+  padding: 2 3 2 1
 
 icon_case:
   svg:
