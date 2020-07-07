@@ -99,7 +99,7 @@ mask_pixel--left:
 rounded_rectangle--r3: &rounded-rectangle-r3
   ignore: true
   svg:
-    raw:
+    raw: >
       <svg viewBox='0 0 8 8'>
         <defs>
           <rect id='borderShape' x='0' y='0' width='8' height='8' rx='3' stroke-linecap='round'/>
@@ -116,17 +116,21 @@ rounded_rectangle--r3: &rounded-rectangle-r3
 rounded_rectangle--r3--border:
   <<: *rounded-rectangle-r3
   ignore: false
-  css: '#border { fill: none; stroke: white; } #background { fill: none; }'
+  css: >
+    #border { fill: none; stroke: white; }
+    #background { fill: none; }
 
 rounded_rectangle--r3--bg:
   <<: *rounded-rectangle-r3
   ignore: false
-  css: '#border { fill: none; stroke: none; } #background { fill: white; }'
+  css: >
+    #border { fill: none; stroke: none; }
+    #background { fill: white; }
 
 rounded_rectangle--r4: &rounded-rectangle-r4
   ignore: true
   svg:
-    raw:
+    raw: >
       <svg viewBox='0 0 10 10'>
         <defs>
           <rect id='borderShape' x='0' y='0' width='10' height='10' rx='4' stroke-linecap='round'/>
@@ -143,12 +147,16 @@ rounded_rectangle--r4: &rounded-rectangle-r4
 rounded_rectangle--r4--border:
   <<: *rounded-rectangle-r4
   ignore: false
-  css: '#border { fill: none; stroke: white; } #background { fill: none; }'
+  css: >
+    #border { fill: none; stroke: white; }
+    #background { fill: none; }
 
 rounded_rectangle--r4--bg:
   <<: *rounded-rectangle-r4
   ignore: false
-  css: '#border { fill: none; stroke: none; } #background { fill: white; }'
+  css: >
+    #border { fill: none; stroke: none; }
+    #background { fill: white; }
 
 scroll_tabs_left_button:
   svg:
