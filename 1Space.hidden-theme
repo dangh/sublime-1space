@@ -1283,6 +1283,13 @@
 			"outside_hspacing": 1,
 		},
 		{
+			"class": "panel_grid_control",
+			"parents": [{ "class": "panel_control input_panel" }],
+			"inside_spacing": 4,
+			"outside_vspacing": 4,
+			"outside_hspacing": 5,
+		},
+		{
 			"class": "panel_close_button",
 		},
 
