@@ -197,6 +197,8 @@ tab_control_gradient:
 
 vcs_branch_icon:
   svg:
-    filename: ../modules/octoicons/icons/git-commit-16.svg
-  width: 12
-
+    filename: ../modules/octoicons/icons/git-commit-24.svg
+  width: 14
+  css: >
+    svg { transform: rotate(90deg); }
+    svg * { fill: white; }
