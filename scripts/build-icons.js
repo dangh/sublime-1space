@@ -16,22 +16,22 @@ main().catch(log.error);
 async function main() {
   //get all icons supported by A File Icon
   let supportedIcons = await getSupportedIcons();
-  log.debug({ supportedIcons });
+  // log.debug({ supportedIcons });
 
   //extract all colors from Atom file-icons package
   let colors = await getColors();
-  log.debug({ colors });
+  // log.debug({ colors });
 
   //extract list of icons from Atom file-icons package
   let icons = await getIcons();
-  log.debug({ icons });
+  // log.debug({ icons });
 
   //build inject css map
   let injectCss = {};
   for(let color in colors) {
     injectCss[color] = `svg * { fill: ${colors[color]}; }`;
   }
-  log.debug({ injectCss });
+  // log.debug({ injectCss });
 
   let iconsToGenerate = process.argv.slice(2);
   if(iconsToGenerate.length == 0) iconsToGenerate = supportedIcons;

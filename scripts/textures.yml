@@ -98,8 +98,7 @@ mask_pixel--left:
   height: 2
   padding: 0 1 0 0
 
-rounded_rectangle--r3: &rounded-rectangle-r3
-  ignore: true
+$rounded_rectangle--r3: &rounded-rectangle-r3
   svg:
     raw: >
       <svg viewBox='0 0 8 8'>
@@ -117,20 +116,17 @@ rounded_rectangle--r3: &rounded-rectangle-r3
 
 rounded_rectangle--r3--border:
   <<: *rounded-rectangle-r3
-  ignore: false
   css: >
     #border { fill: none; stroke: white; }
     #background { fill: none; }
 
 rounded_rectangle--r3--bg:
   <<: *rounded-rectangle-r3
-  ignore: false
   css: >
     #border { fill: none; stroke: none; }
     #background { fill: white; }
 
-rounded_rectangle--r4: &rounded-rectangle-r4
-  ignore: true
+$rounded_rectangle--r4: &rounded-rectangle-r4
   svg:
     raw: >
       <svg viewBox='0 0 10 10'>
@@ -148,14 +144,12 @@ rounded_rectangle--r4: &rounded-rectangle-r4
 
 rounded_rectangle--r4--border:
   <<: *rounded-rectangle-r4
-  ignore: false
   css: >
     #border { fill: none; stroke: white; }
     #background { fill: none; }
 
 rounded_rectangle--r4--bg:
   <<: *rounded-rectangle-r4
-  ignore: false
   css: >
     #border { fill: none; stroke: none; }
     #background { fill: white; }
@@ -212,3 +206,17 @@ vcs_branch_icon:
   css: >
     svg { transform: rotate(90deg); }
     svg * { fill: white; }
+
+$vcs_status_badge--overlay: &vcs_status_badge--overlay
+  width: 14
+  padding: 6 0 0 6
+
+vcs_status_badge--staged:
+  <<: *vcs_status_badge--overlay
+  svg:
+    filename: ../modules/octoicons/icons/check-circle-fill-16.svg
+
+vcs_status_badge--unmerged:
+  <<: *vcs_status_badge--overlay
+  svg:
+    filename: ../modules/octoicons/icons/alert-16.svg

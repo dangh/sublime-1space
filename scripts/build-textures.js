@@ -16,8 +16,8 @@ async function main() {
   let tasks = {};
   let defaultCss = `svg * { fill: white; }`;
   for(let texture of texturesToBuild) {
-    let { svg, width, height, padding, css = defaultCss, ignore } = textures[texture];
-    if(ignore) continue;
+    let { svg, width, height, padding, css = defaultCss } = textures[texture];
+    if(texture.startsWith('$')) continue;
     if(!width) throw new Error(`Invalid texture metadata: \`width\` is missing for \`${texture}\``);
     if(!height) height = width;
     tasks[texture] = {

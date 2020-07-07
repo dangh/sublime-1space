@@ -11,5 +11,6 @@
   "1space.show_status_buttons": false,
   "1space.sidebar_compact_indent": false,
   "1space.icon_monochrome": false,
+  "1space.overlay_vcs_status_badge": true,
   "margin": 0,
 }
