@@ -10,7 +10,7 @@
 #       fontFamily: [string]  # name of the font face
 
 js:
-  color: medium-yellow
+  color: auto-yellow
 
 actionscript: null
 

@@ -2,6 +2,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
+const deepmerge = require('deepmerge');
 const lessToJs = require('less-vars-to-js');
 const CSON = require('cson');
 const CSS = require('css');
@@ -45,24 +46,28 @@ async function main() {
       continue;
     }
 
-    let { svg, color } = icons[icon];
+    let { svg, color, dark, light } = icons[icon];
     if(!svg) {
       log.warn(icon, '[no svg]');
       continue;
     }
+    let darkColor = dark?.color ?? color.replace('auto-', 'medium-');
+    let lightColor = light?.color ?? color.replace('auto-', 'dark-');
 
     log.info(icon, '[ok]');
-    let input = svg;
-    if(input.filename) input.filename = path.resolve(input.filename);
+
     tasks[icon] = {
       input: svg,
       outputs: {
-        [`../icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 1 },
-        [`../icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 2 },
-        [`../icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[color], scale: 3 },
+        [`../dark/icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 1 },
+        [`../dark/icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 2 },
+        [`../dark/icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 3 },
+        [`../light/icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 1 },
+        [`../light/icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 2 },
+        [`../light/icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 3 },
       }
+    };
     }
-  }
   log.debug({ tasks });
   await SVG.toPNG(tasks);
 }
@@ -93,64 +98,66 @@ async function getIcons() {
   let icons = {};
   for(let [selector, properties] of Object.entries(rules)) {
     let match;
-    if((match = /^.(?<icon>[\w-]+)-icon:before$/.exec(selector))) {
-      let icon = match.groups.icon;
+    if((match = /^.(?<name>[\w-]+)-icon:before$/.exec(selector))) {
+      let name = match.groups.name;
       let fontFamily = properties['font-family'];
       let content = properties['content'].replace(/['"]/g, '');
       let codePoint;
       if(content.startsWith('\\')) codePoint = parseInt(content.slice(1), 16);
       else if(content.length == 1) codePoint = content.charCodeAt(0);
       else log.warn(`unknown code point: ${content}`)
-      icons[icon] = {
+      icons[name] = {
         fontFamily,
         codePoint,
-        svg: (await resolveSVG(icon, fontFamily, codePoint)),
-        color: (await resolveColor(icon)),
+        svg: (await resolveSVG(name, fontFamily, codePoint)),
+        color: (await resolveColor(name)),
       };
     }
   }
   // get override icons
   let overrides = (await loadYaml('./icons.yml'));
-  for(let [icon, override] of Object.entries(overrides)) {
+  for(let [name, override] of Object.entries(overrides)) {
     if(!override) continue;
     let { alias, ...config } = override;
     if(alias) {
-      if(!icons[icon]) icons[icon] = Object.assign({}, icons[alias], config);
-      else Object.assign(icons[icon], { svg: icons[alias].svg }, config);
-    } else icons[icon] = Object.assign({}, icons[icon], config);
+      if(!icons[name]) icons[name] = deepmerge(icons[alias], config);
+      else icons[name] = deepmerge(icons[name], { svg: icons[alias].svg }, config);
+    } else {
+      icons[name] = deepmerge(icons[name], config);
+    }
   }
   return icons;
 }
 
-async function resolveSVG(icon, fontFamily, codePoint) {
+async function resolveSVG(name, fontFamily, codePoint) {
   switch(fontFamily) {
-    case 'Mfizz': return (await resolveMFixx(icon, codePoint));
-    case 'Devicons': return (await resolveDevicons(icon, codePoint));
-    case 'file-icons': return (await resolveFileIcons(icon, codePoint));
-    case '"Octicons Regular"': return (await resolveOctoicons(icon, codePoint));
-    case 'FontAwesome': return (await resolveFontAwesome(icon, codePoint));
+    case 'Mfizz': return (await resolveMFixx(name, codePoint));
+    case 'Devicons': return (await resolveDevicons(name, codePoint));
+    case 'file-icons': return (await resolveFileIcons(name, codePoint));
+    case '"Octicons Regular"': return (await resolveOctoicons(name, codePoint));
+    case 'FontAwesome': return (await resolveFontAwesome(name, codePoint));
     default:
       return;
       // throw new Error('Unknown font: ' + fontFamily);
   }
 }
 
-async function resolveMFixx(icon, codePoint) {
+async function resolveMFixx(name, codePoint) {
   let raw = resolveIcomoon('../modules/MFixx/icomoon.json', codePoint);
   if(raw) return { raw };
 }
 
-async function resolveDevicons(icon, codePoint) {
+async function resolveDevicons(name, codePoint) {
   let raw = resolveIcomoon('../modules/DevOpicons/icomoon.json', codePoint);
   if(raw) return { raw };
 }
 
-async function resolveOctoicons(icon, codePoint) {
+async function resolveOctoicons(name, codePoint) {
   for(let filename of [
-    `../modules/octoicons/icons/${icon}-24.svg`,
-    `../modules/octoicons/icons/file-${icon}-24.svg`,
-    `../modules/octoicons/icons/${icon}-16.svg`,
-    `../modules/octoicons/icons/file-${icon}-16.svg`,
+    `../modules/octoicons/icons/${name}-24.svg`,
+    `../modules/octoicons/icons/file-${name}-24.svg`,
+    `../modules/octoicons/icons/${name}-16.svg`,
+    `../modules/octoicons/icons/file-${name}-16.svg`,
   ]) {
     if((await fs.access(filename).then(() => true, () => false))) return { filename };
   }
@@ -158,32 +165,32 @@ async function resolveOctoicons(icon, codePoint) {
 
 let _fontAwesome;
 let _fontAwesomeSearch;
-async function resolveFontAwesome(icon, codePoint) {
+async function resolveFontAwesome(name, codePoint) {
   if(!_fontAwesome) {
     _fontAwesome = {};
     _fontAwesomeSearch = {};
     let icons = require('../modules/Font-Awesome/metadata/icons.json');
-    for(let [icon, metadata] of Object.entries(icons)) {
-      _fontAwesome[icon] = (metadata.svg.regular || metadata.svg.solid || metadata.svg.brands).raw;
+    for(let [name, metadata] of Object.entries(icons)) {
+      _fontAwesome[name] = (metadata.svg.regular || metadata.svg.solid || metadata.svg.brands).raw;
       for(let [index, term] of metadata.search.terms.entries()) {
         if(!_fontAwesomeSearch[term]) _fontAwesomeSearch[term] = [];
-        if(!_fontAwesomeSearch[term][index]) _fontAwesomeSearch[term][index] = icon;
+        if(!_fontAwesomeSearch[term][index]) _fontAwesomeSearch[term][index] = name;
       }
     }
   }
-  let raw = _fontAwesome[icon];
+  let raw = _fontAwesome[name];
   if(!raw) {
-    let aliases = _fontAwesomeSearch[icon];
+    let aliases = _fontAwesomeSearch[name];
     if(aliases) raw = _fontAwesome[aliases[0]];
   }
   if(raw) return { raw };
 }
 
-async function resolveFileIcons(icon, codePoint) {
+async function resolveFileIcons(name, codePoint) {
   let raw = resolveIcomoon('../modules/icons/icomoon.json', codePoint);
   if(raw) return { raw };
-  let name = resolveTsv('../modules/icons/icons.tsv', icon);
-  let filename = `../modules/icons/svg/${name}.svg`;
+  let icon = resolveTsv('../modules/icons/icons.tsv', name);
+  let filename = `../modules/icons/svg/${icon}.svg`;
   if((await fs.access(filename).then(() => true, () => false))) return { filename };
 }
 
@@ -220,7 +227,7 @@ async function resolveTsv(tsvFile, icon) {
 }
 
 let _colorsMap;
-async function resolveColor(icon) {
+async function resolveColor(name) {
   if(!_colorsMap) {
     _colorsMap = {};
     let config = CSON.load('../modules/atom/config.cson');
@@ -231,11 +238,10 @@ async function resolveColor(icon) {
       if(!color) {
         if(Array.isArray(match)) color = match[0][1];
       }
-      if(color && color.startsWith('auto-')) color = color.replace('auto-', 'medium-');
       if(color) _colorsMap[icon] = color;
     }
   }
-  return _colorsMap[icon];
+  return _colorsMap[name];
 }
 
 async function getSupportedIcons() {
