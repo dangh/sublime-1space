@@ -40,6 +40,16 @@ icon_context:
     filename: ../modules/octoicons/icons/comment-discussion-16.svg
   width: 16
 
+icon_folder: &icon_folder
+  svg:
+    filename: ../svg/icon_folder.svg
+  width: 16
+
+icon_folder--expanded:
+  <<: *icon_folder
+  svg:
+    filename: ../svg/icon_folder--expanded.svg
+
 icon_highlight:
   svg:
     filename: ../modules/octoicons/icons/sun-16.svg
