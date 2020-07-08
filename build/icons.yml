@@ -148,3 +148,7 @@ typescript:
 
 visualstudio:
   alias: vs
+
+vue:
+  light:
+    color: '#4fc08d'

@@ -28,12 +28,7 @@ async function main() {
   let icons = await getIcons();
   // log.debug({ icons });
 
-  //build inject css map
-  let injectCss = {};
-  for(let color in colors) {
-    injectCss[color] = `svg * { fill: ${colors[color]}; }`;
-  }
-  // log.debug({ injectCss });
+  let injectCss = (color) => `svg * { fill: ${colors[color] || color}; }`;
 
   let iconsToGenerate = process.argv.slice(2);
   if(iconsToGenerate.length == 0) iconsToGenerate = supportedIcons;
@@ -60,12 +55,12 @@ async function main() {
     tasks[icon] = {
       input: svg,
       outputs: {
-        [rootDir(`theme-dark/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 1 },
-        [rootDir(`theme-dark/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 2 },
-        [rootDir(`theme-dark/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 3 },
-        [rootDir(`theme-light/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 1 },
-        [rootDir(`theme-light/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 2 },
-        [rootDir(`theme-light/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 3 },
+        [rootDir(`theme-dark/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 1 },
+        [rootDir(`theme-dark/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 2 },
+        [rootDir(`theme-dark/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 3 },
+        [rootDir(`theme-light/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 1 },
+        [rootDir(`theme-light/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 2 },
+        [rootDir(`theme-light/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 3 },
       }
     };
     }
