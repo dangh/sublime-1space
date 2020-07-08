@@ -49,6 +49,86 @@ icon_folder--expanded:
   svg:
     filename: ../svg/icon_folder--expanded.svg
 
+$icon_folder_loading: &icon_folder_loading
+  <<: *icon_folder
+  svg:
+    filename: ../svg/icon_folder_loading.svg
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+
+icon_folder_loading--frame1:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #top { opacity: 1; }
+    #top-left { opacity: 0.75; }
+    #left { opacity: 0.5; }
+
+icon_folder_loading--frame2:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #top-right { opacity: 1; }
+    #top { opacity: 0.75; }
+    #top-left { opacity: 0.5; }
+
+icon_folder_loading--frame3:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #right { opacity: 1; }
+    #top-right { opacity: 0.75; }
+    #top { opacity: 0.5; }
+
+icon_folder_loading--frame4:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #bottom-right { opacity: 1; }
+    #right { opacity: 0.75; }
+    #top-right { opacity: 0.5; }
+
+icon_folder_loading--frame5:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #bottom { opacity: 1; }
+    #bottom-right { opacity: 0.75; }
+    #right { opacity: 0.5; }
+
+icon_folder_loading--frame6:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #bottom-left { opacity: 1; }
+    #bottom { opacity: 0.75; }
+    #bottom-right { opacity: 0.5; }
+
+icon_folder_loading--frame7:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #left { opacity: 1; }
+    #bottom-left { opacity: 0.75; }
+    #bottom { opacity: 0.5; }
+
+icon_folder_loading--frame8:
+  <<: *icon_folder_loading
+  css: >
+    svg * { fill: white; }
+    #octocat { opacity: 0.25; }
+    #top-left { opacity: 1; }
+    #left { opacity: 0.75; }
+    #bottom-left { opacity: 0.5; }
+
 icon_highlight:
   svg:
     filename: ../modules/octoicons/icons/sun-16.svg
