@@ -9,6 +9,14 @@
 #       filename: [string]  # path to the svg file
 #       fontFamily: [string]  # name of the font face
 
+default: &default
+  svg:
+    filename: ../modules/octoicons/icons/file-24.svg
+  dark:
+    color: light-grey
+  light:
+    color: dark-grey
+
 js:
   color: auto-yellow
 
@@ -17,11 +25,12 @@ actionscript: null
 applescript: null
 
 archive:
-  color: light-grey
+  <<: *default
   svg:
     filename: ../modules/octoicons/icons/file-zip-24.svg
 
 binary:
+  <<: *default
   svg:
     filename: ../modules/octoicons/icons/file-binary-24.svg
 
@@ -41,12 +50,8 @@ css:
 
 csv: null
 
-default:
-  color: light-grey
-  svg:
-    filename: ../modules/octoicons/icons/file-24.svg
-
 diff:
+  <<: *default
   svg:
     filename: ../modules/octoicons/icons/file-diff-24.svg
 
@@ -85,7 +90,7 @@ markdownx:
   alias: markdown
 
 markup:
-  color: light-grey
+  <<: *default
   svg:
     filename: ../modules/octoicons/icons/file-code-24.svg
 
