@@ -1,58 +1,58 @@
 close_button:
   svg:
-    filename: ../modules/octoicons/icons/x-16.svg
+    filename: ./src/octoicons/icons/x-16.svg
   width: 12
 
 disclosure_button_control: &disclosure_button_control
   svg:
-    filename: ../modules/octoicons/icons/chevron-right-16.svg
+    filename: ./src/octoicons/icons/chevron-right-16.svg
   width: 12
 
 disclosure_button_control--expanded:
   <<: *disclosure_button_control
   svg:
-    filename: ../modules/octoicons/icons/chevron-down-16.svg
+    filename: ./src/octoicons/icons/chevron-down-16.svg
 
 dropdown_button_control:
   svg:
-    filename: ../modules/octoicons/icons/chevron-down-16.svg
+    filename: ./src/octoicons/icons/chevron-down-16.svg
   width: 12
 
 fold_button_control: &fold_button_control
   svg:
-    filename: ../modules/octoicons/icons/chevron-right-16.svg
+    filename: ./src/octoicons/icons/chevron-right-16.svg
   width: 16
   padding: 2 3 2 1
 
 fold_button_control--expanded:
   <<: *fold_button_control
   svg:
-    filename: ../modules/octoicons/icons/chevron-down-16.svg
+    filename: ./src/octoicons/icons/chevron-down-16.svg
 
 icon_case:
   svg:
-    filename: ../modules/octoicons/icons/typography-16.svg
+    filename: ./src/octoicons/icons/typography-16.svg
   width: 16
 
 icon_context:
   svg:
-    filename: ../modules/octoicons/icons/comment-discussion-16.svg
+    filename: ./src/octoicons/icons/comment-discussion-16.svg
   width: 16
 
 icon_folder: &icon_folder
   svg:
-    filename: ../svg/icon_folder.svg
+    filename: ./src/svg/icon_folder.svg
   width: 16
 
 icon_folder--expanded:
   <<: *icon_folder
   svg:
-    filename: ../svg/icon_folder--expanded.svg
+    filename: ./src/svg/icon_folder--expanded.svg
 
 $icon_folder_loading: &icon_folder_loading
   <<: *icon_folder
   svg:
-    filename: ../svg/icon_folder_loading.svg
+    filename: ./src/svg/icon_folder_loading.svg
   css: >
     svg * { fill: white; }
     #octocat { opacity: 0.25; }
@@ -131,42 +131,42 @@ icon_folder_loading--frame8:
 
 icon_highlight:
   svg:
-    filename: ../modules/octoicons/icons/sun-16.svg
+    filename: ./src/octoicons/icons/sun-16.svg
   width: 16
 
 icon_in_selection:
   svg:
-    filename: ../svg/icon_in_selection.svg
+    filename: ./src/svg/icon_in_selection.svg
   width: 16
 
 icon_preserve_case:
   svg:
-    filename: ../svg/icon_preserve_case.svg
+    filename: ./src/svg/icon_preserve_case.svg
   width: 16
 
 icon_regex:
   svg:
-    filename: ../svg/icon_regex.svg
+    filename: ./src/svg/icon_regex.svg
   width: 16
 
 icon_use_buffer:
   svg:
-    filename: ../modules/octoicons/icons/database-16.svg
+    filename: ./src/octoicons/icons/database-16.svg
   width: 16
 
 icon_use_gitignore:
   svg:
-    filename: ../modules/octoicons/icons/git-merge-16.svg
+    filename: ./src/octoicons/icons/git-merge-16.svg
   width: 16
 
 icon_whole_word:
   svg:
-    filename: ../svg/icon_whole_word.svg
+    filename: ./src/svg/icon_whole_word.svg
   width: 16
 
 icon_wrap:
   svg:
-    filename: ../modules/octoicons/icons/reply-16.svg
+    filename: ./src/octoicons/icons/reply-16.svg
   width: 16
 
 mask_pixel--center:
@@ -245,52 +245,52 @@ rounded_rectangle--r4--bg:
 
 scroll_tabs_left_button:
   svg:
-    filename: ../modules/octoicons/icons/chevron-left-16.svg
+    filename: ./src/octoicons/icons/chevron-left-16.svg
   width: 16
 
 scroll_tabs_right_button:
   svg:
-    filename: ../modules/octoicons/icons/chevron-right-16.svg
+    filename: ./src/octoicons/icons/chevron-right-16.svg
   width: 16
 
 show_tabs_dropdown_button:
   svg:
-    filename: ../modules/octoicons/icons/versions-16.svg
+    filename: ./src/octoicons/icons/versions-16.svg
   width: 36
   height: 16
 
 sidebar_button_control:
   svg:
-    filename: ../svg/sidebar_button_control.svg
+    filename: ./src/svg/sidebar_button_control.svg
   width: 12
 
 tab_close_button: &tab_close_button
   svg:
-    filename: ../modules/octoicons/icons/x-16.svg
+    filename: ./src/octoicons/icons/x-16.svg
   width: 12
 
 tab_close_button--dirty:
   <<: *tab_close_button
   svg:
-    filename: ../modules/octoicons/icons/dot-fill-16.svg
+    filename: ./src/octoicons/icons/dot-fill-16.svg
 
 tab_control:
   svg:
-    filename: ../svg/tab_control.svg
+    filename: ./src/svg/tab_control.svg
   width: 3
   height: 28
   css: null
 
 tab_control_gradient:
   svg:
-    filename: ../svg/tab_control_gradient.svg
+    filename: ./src/svg/tab_control_gradient.svg
   width: 1
   height: 28
   css: null
 
 vcs_branch_icon:
   svg:
-    filename: ../modules/octoicons/icons/git-commit-24.svg
+    filename: ./src/octoicons/icons/git-commit-24.svg
   width: 14
   css: >
     svg { transform: rotate(90deg); }
@@ -303,9 +303,9 @@ $vcs_status_badge--overlay: &vcs_status_badge--overlay
 vcs_status_badge--staged:
   <<: *vcs_status_badge--overlay
   svg:
-    filename: ../modules/octoicons/icons/check-circle-fill-16.svg
+    filename: ./src/octoicons/icons/check-circle-fill-16.svg
 
 vcs_status_badge--unmerged:
   <<: *vcs_status_badge--overlay
   svg:
-    filename: ../modules/octoicons/icons/alert-16.svg
+    filename: ./src/octoicons/icons/alert-16.svg

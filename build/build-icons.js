@@ -11,6 +11,7 @@ const TSV = require('tsv');
 const YAML = require('js-yaml');
 const SVG = require('./svg');
 const log = require('./log');
+const { sourceDir, rootDir } = require('./path');
 
 main().catch(log.error);
 
@@ -59,12 +60,12 @@ async function main() {
     tasks[icon] = {
       input: svg,
       outputs: {
-        [`../dark/icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 1 },
-        [`../dark/icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 2 },
-        [`../dark/icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 3 },
-        [`../light/icons/file_type_${icon}.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 1 },
-        [`../light/icons/file_type_${icon}@2x.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 2 },
-        [`../light/icons/file_type_${icon}@3x.png`]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 3 },
+        [rootDir(`theme-dark/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 1 },
+        [rootDir(`theme-dark/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 2 },
+        [rootDir(`theme-dark/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss[darkColor], scale: 3 },
+        [rootDir(`theme-light/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 1 },
+        [rootDir(`theme-light/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 2 },
+        [rootDir(`theme-light/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss[lightColor], scale: 3 },
       }
     };
     }
@@ -73,7 +74,7 @@ async function main() {
 }
 
 async function getColors() {
-  let less = await fs.readFile('../modules/atom/styles/colours.less', 'utf8');
+  let less = await fs.readFile(sourceDir('atom/styles/colours.less'), 'utf8');
   let variables = lessToJs(less, { resolveVariables: true, stripPrefix: true });
   less = '';
   for(let [variable, value] of Object.entries(variables)) {
@@ -94,7 +95,7 @@ async function getColors() {
 
 async function getIcons() {
   // get icons from atom's file-icons package
-  let rules = (await loadLess('../modules/atom/styles/icons.less'));
+  let rules = (await loadLess(sourceDir('atom/styles/icons.less')));
   let icons = {};
   for(let [selector, properties] of Object.entries(rules)) {
     let match;
@@ -143,21 +144,21 @@ async function resolveSVG(name, fontFamily, codePoint) {
 }
 
 async function resolveMFixx(name, codePoint) {
-  let raw = resolveIcomoon('../modules/MFixx/icomoon.json', codePoint);
+  let raw = resolveIcomoon(sourceDir('MFixx/icomoon.json'), codePoint);
   if(raw) return { raw };
 }
 
 async function resolveDevicons(name, codePoint) {
-  let raw = resolveIcomoon('../modules/DevOpicons/icomoon.json', codePoint);
+  let raw = resolveIcomoon(sourceDir('DevOpicons/icomoon.json'), codePoint);
   if(raw) return { raw };
 }
 
 async function resolveOctoicons(name, codePoint) {
   for(let filename of [
-    `../modules/octoicons/icons/${name}-24.svg`,
-    `../modules/octoicons/icons/file-${name}-24.svg`,
-    `../modules/octoicons/icons/${name}-16.svg`,
-    `../modules/octoicons/icons/file-${name}-16.svg`,
+    sourceDir(`octoicons/icons/${name}-24.svg`),
+    sourceDir(`octoicons/icons/file-${name}-24.svg`),
+    sourceDir(`octoicons/icons/${name}-16.svg`),
+    sourceDir(`octoicons/icons/file-${name}-16.svg`),
   ]) {
     if((await fs.access(filename).then(() => true, () => false))) return { filename };
   }
@@ -169,7 +170,7 @@ async function resolveFontAwesome(name, codePoint) {
   if(!_fontAwesome) {
     _fontAwesome = {};
     _fontAwesomeSearch = {};
-    let icons = require('../modules/Font-Awesome/metadata/icons.json');
+    let icons = require(sourceDir('Font-Awesome/metadata/icons.json'));
     for(let [name, metadata] of Object.entries(icons)) {
       _fontAwesome[name] = (metadata.svg.regular || metadata.svg.solid || metadata.svg.brands).raw;
       for(let [index, term] of metadata.search.terms.entries()) {
@@ -187,10 +188,10 @@ async function resolveFontAwesome(name, codePoint) {
 }
 
 async function resolveFileIcons(name, codePoint) {
-  let raw = resolveIcomoon('../modules/icons/icomoon.json', codePoint);
+  let raw = resolveIcomoon(sourceDir('icons/icomoon.json'), codePoint);
   if(raw) return { raw };
-  let icon = resolveTsv('../modules/icons/icons.tsv', name);
-  let filename = `../modules/icons/svg/${icon}.svg`;
+  let icon = resolveTsv(sourceDir('icons/icons.tsv'), name);
+  let filename = sourceDir(`icons/svg/${icon}.svg`);
   if((await fs.access(filename).then(() => true, () => false))) return { filename };
 }
 
@@ -230,7 +231,7 @@ let _colorsMap;
 async function resolveColor(name) {
   if(!_colorsMap) {
     _colorsMap = {};
-    let config = CSON.load('../modules/atom/config.cson');
+    let config = CSON.load(sourceDir('atom/config.cson'));
     for(let { icon, colour: color, match } of Object.values(config.fileIcons)) {
       if(color) {
         if(Array.isArray(color)) color = color[0];
@@ -245,7 +246,7 @@ async function resolveColor(name) {
 }
 
 async function getSupportedIcons() {
-  let icons = require('../modules/AFileIcon/icons/icons.json');
+  let icons = require(sourceDir('AFileIcon/icons/icons.json'));
   let result = [];
   for(let name in icons) {
     name = name.replace('file_type_', '');
@@ -255,7 +256,7 @@ async function getSupportedIcons() {
 }
 
 async function getIconSize() {
-  let theme = (await fs.readFile('../1Space.hidden-theme', 'utf8'));
+  let theme = (await fs.readFile(rootDir('1Space.hidden-theme'), 'utf8'));
   eval(`theme = ${theme}`);  // sublime-theme is not valid JSON, but an JS object
   let contentMargin = theme.variables['--icon_file_type.content_margin'];
   return (contentMargin * 2);

@@ -11,7 +11,7 @@
 
 default: &default
   svg:
-    filename: ../modules/octoicons/icons/file-24.svg
+    filename: ./src/octoicons/icons/file-24.svg
   dark:
     color: light-grey
   light:
@@ -27,12 +27,12 @@ applescript: null
 archive:
   <<: *default
   svg:
-    filename: ../modules/octoicons/icons/file-zip-24.svg
+    filename: ./src/octoicons/icons/file-zip-24.svg
 
 binary:
   <<: *default
   svg:
-    filename: ../modules/octoicons/icons/file-binary-24.svg
+    filename: ./src/octoicons/icons/file-binary-24.svg
 
 blade: null
 
@@ -53,7 +53,7 @@ csv: null
 diff:
   <<: *default
   svg:
-    filename: ../modules/octoicons/icons/file-diff-24.svg
+    filename: ./src/octoicons/icons/file-diff-24.svg
 
 dotnet: null
 
@@ -72,7 +72,7 @@ html:
 image:
   color: auto-cyan
   svg:
-    filename: ../modules/octoicons/icons/file-media-24.svg
+    filename: ./src/octoicons/icons/file-media-24.svg
 
 jsp: null
 
@@ -92,7 +92,7 @@ markdownx:
 markup:
   <<: *default
   svg:
-    filename: ../modules/octoicons/icons/file-code-24.svg
+    filename: ./src/octoicons/icons/file-code-24.svg
 
 nodejs:
   alias: node

@@ -4,6 +4,7 @@ const fs = require('fs').promises;
 const YAML = require('js-yaml');
 const SVG = require('./svg');
 const log = require('./log');
+const { rootDir } = require('./path');
 
 main().then(log.error);
 
@@ -23,9 +24,9 @@ async function main() {
     tasks[texture] = {
       input: svg,
       outputs: {
-        [`../img/${texture}.png`]: { width, height, padding, css, scale: 1 },
-        [`../img/${texture}@2x.png`]: { width, height, padding, css, scale: 2 },
-        [`../img/${texture}@3x.png`]: { width, height, padding, css, scale: 3 },
+        [rootDir(`img/${texture}.png`)]: { width, height, padding, css, scale: 1 },
+        [rootDir(`img/${texture}@2x.png`)]: { width, height, padding, css, scale: 2 },
+        [rootDir(`img/${texture}@3x.png`)]: { width, height, padding, css, scale: 3 },
       }
     };
   }

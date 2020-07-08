@@ -1,24 +1,24 @@
 [submodule "modules/MFixx"]
-	path = modules/MFixx
+	path = build/src/MFixx
 	url = git@github.com:file-icons/MFixx.git
 [submodule "modules/icons"]
-	path = modules/icons
+	path = build/src/icons
 	url = git@github.com:file-icons/icons.git
 [submodule "modules/sublime-github-color"]
-	path = modules/sublime-github-color
+	path = build/src/sublime-github-color
 	url = git@github.com:dangh/sublime-github-color.git
 [submodule "modules/atom"]
-	path = modules/atom
+	path = build/src/atom
 	url = git@github.com:file-icons/atom.git
 [submodule "modules/DevOpicons"]
-	path = modules/DevOpicons
+	path = build/src/DevOpicons
 	url = git@github.com:file-icons/DevOpicons.git
 [submodule "modules/AFileIcon"]
-	path = modules/AFileIcon
+	path = build/src/AFileIcon
 	url = git@github.com:SublimeText/AFileIcon.git
 [submodule "modules/octoicons"]
-	path = modules/octoicons
+	path = build/src/octoicons
 	url = git@github.com:primer/octicons.git
 [submodule "modules/Font-Awesome"]
-	path = modules/Font-Awesome
+	path = build/src/Font-Awesome
 	url = git@github.com:FortAwesome/Font-Awesome.git

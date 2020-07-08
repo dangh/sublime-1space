@@ -4,7 +4,8 @@
   "description": "",
   "main": "build-icons.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:icons": "node ./build-icons.js",
+    "build:textures": "node ./build-icons.js"
   },
   "keywords": [],
   "author": "",
