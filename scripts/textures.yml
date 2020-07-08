@@ -3,32 +3,31 @@ close_button:
     filename: ../modules/octoicons/icons/x-16.svg
   width: 12
 
-disclosure_button_control:
+disclosure_button_control: &disclosure_button_control
   svg:
     filename: ../modules/octoicons/icons/chevron-right-16.svg
   width: 12
 
 disclosure_button_control--expanded:
+  <<: *disclosure_button_control
   svg:
     filename: ../modules/octoicons/icons/chevron-down-16.svg
-  width: 12
 
 dropdown_button_control:
   svg:
     filename: ../modules/octoicons/icons/chevron-down-16.svg
   width: 12
 
-fold_button_control:
+fold_button_control: &fold_button_control
   svg:
     filename: ../modules/octoicons/icons/chevron-right-16.svg
   width: 16
   padding: 2 3 2 1
 
 fold_button_control--expanded:
+  <<: *fold_button_control
   svg:
     filename: ../modules/octoicons/icons/chevron-down-16.svg
-  width: 16
-  padding: 2 3 2 1
 
 icon_case:
   svg:
@@ -185,15 +184,15 @@ sidebar_button_control:
     filename: ../svg/sidebar_button_control.svg
   width: 12
 
-tab_close_button:
+tab_close_button: &tab_close_button
   svg:
     filename: ../modules/octoicons/icons/x-16.svg
   width: 12
 
 tab_close_button--dirty:
+  <<: *tab_close_button
   svg:
     filename: ../modules/octoicons/icons/dot-fill-16.svg
-  width: 12
 
 tab_control:
   svg:
