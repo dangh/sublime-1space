@@ -12,6 +12,7 @@
     "--vcs_status@staged": "hsl(37, 90%, 44%)",
     "--vcs_status@deleted": "hsl(360, 90%, 56%)",
     "--vcs_status@unmerged": "hsl(208, 100%, 54%)",
+    "--title_bar.style": "light",
     "--tab_label.fg@dirty": "color(var(--accent_fg) l(- 1%))",
     "--tab_control.border_gradient": "color(var(--border) l(85%))",
     "--tree_row.bg@selected": "color(var(--bg) l(- 4%))",

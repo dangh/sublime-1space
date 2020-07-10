@@ -51,6 +51,7 @@
 		//elements
 		"--title_bar.fg": "var(--fg)",
 		"--title_bar.bg": "var(--bg)",
+		"--title_bar.style": "system",
 		"--sidebar_container.bg": "var(--bg)",
 		"--sidebar_container.border": "var(--border)",
 		"--sidebar_container.tab_border_gradient": "var(--tab_control.border_gradient)",
@@ -282,6 +283,7 @@
 			"class": "title_bar",
 			"fg": "var(--title_bar.fg)",
 			"bg": "var(--title_bar.bg)",
+			"style": "var(--title_bar.style)",
 		},
 
 		////////////////////

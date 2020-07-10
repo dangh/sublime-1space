@@ -14,6 +14,7 @@
     "--vcs_status@staged": "hsl(36, 59%, 72%)",
     "--vcs_status@deleted": "hsl(9, 100%, 64%)",
     "--vcs_status@unmerged": "hsl(219, 79%, 66%)",
+    "--title_bar.style": "dark",
     "--tree_row.bg@selected": "hsl(222, 13%, 26%)",
     "--sidebar_label.fg@selected": "hsl(220, 13%, 86%)",
     "--quick_panel_path_label.fg": "hsl(219, 13%, 66%)",
