@@ -49,6 +49,11 @@ icon_folder--expanded:
   svg:
     filename: ./src/svg/icon_folder--expanded.svg
 
+icon_folder_dup:
+  <<: *icon_folder
+  svg:
+    filename: ./src/svg/icon_folder_dup.svg
+
 $icon_folder_loading: &icon_folder_loading
   <<: *icon_folder
   svg:
