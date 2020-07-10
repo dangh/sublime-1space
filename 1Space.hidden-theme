@@ -923,6 +923,11 @@
 			"layer3.tint": "var(--tab_control.bg@selected)",
 		},
 		{
+			"class": "tab_control",
+			"settings": ["show_tab_close_buttons_on_left"],
+			"close_button_side": "left",
+		},
+		{
 			"class": "tab_label",
 			"fg": "var(--tab_label.fg)",
 			"font.face": "var(--tab_label.font.face)",
