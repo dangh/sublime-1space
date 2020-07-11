@@ -192,6 +192,15 @@ mask_pixel--left:
   height: 2
   padding: 0 1 0 0
 
+rounded_rectangle--r2:
+  svg:
+    raw: >
+      <svg viewBox='0 0 10 10'>
+        <rect x='0' y='0' width='10' height='10' rx='2'/>
+      </svg>
+  width: 10
+  height: 10
+
 $rounded_rectangle--r3: &rounded-rectangle-r3
   svg:
     raw: >
