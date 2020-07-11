@@ -246,6 +246,8 @@
     "--puck_control.bg--overlay": "color(var(--foreground) a(0.3))",
     "--text_line_control.bg": "var(--background)",
     "--text_line_control.border": "var(--border)",
+    "--overlay_control>text_line_control.font.face": "var(--font_face)",
+    "--overlay_control>text_line_control.font.size": "var(--font_size)",
     "--dropdown_button_control.tint": "var(--icon_tint)",
     "--dropdown_button_control.opacity": "var(--opacity$0.5)",
     "--dropdown_button_control.opacity@hover": "var(--opacity$1.0)",
@@ -1793,6 +1795,8 @@
       "class": "text_line_control",
       "parents": [{ "class": "overlay_control", }],
       "layer0.opacity": 0.0,
+      "font.face": "var(--overlay_control>text_line_control.font.face)",
+      "font.size": "var(--overlay_control>text_line_control.font.size)",
     },
 
     //FIX: remove text_line_control border/background in console panel
