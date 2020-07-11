@@ -1094,7 +1094,8 @@
       "layer0.opacity": 1.0,
       "layer0.inner_margin": [23, 60, 23, 25],
       "layer0.tint": "var(--overlay_control.bg)",
-      "content_margin": [17, 48, 17, 21], //image size is 57x79
+      "content_margin": [17, 52, 17, 21], //image size is 57x79. Top margin should be 48 but we add 4 pixels too be even with hardcoded 4px margin at the bottom of text_line_control
+      "hit_test_level": 0.0, //BUG: top/bottom margin of text_line_control is always click-through. hit_test_level has no effect here
     },
     {
       "class": "quick_panel",
