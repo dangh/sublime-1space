@@ -1,7 +1,7 @@
 {
   "variables": {
     //base
-    "--font_size": 11,
+    "--font_size": "1rem",
     "--font_face": "Code Saver",
     "--font_face#bold": "var(--font_face)",
     "--font_face#italic": "var(--font_face)",
@@ -314,6 +314,8 @@
     "--title_label_control.font.size": 1,
     "--tool_tip_control.bg": "var(--accent_bg)",
     "--tool_tip_label_control.color": "var(--accent_fg)",
+    "--tool_tip_label_control.font.face": "var(--font_face)",
+    "--tool_tip_label_control.font.size": "var(--font_size)",
   },
   "rules": [
 
@@ -1160,6 +1162,10 @@
       "layer1.tint": "var(--quick_panel_row.border@selected)",
     },
     {
+      "class": "quick_panel_entry",
+      "spacing": 0,
+    },
+    {
       "class": "quick_panel_label",
       "fg": "var(--quick_panel_label.fg)",
       "match_fg": "var(--quick_panel_label.match_fg)",
@@ -1245,13 +1251,15 @@
     },
     {
       "class": "popup_control auto_complete_popup",
+      //TODO
     },
     {
       "class": "popup_control html_popup",
+      //TODO
     },
     {
       "class": "auto_complete",
-      "row_padding": [8, 7, 8, 5],
+      "row_padding": [4, 4, 4, 4],
       "layer0.tint": "var(--auto_complete.bg)",
       "layer0.opacity": 1.0,
     },
@@ -1381,6 +1389,26 @@
     {
       "class": "symbol_container",
       "content_margin": [4, 2, 4, 1],
+    },
+    {
+      "class": "trigger_container",
+      "content_margin": [4, 2, 4, 1],
+    },
+    {
+      "class": "auto_complete_detail_pane",
+      //TODO
+    },
+    {
+      "class": "auto_complete_info",
+      //TODO
+    },
+    {
+      "class": "auto_complete_kind_name_label",
+      //TODO
+    },
+    {
+      "class": "auto_complete_details",
+      //TODO
     },
 
     ///////////////////////////
@@ -1909,6 +1937,8 @@
     {
       "class": "tool_tip_label_control",
       "color": "var(--tool_tip_label_control.color)",
+      "font.face": "var(--tool_tip_label_control.font.face)",
+      "font.size": "var(--tool_tip_label_control.font.size)",
     },
 
     /////////////////////////////
