@@ -1295,8 +1295,9 @@
     },
     {
       "class": "kind_container",
-      "content_margin": [6, 0, 6, 0],
+      "content_margin": [6, 1, 6, 1],
       "layer0.texture": "sublime-1space/img/rounded_rectangle--r2.png",
+      "layer0.inner_margin": 2,
       "layer0.opacity": 0.0,
     },
     {
@@ -1388,11 +1389,11 @@
     },
     {
       "class": "symbol_container",
-      "content_margin": [4, 2, 4, 1],
+      //TODO
     },
     {
       "class": "trigger_container",
-      "content_margin": [4, 2, 4, 1],
+      //TODO
     },
     {
       "class": "auto_complete_detail_pane",
