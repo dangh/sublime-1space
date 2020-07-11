@@ -192,70 +192,64 @@ mask_pixel--left:
   height: 2
   padding: 0 1 0 0
 
-rounded_rectangle--r2:
+$rounded_rectangle:
   svg:
     raw: >
-      <svg viewBox='0 0 10 10'>
-        <rect x='0' y='0' width='10' height='10' rx='2'/>
+      <%
+        let viewBoxSize = (width || ((radius + margin + 1) * 2));
+        let rectSize = (viewBoxSize - (margin * 2));
+      %>
+      <svg viewBox='0 0 <%=viewBoxSize%> <%=viewBoxSize%>'>
+        <rect x='<%=margin%>' y='<%=margin%>' width='<%=rectSize%>' height='<%=rectSize%>' rx='<%=radius%>'/>
       </svg>
+    variables:
+      radius: 0
+      margin: 0
+      width: 10
   width: 10
-  height: 10
 
-$rounded_rectangle--r3: &rounded-rectangle-r3
+$rounded_rectangle_ring:
   svg:
     raw: >
-      <svg viewBox='0 0 8 8'>
-        <defs>
-          <rect id='borderShape' x='0' y='0' width='8' height='8' rx='3' stroke-linecap='round'/>
-          <clipPath id='borderClip'>
-            <use xlink:href="#borderShape"/>
-          </clipPath>
-        </defs>
-        <use id='border' xlink:href='#borderShape' stroke-width='2' clip-path='url(#borderClip)'/>
-        <rect id='background' x='1' y='1' width='6' height='6' rx='2'/>
+      <svg viewBox='0 0 <%=size%> <%=size%>'>
+        <path d='M<%=size/2%>,0 h<%=size/2-radius%> a<%=radius%>,<%=radius%> 0 0 1 <%=radius%>,<%=radius%> v<%=size-radius*2%> a<%=radius%>,<%=radius%> 0 0 1 -<%=radius%>,<%=radius%> h-<%=size-radius*2%> a<%=radius%>,<%=radius%> 0 0 1 -<%=radius%>,-<%=radius%> v-<%=size-radius*2%> a<%=radius%>,<%=radius%> 0 0 1 <%=radius%>,-<%=radius%> h<%=size/2-radius%> v1 h-<%=size/2-radius%> a<%=radius-1%>,<%=radius-1%> 0 0 0 -<%=radius-1%>,<%=radius-1%> v<%=size-radius*2%> a<%=radius-1%>,<%=radius-1%> 0 0 0 <%=radius-1%>,<%=radius-1%> h<%=size-radius*2%> a<%=radius-1%>,<%=radius-1%> 0 0 0 <%=radius-1%>,-<%=radius-1%> v-<%=size-radius*2%> a<%=radius-1%>,<%=radius-1%> 0 0 0 -<%=radius-1%>,-<%=radius-1%> h-<%=size/2-radius%> z'/>
       </svg>
-  width: 8
-  height: 8
+    variables:
+      size: 10
+      radius: 0
+  width: 10
+
+rounded_rectangle--r2:
+  ref: $rounded_rectangle
+  svg:
+    variables:
+      radius: 2
 
 rounded_rectangle--r3--border:
-  <<: *rounded-rectangle-r3
-  css: >
-    #border { fill: none; stroke: white; }
-    #background { fill: none; }
-
-rounded_rectangle--r3--bg:
-  <<: *rounded-rectangle-r3
-  css: >
-    #border { fill: none; stroke: none; }
-    #background { fill: white; }
-
-$rounded_rectangle--r4: &rounded-rectangle-r4
+  ref: $rounded_rectangle_ring
   svg:
-    raw: >
-      <svg viewBox='0 0 10 10'>
-        <defs>
-          <rect id='borderShape' x='0' y='0' width='10' height='10' rx='4' stroke-linecap='round'/>
-          <clipPath id='borderClip'>
-            <use xlink:href="#borderShape"/>
-          </clipPath>
-        </defs>
-        <use id='border' xlink:href='#borderShape' stroke-width='2' clip-path='url(#borderClip)'/>
-        <rect id='background' x='1' y='1' width='8' height='8' rx='3'/>
-      </svg>
-  width: 10
-  height: 10
+    variables:
+      radius: 3
+
+rounded_rectangle--r3--fill:
+  ref: $rounded_rectangle
+  svg:
+    variables:
+      radius: 2
+      margin: 1
 
 rounded_rectangle--r4--border:
-  <<: *rounded-rectangle-r4
-  css: >
-    #border { fill: none; stroke: white; }
-    #background { fill: none; }
+  ref: $rounded_rectangle_ring
+  svg:
+    variables:
+      radius: 4
 
-rounded_rectangle--r4--bg:
-  <<: *rounded-rectangle-r4
-  css: >
-    #border { fill: none; stroke: none; }
-    #background { fill: white; }
+rounded_rectangle--r4--fill:
+  ref: $rounded_rectangle
+  svg:
+    variables:
+      radius: 3
+      margin: 1
 
 scroll_tabs_left_button:
   svg:
