@@ -1428,12 +1428,15 @@
     },
     {
       "class": "panel_control find_panel",
+      "content_margin": [8, 0, 0, 0],
     },
     {
       "class": "panel_control replace_panel",
+      "content_margin": [8, 0, 0, 0],
     },
     {
       "class": "panel_control find_in_files_panel",
+      "content_margin": [8, 0, 0, 0],
     },
     {
       "class": "panel_control input_panel",
