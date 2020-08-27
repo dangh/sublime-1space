@@ -2,6 +2,7 @@ all: install build
 
 install: ;@echo "Installing ${PROJECT}....."; \
 	git submodule update --init --recursive; \
+	git submodule update --remote; \
 	npm install --prefix ./build;
 
 build: build-icons build-textures
