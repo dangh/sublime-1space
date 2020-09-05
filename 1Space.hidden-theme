@@ -333,7 +333,7 @@
     ////////////////////
     // SIDEBAR
     ////////////////////
-    
+
     {
       "class": "sidebar_container",
       "content_margin": [0, 0, 1, 0],
@@ -929,7 +929,7 @@
       "tab_min_width": "var(--tabset_control.tab_min_width)",
       "tab_height": "var(--tabset_control.tab_height)",
       "mouse_wheel_switch": false,
-      "content_margin": [-1, 0, -1, 0], //overlap left-most, right-most tab borders
+      "content_margin": [-1, -1, -1, 0], //overlap left-most, right-most tab borders
     },
     {
       "class": "tabset_control",
