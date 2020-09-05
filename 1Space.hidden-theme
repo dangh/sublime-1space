@@ -931,6 +931,14 @@
       "mouse_wheel_switch": false,
       "content_margin": [-1, -1, -1, 0], //overlap left-most, right-most tab borders
     },
+    //HACK
+    //sometime ST failed to fill the tabset_control when even the tab_control width
+    //causing the un-overlapped right border of the right-most tab_control
+    //overlap 2px to work-around this issue
+    {
+      "class": "tabset_control",
+      "content_margin": [-1, -1, -2, 0],
+    },
     {
       "class": "tabset_control",
       "settings": ["mouse_wheel_switches_tabs", "!enable_tab_scrolling"],
