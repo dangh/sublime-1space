@@ -1964,7 +1964,7 @@
       "parents": [{ "class": "overlay_control" }],
       "layer0.opacity": 0.0,
       "font.face": "var(--overlay_control>text_line_control.font.face)",
-      //"font.size": "var(--overlay_control>text_line_control.font.size)",
+      "font.size": "var(--overlay_control>text_line_control.font.size)",
     },
 
     //FIX: remove text_line_control border/background in console panel
