@@ -2,7 +2,7 @@
   "variables": {
     //base
     "--font_size": "1rem",
-    "--font_face": "Code Saver",
+    "--font_face": "PragmataPro",
     "--font_face#bold": "var(--font_face)",
     "--font_face#italic": "var(--font_face)",
     "--font_bold": true,
@@ -171,7 +171,7 @@
     "--tab_control.bg": "var(--tabset_control.bg)",
     "--tab_control.bg@selected": "var(--background)",
     "--tab_control.border_bottom": "var(--tabset_control.border_bottom)",
-    "--tab_label.fg": "var(--fg)",
+    "--tab_label.fg": "color(var(--fg) a(0.6))", //fadeout 40%
     "--tab_label.fg@selected": "var(--foreground)",
     "--tab_label.fg@dirty": "var(--accent_fg)",
     "--tab_label.font.face": "var(--font_face)",
