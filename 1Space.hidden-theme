@@ -1,7 +1,7 @@
 {
   "variables": {
     //base
-    "--font_size": "1rem",
+    "--font_size": 14,
     "--font_face": "PragmataPro",
     "--font_face#bold": "var(--font_face)",
     "--font_face#italic": "var(--font_face)",
@@ -1977,6 +1977,78 @@
       "layer1.inner_margin": [0, 1, 0, 0],
       "layer1.tint": "var(--text_line_control.border)",
       "layer1.draw_center": false,
+    },
+
+    //ST3: fix gradient border at the top-right of sidebar container
+    {
+      "class": "sidebar_container",
+      "layer1.inner_margin": [0, 27, 0, 0],
+    },
+
+    //ST3: fix tree_row still highlight after deactivate
+    {
+      "class": "tree_row",
+      "attributes": ["!selected"],
+      "layer0.opacity": 0,
+    },
+
+    //ST3: fix selected tab background
+    {
+      "class": "tab_control",
+      "layer3.inner_margin": 1,
+    },
+
+    //ST3: fix button background
+    {
+      "class": "button_control",
+      "layer0.inner_margin": 4,
+      "layer1.inner_margin": 4,
+    },
+
+    //ST3: fix input background
+    {
+      "class": "text_line_control",
+      "layer0.inner_margin": 4,
+      "layer1.inner_margin": 4,
+    },
+
+    //ST3: padding 4px on the right of find_in_files panel
+    {
+      "class": "panel_control find_in_files_panel",
+      "content_margin": [8, 0, 4, 0],
+    },
+
+    //ST3: panel_button_control
+    {
+      "class": "panel_button_control",
+      "layer0.texture": "sublime-1space/img/sidebar_button_control.png",
+      "layer0.tint": "var(--sidebar_button_control.tint)",
+      "layer0.opacity": "var(--sidebar_button_control.opacity)",
+      "content_margin": 6,
+    },
+    {
+      "class": "panel_button_control",
+      "attributes": ["hover"],
+      "layer0.opacity": "var(--sidebar_button_control.opacity@hover)",
+    },
+
+    //ST3: SETTING: 1space.show_status_buttons
+    {
+      "settings": ["!1space.show_status_buttons"],
+      "class": "panel_button_control",
+      "content_margin": 0,
+    },
+
+    //ST3: FIX: remove text_line_control border/background in console panel
+    {
+      "class": "text_line_control",
+      "parents": [{ "class": "panel_control console_panel" }],
+      "layer1.opacity": 0.0,
+      "layer2.opacity": 1.0,
+      "layer2.texture": null,
+      "layer2.inner_margin": [0, 1, 0, 0],
+      "layer2.tint": "var(--text_line_control.border)",
+      "layer2.draw_center": false,
     },
   ]
 }
