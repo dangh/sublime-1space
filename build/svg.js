@@ -97,7 +97,7 @@ class SVG {
       <style>
         #output-${scopeId} ${opts.css || ''}
         #input-${scopeId} {
-          opacity: 0;  //avoid input svg touched overlap output region
+          opacity: 0;  /* avoid input svg touched overlap output region */
         }
         #output-${scopeId} svg {
           width: ${svgWidth}px;
