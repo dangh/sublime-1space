@@ -128,6 +128,10 @@ slim: null
 source:
   alias: default
 
+sublime:
+  svg:
+    filename: ./src/AFileIcon/icons/svg/file_type_sublime.svg
+
 test_js:
   alias: test-js
 

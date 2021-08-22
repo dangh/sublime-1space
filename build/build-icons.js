@@ -11,22 +11,22 @@ const TSV = require('tsv');
 const YAML = require('js-yaml');
 const SVG = require('./svg');
 const log = require('./log');
-const { sourceDir, rootDir } = require('./path');
+const { sourceDir, rootDir, buildDir } = require('./path');
 
 main().catch(log.error);
 
 async function main() {
   //get all icons supported by A File Icon
   let supportedIcons = await getSupportedIcons();
-  // log.debug({ supportedIcons });
+  //log.debug({ supportedIcons });
 
   //extract all colors from Atom file-icons package
   let colors = await getColors();
-  // log.debug({ colors });
+  //log.debug({ colors });
 
   //extract list of icons from Atom file-icons package
   let icons = await getIcons();
-  // log.debug({ icons });
+  //log.debug({ icons });
 
   let injectCss = (color) => `svg * { fill: ${colors[color] || color}; }`;
 
@@ -63,7 +63,7 @@ async function main() {
         [rootDir(`theme-light/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 3 },
       }
     };
-    }
+  }
   log.debug({ tasks });
   await SVG.toPNG(tasks);
 }
@@ -89,7 +89,7 @@ async function getColors() {
 }
 
 async function getIcons() {
-  // get icons from atom's file-icons package
+  //get icons from atom's file-icons package
   let rules = (await loadLess(sourceDir('atom/styles/icons.less')));
   let icons = {};
   for(let [selector, properties] of Object.entries(rules)) {
@@ -110,8 +110,8 @@ async function getIcons() {
       };
     }
   }
-  // get override icons
-  let overrides = (await loadYaml('./icons.yml'));
+  //get override icons
+  let overrides = (await loadYaml(buildDir('icons.yml')));
   for(let [name, override] of Object.entries(overrides)) {
     if(!override) continue;
     let { alias, ...config } = override;
@@ -120,6 +120,12 @@ async function getIcons() {
       else icons[name] = deepmerge(icons[name], { svg: icons[alias].svg }, config);
     } else {
       icons[name] = deepmerge(icons[name], config);
+    }
+  }
+  //make filename absolute
+  for(let { svg } of Object.values(icons)) {
+    if(svg?.filename) {
+      svg.filename = buildDir(svg.filename);
     }
   }
   return icons;
@@ -134,7 +140,7 @@ async function resolveSVG(name, fontFamily, codePoint) {
     case 'FontAwesome': return (await resolveFontAwesome(name, codePoint));
     default:
       return;
-      // throw new Error('Unknown font: ' + fontFamily);
+      //throw new Error('Unknown font: ' + fontFamily);
   }
 }
 
@@ -252,7 +258,7 @@ async function getSupportedIcons() {
 
 async function getIconSize() {
   let theme = (await fs.readFile(rootDir('1Space.hidden-theme'), 'utf8'));
-  eval(`theme = ${theme}`);  // sublime-theme is not valid JSON, but an JS object
+  eval(`theme = ${theme}`);  //sublime-theme is not valid JSON, but an JS object
   let contentMargin = theme.variables['--icon_file_type.content_margin'];
   return (contentMargin * 2);
 }
