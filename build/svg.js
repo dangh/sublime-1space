@@ -2,11 +2,15 @@
 
 const fs = require('fs').promises;
 const puppeteer = require('puppeteer');
+const svgson = require('svgson');
+const svgBoundings = require('svg-boundings');
 const log = require('./log');
+
+const DEBUG = process.argv.includes('--debug');
 
 class SVG {
   static async toPNG(tasks) {
-    let browser = await puppeteer.launch({ timeout: 0 });
+    let browser = await puppeteer.launch({ timeout: 0, headless: !DEBUG });
     try {
       let page = await browser.newPage();
       let html = '';
@@ -21,6 +25,7 @@ class SVG {
         }
 
         for(let [output, opts] of Object.entries(outputs)) {
+          opts = Object.assign({ trim: input.trim }, opts);
           html += this.render(name, svg, output, opts);
         }
       }
@@ -47,7 +52,7 @@ class SVG {
         }
       }
     } finally {
-      await browser.close();
+      if(!DEBUG) await browser.close();
     }
   }
 
@@ -56,7 +61,7 @@ class SVG {
   }
 
   static render(name, svg, output, opts) {
-    let { width = 0, height = 0, padding = 0, scale = 1 } = opts;
+    let { width = 0, height = 0, padding = 0, scale = 1, trim = false } = opts;
 
     let paddings = { left: 0, top: 0, right: 0, bottom: 0 };
     padding = String(padding).split(' ').map(Number);
@@ -125,7 +130,7 @@ class SVG {
           let bbox = $input.getBBox();
           $output.removeAttribute('width');
           $output.removeAttribute('height');
-          if(!$output.hasAttribute('viewBox')) $output.setAttribute('viewBox', \`\${bbox.x} \${bbox.y} \${bbox.width} \${bbox.height}\`);
+          if(!$output.hasAttribute('viewBox') || ${trim}) $output.setAttribute('viewBox', \`\${bbox.x} \${bbox.y} \${bbox.width} \${bbox.height}\`);
         })();
       </script>
     `
