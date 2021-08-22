@@ -8,6 +8,7 @@
 #     svg:
 #       filename: [string]  # path to the svg file
 #       fontFamily: [string]  # name of the font face
+#       trim: [boolean]  # fit svg to viewbox
 
 default: &default
   svg:
@@ -131,6 +132,7 @@ source:
 sublime:
   svg:
     filename: ./src/AFileIcon/icons/svg/file_type_sublime.svg
+    trim: true
 
 test_js:
   alias: test-js
