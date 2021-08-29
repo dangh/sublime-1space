@@ -1,6 +1,6 @@
 'use strict';
 
-const fs = require('fs').promises;
+const fs = require('fs');
 const path = require('path');
 const deepmerge = require('deepmerge');
 const lessToJs = require('less-vars-to-js');
@@ -13,28 +13,31 @@ const SVG = require('./svg');
 const log = require('./log');
 const { sourceDir, rootDir, buildDir } = require('./path');
 
+const DEBUG = process.argv.includes('--debug');
+const IGNORE_EXISTING = process.argv.includes('--ignore-existing');
+
 main().catch(log.error);
 
 async function main() {
   //get all icons supported by A File Icon
   let supportedIcons = await getSupportedIcons();
-  //log.debug({ supportedIcons });
+  DEBUG && fs.writeFileSync(buildDir('icons-supported.json'), JSON.stringify(supportedIcons, null, 2));
 
   //extract all colors from Atom file-icons package
   let colors = await getColors();
-  //log.debug({ colors });
+  DEBUG && fs.writeFileSync(buildDir('colors.json'), JSON.stringify(colors, null, 2));
 
   //extract list of icons from Atom file-icons package
   let icons = await getIcons();
-  //log.debug({ icons });
+  DEBUG && fs.writeFileSync(buildDir('icons.json'), JSON.stringify(icons, null, 2));
 
-  let injectCss = (color) => `svg * { fill: ${colors[color] || color}; }`;
+  let iconsToGenerate = process.argv.slice(2).filter(name => !name.startsWith('-'));
+  if(iconsToGenerate.length == 0) iconsToGenerate = Object.keys(icons);
 
-  let iconsToGenerate = process.argv.slice(2);
-  if(iconsToGenerate.length == 0) iconsToGenerate = supportedIcons;
+  await generatePreferences(icons, supportedIcons);
 
   //generate pngs
-  let tasks = {};
+  let tasks = [];
   let iconSize = (await getIconSize());
   for(let icon of iconsToGenerate) {
     if(!(icon in icons)) {
@@ -42,34 +45,67 @@ async function main() {
       continue;
     }
 
-    let { svg, color, dark, light } = icons[icon];
+    let { svg, color, dark, light, trim } = icons[icon];
     if(!svg) {
       log.warn(icon, '[no svg]');
       continue;
     }
+
+    if(!color && !dark && !light) {
+      log.warn(icon, '[no color]');
+      continue;
+    }
+
     let darkColor = dark?.color ?? color.replace('auto-', 'medium-');
     let lightColor = light?.color ?? color.replace('auto-', 'dark-');
 
+    darkColor = colors[darkColor] ?? darkColor;
+    lightColor = colors[lightColor] ?? lightColor;
+
     log.info(icon, '[ok]');
 
-    tasks[icon] = {
-      input: svg,
-      outputs: {
-        [rootDir(`theme-dark/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 1 },
-        [rootDir(`theme-dark/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 2 },
-        [rootDir(`theme-dark/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss(darkColor), scale: 3 },
-        [rootDir(`theme-light/icons/file_type_${icon}.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 1 },
-        [rootDir(`theme-light/icons/file_type_${icon}@2x.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 2 },
-        [rootDir(`theme-light/icons/file_type_${icon}@3x.png`)]: { width: iconSize, height: iconSize, css: injectCss(lightColor), scale: 3 },
+    let outputs;
+    if(darkColor == lightColor) {
+      outputs = [
+        { scale: 6, css: `svg * { fill: ${darkColor} }`, paths: [rootDir(`theme-dark/icons/file_type_${icon}.png`), rootDir(`theme-light/icons/file_type_${icon}.png`)] },
+      ];
+    } else {
+      outputs = [
+        { scale: 6, css: `svg * { fill: ${darkColor} }`, paths: [rootDir(`theme-dark/icons/file_type_${icon}.png`)] },
+        { scale: 6, css: `svg * { fill: ${lightColor} }`, paths: [rootDir(`theme-light/icons/file_type_${icon}.png`)] },
+      ];
+    }
+
+    if(IGNORE_EXISTING) {
+      outputs.forEach(output => {
+        output.paths = output.paths.filter(path => !fs.existsSync(path));
+      });
+      outputs = outputs.filter(output => {
+        return output.paths.length > 0;
+      });
+      if(!outputs.length) {
+        log.info(icon, '[no outputs]');
+        continue;
       }
-    };
+    }
+
+    tasks.push({
+      name: icon,
+      input: {
+        svg,
+        width: iconSize,
+        height: iconSize,
+        trim,
+      },
+      outputs
+    });
   }
-  log.debug({ tasks });
+  DEBUG && fs.writeFileSync(buildDir('tasks.json'), JSON.stringify(tasks, null, 2));
   await SVG.toPNG(tasks);
 }
 
 async function getColors() {
-  let less = await fs.readFile(sourceDir('atom/styles/colours.less'), 'utf8');
+  let less = fs.readFileSync(sourceDir('atom/styles/colours.less'), 'utf8');
   let variables = lessToJs(less, { resolveVariables: true, stripPrefix: true });
   less = '';
   for(let [variable, value] of Object.entries(variables)) {
@@ -112,6 +148,7 @@ async function getIcons() {
   }
   //get override icons
   let overrides = (await loadYaml(buildDir('icons.yml')));
+  DEBUG && fs.writeFileSync(buildDir('icons-override.json'), JSON.stringify(overrides, null, 2));
   for(let [name, override] of Object.entries(overrides)) {
     if(!override) continue;
     let { alias, ...config } = override;
@@ -128,6 +165,10 @@ async function getIcons() {
       svg.filename = buildDir(svg.filename);
     }
   }
+  //sort icon map
+  let iconNames = Object.keys(icons);
+  iconNames.sort();
+  icons = iconNames.reduce((map, name) => { map[name] = icons[name]; return map; }, {});
   return icons;
 }
 
@@ -145,87 +186,80 @@ async function resolveSVG(name, fontFamily, codePoint) {
 }
 
 async function resolveMFixx(name, codePoint) {
-  let raw = resolveIcomoon(sourceDir('MFixx/icomoon.json'), codePoint);
-  if(raw) return { raw };
+  return resolveIcomoon(sourceDir('MFixx/icomoon.json'), codePoint);
 }
 
 async function resolveDevicons(name, codePoint) {
-  let raw = resolveIcomoon(sourceDir('DevOpicons/icomoon.json'), codePoint);
-  if(raw) return { raw };
+  return resolveIcomoon(sourceDir('DevOpicons/icomoon.json'), codePoint);
 }
 
 async function resolveOctoicons(name, codePoint) {
   for(let filename of [
-    sourceDir(`octoicons/icons/${name}-24.svg`),
     sourceDir(`octoicons/icons/file-${name}-24.svg`),
-    sourceDir(`octoicons/icons/${name}-16.svg`),
+    sourceDir(`octoicons/icons/${name}-24.svg`),
     sourceDir(`octoicons/icons/file-${name}-16.svg`),
+    sourceDir(`octoicons/icons/${name}-16.svg`),
   ]) {
-    if((await fs.access(filename).then(() => true, () => false))) return { filename };
+    if(fs.existsSync(filename)) return { filename };
   }
 }
 
 let _fontAwesome;
-let _fontAwesomeSearch;
 async function resolveFontAwesome(name, codePoint) {
   if(!_fontAwesome) {
     _fontAwesome = {};
-    _fontAwesomeSearch = {};
     let icons = require(sourceDir('Font-Awesome/metadata/icons.json'));
     for(let [name, metadata] of Object.entries(icons)) {
-      _fontAwesome[name] = (metadata.svg.regular || metadata.svg.solid || metadata.svg.brands).raw;
-      for(let [index, term] of metadata.search.terms.entries()) {
-        if(!_fontAwesomeSearch[term]) _fontAwesomeSearch[term] = [];
-        if(!_fontAwesomeSearch[term][index]) _fontAwesomeSearch[term][index] = name;
-      }
+      let code = parseInt(metadata.unicode, 16);
+      let filename = path.join(buildDir('src/Font-Awesome/svgs'), Object.keys(metadata.svg)[0], name + '.svg');
+      _fontAwesome[code] = { filename };
     }
   }
-  let raw = _fontAwesome[name];
-  if(!raw) {
-    let aliases = _fontAwesomeSearch[name];
-    if(aliases) raw = _fontAwesome[aliases[0]];
-  }
-  if(raw) return { raw };
+  return _fontAwesome[codePoint];
 }
 
 async function resolveFileIcons(name, codePoint) {
-  let raw = resolveIcomoon(sourceDir('icons/icomoon.json'), codePoint);
-  if(raw) return { raw };
-  let icon = resolveTsv(sourceDir('icons/icons.tsv'), name);
-  let filename = sourceDir(`icons/svg/${icon}.svg`);
-  if((await fs.access(filename).then(() => true, () => false))) return { filename };
+  return resolveTsv(sourceDir('icons/icons.tsv'), codePoint);
 }
 
 let _icomoonMap = {};
-function resolveIcomoon(icomoonFile, code) {
+function resolveIcomoon(icomoonFile, codePoint) {
   if(!_icomoonMap[icomoonFile]) {
     _icomoonMap[icomoonFile] = {};
     let icomoon = require(icomoonFile);
     for(let data of icomoon.icons) {
-      let { code } = data.properties;
-      let { paths } = data.icon;
-      let raw = `<svg>${paths.map(d => `<path d="${d}"/>`).join('')}</svg>`;
-      _icomoonMap[icomoonFile][code] = raw;
-    }
-  }
-  return _icomoonMap[icomoonFile][code];
-}
-
-let _tsvMap = {};
-async function resolveTsv(tsvFile, icon) {
-  if(!_tsvMap[tsvFile]) {
-    _tsvMap[tsvFile] = {};
-    let tsv = (await loadTsv(tsvFile));
-    for(let row of tsv) {
-      let svg = row['SVG file'];
-      let name = row['CSS class'];
-      if(svg && name) {
-        let icon = name.replace('-icon', '');
-        _tsvMap[tsvFile][icon] = svg;
+      let { code, name } = data.properties;
+      let { tags } = data.icon;
+      let filenames = tags.map(tag => path.join(icomoonFile, '../svg', tag + '.svg'));
+      let filename = filenames.find(filename => fs.existsSync(filename));
+      if(filename) {
+        _icomoonMap[icomoonFile][code] = { filename };
+      } else {
+        let { paths, width = 1024 } = data.icon;
+        let raw = `<svg width="${width}px" height="${width}px">${paths.map(d => `<path d="${d}"/>`).join('')}</svg>`;
+        _icomoonMap[icomoonFile][code] = { raw };
       }
     }
   }
-  return _tsvMap[tsvFile][icon];
+  return _icomoonMap[icomoonFile][codePoint];
+}
+
+let _tsvMap = {};
+async function resolveTsv(tsvFile, codePoint) {
+  if(!_tsvMap[tsvFile]) {
+    _tsvMap[tsvFile] = {};
+    let tsv = (await loadTsv(tsvFile));
+    DEBUG && fs.writeFileSync(buildDir('tsv.json'), JSON.stringify(tsv, null, 2));
+    for(let row of tsv) {
+      let code = parseInt(row['# Codepoint'].slice(2), 16);
+      let svg = decodeURIComponent(row['SVG file']);
+      if(code && svg) {
+        let filename = path.join(tsvFile, '../svg', svg);
+        _tsvMap[tsvFile][code] = { filename };
+      }
+    }
+  }
+  return _tsvMap[tsvFile][codePoint];
 }
 
 let _colorsMap;
@@ -238,7 +272,13 @@ async function resolveColor(name) {
         if(Array.isArray(color)) color = color[0];
       }
       if(!color) {
-        if(Array.isArray(match)) color = match[0][1];
+        if(Array.isArray(match)) {
+          let m;
+          //prefer color of the matched extension
+          if((m = match.find(m => m[0] == `.${icon}`))) color = m[1];
+          //else fallback to the first match that has color
+          else if((m = match.find(m => m[1]))) color = m[1];
+        }
       }
       if(color) _colorsMap[icon] = color;
     }
@@ -257,7 +297,8 @@ async function getSupportedIcons() {
 }
 
 async function getIconSize() {
-  let theme = (await fs.readFile(rootDir('1Space.hidden-theme'), 'utf8'));
+  return 16;
+  let theme = fs.readFileSync(rootDir('1Space.hidden-theme'), 'utf8');
   eval(`theme = ${theme}`);  //sublime-theme is not valid JSON, but an JS object
   let contentMargin = theme.variables['--icon_file_type.content_margin'];
   return (contentMargin * 2);
@@ -269,7 +310,7 @@ async function parseYaml(yaml) {
 }
 
 async function loadYaml(file) {
-  let yaml = (await fs.readFile(file, 'utf8'));
+  let yaml = fs.readFileSync(file, 'utf8');
   return (await parseYaml(yaml));
 }
 
@@ -279,7 +320,7 @@ async function parseLess(less) {
 }
 
 async function loadLess(file) {
-  let less = (await fs.readFile(file, 'utf8'));
+  let less = fs.readFileSync(file, 'utf8');
   return (await parseLess(less));
 }
 
@@ -299,6 +340,31 @@ async function parseCss(css) {
 }
 
 async function loadTsv(file) {
-  let tsv = (await fs.readFile(file, 'utf8'));
+  let tsv = fs.readFileSync(file, 'utf8');
   return TSV.parse(tsv);
+}
+
+async function generatePreferences(icons, supportedIcons) {
+  for(let [name, icon] of Object.entries(icons)) {
+    if(supportedIcons.includes(name)) continue;
+
+    let scope = icon.scope;
+    if(!scope) scope = [`source.${name}`];
+    scope = scope.join(', ');
+
+    fs.writeFileSync(rootDir(`preferences/file_type_${name}.tmPreferences`),
+      `<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+  <dict>
+    <key>scope</key>
+    <string>${scope}</string>
+    <key>settings</key>
+    <dict>
+      <key>icon</key>
+      <string>file_type_${name}</string>
+    </dict>
+  </dict>
+</plist>
+`);
+  }
 }

@@ -132,7 +132,7 @@ source:
 sublime:
   svg:
     filename: ./src/AFileIcon/icons/svg/file_type_sublime.svg
-    trim: true
+  trim: true
 
 test_js:
   alias: test-js
