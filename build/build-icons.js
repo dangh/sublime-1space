@@ -125,9 +125,11 @@ async function getColors() {
 }
 
 async function getIcons() {
+  let icons = {};
+
   //get icons from atom's file-icons package
   let rules = (await loadLess(sourceDir('atom/styles/icons.less')));
-  let icons = {};
+  let colors = (await resolveColors());
   for(let [selector, properties] of Object.entries(rules)) {
     let match;
     if((match = /^.(?<name>[\w-]+)-icon:before$/.exec(selector))) {
@@ -137,13 +139,18 @@ async function getIcons() {
       let codePoint;
       if(content.startsWith('\\')) codePoint = parseInt(content.slice(1), 16);
       else if(content.length == 1) codePoint = content.charCodeAt(0);
-      else log.warn(`unknown code point: ${content}`)
-      icons[name] = {
-        fontFamily,
-        codePoint,
-        svg: (await resolveSVG(name, fontFamily, codePoint)),
-        color: (await resolveColor(name)),
-      };
+      else log.warn(`unknown code point: ${content}`);
+      if(colors[name]) {
+        let svg = (await resolveSVG(name, fontFamily, codePoint));
+        for(let { color, fileType } of Object.values(colors[name])) {
+          icons[fileType] = {
+            fontFamily,
+            codePoint,
+            svg,
+            color,
+          };
+        }
+      }
     }
   }
   //get override icons
@@ -262,28 +269,29 @@ async function resolveTsv(tsvFile, codePoint) {
   return _tsvMap[tsvFile][codePoint];
 }
 
-let _colorsMap;
-async function resolveColor(name) {
-  if(!_colorsMap) {
-    _colorsMap = {};
-    let config = CSON.load(sourceDir('atom/config.cson'));
-    for(let { icon, colour: color, match } of Object.values(config.fileIcons)) {
-      if(color) {
-        if(Array.isArray(color)) color = color[0];
-      }
-      if(!color) {
-        if(Array.isArray(match)) {
-          let m;
-          //prefer color of the matched extension
-          if((m = match.find(m => m[0] == `.${icon}`))) color = m[1];
-          //else fallback to the first match that has color
-          else if((m = match.find(m => m[1]))) color = m[1];
-        }
-      }
-      if(color) _colorsMap[icon] = color;
+function resolveColors() {
+  let colors = {};
+  let config = CSON.load(sourceDir('atom/config.cson'));
+  for(let [name, { icon, colour: color, match }] of Object.entries(config.fileIcons)) {
+    if(color) {
+      if(Array.isArray(color)) color = color[0];
     }
+    if(!color) {
+      if(Array.isArray(match)) {
+        let m;
+        //prefer color of the matched extension
+        if((m = match.find(m => m[0] == `.${icon}`))) color = m[1];
+        //else fallback to the first match that has color
+        else if((m = match.find(m => m[1]))) color = m[1];
+      }
+    }
+    let fileType;
+    if(/^[\w-]$/.test(name)) fileType = name.toLowerCase();
+    else fileType = icon;
+    if(!colors[icon]) colors[icon] = [];
+    colors[icon].push({ color, fileType });
   }
-  return _colorsMap[name];
+  return colors;
 }
 
 async function getSupportedIcons() {

@@ -37,18 +37,6 @@ binary:
 
 blade: null
 
-coffeescript:
-  alias: coffee
-
-c++:
-  alias: cpp
-
-c#:
-  alias: csharp
-
-css:
-  alias: css3
-
 csv: null
 
 diff:
@@ -57,18 +45,6 @@ diff:
     filename: ./src/octoicons/icons/file-diff-24.svg
 
 dotnet: null
-
-ex:
-  alias: elixir
-
-gruntfile:
-  alias: grunt
-
-gulpfile:
-  alias: gulp
-
-html:
-  alias: html5
 
 image:
   color: auto-cyan
@@ -87,19 +63,10 @@ liquid: null
 
 log: null
 
-markdownx:
-  alias: markdown
-
 markup:
   <<: *default
   svg:
     filename: ./src/octoicons/icons/file-code-24.svg
-
-nodejs:
-  alias: node
-
-note:
-  alias: markdown
 
 pdf: null
 
@@ -116,13 +83,7 @@ rails:
 
 restructuredtext: null
 
-scss:
-  alias: sass
-
 settings: null
-
-shell:
-  alias: terminal
 
 slim: null
 
@@ -133,27 +94,6 @@ sublime:
   svg:
     filename: ./src/AFileIcon/icons/svg/file_type_sublime.svg
   trim: true
-
-test_js:
-  alias: test-js
-
-test_jsx:
-  alias: test-react
-
-test_tsx:
-  alias: test-react
-
-test_typescript:
-  alias: test-ts
-
-todo:
-  alias: checklist
-
-typescript:
-  alias: ts
-
-visualstudio:
-  alias: vs
 
 vue:
   light:
