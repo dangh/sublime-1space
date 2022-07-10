@@ -225,6 +225,10 @@
     "--quick_panel_label.key_binding.font.bold": false,
     "--quick_panel_label.key_binding.font.italic": false,
     "--quick_panel_label.key_binding.fg": "var(--accent_fg)",
+    "--quick_panel_detail_label.color": "var(--quick_panel_path_label.fg)",
+    "--quick_panel_detail_label.link_color": "var(--quick_panel_path_label.selected_fg)",
+    "--quick_panel_detail_label.monospace_color": "var(--quick_panel_path_label.fg)",
+    "--quick_panel_detail_label.monospace_background_color": "var(--quick_panel_row.bg)",
     "--grid_layout_control.border": "var(--border)",
     "--minimap_control.viewport_color": "var(--foreground)",
     "--minimap_control.viewport_opacity": "var(--opacity$0.3)",
@@ -1206,6 +1210,13 @@
       "font.bold": "var(--quick_panel_label.key_binding.font.bold)",
       "font.italic": "var(--quick_panel_label.key_binding.font.italic)",
       "fg": "var(--quick_panel_label.key_binding.fg)",
+    },
+    {
+      "class": "quick_panel_detail_label",
+      "color": "var(--quick_panel_detail_label.color)",
+      "link_color": "var(--quick_panel_detail_label.link_color)",
+      "monospace_color": "var(--quick_panel_detail_label.monospace_color)",
+      "monospace_background_color": "var(--quick_panel_detail_label.monospace_background_color)",
     },
 
     ///////////////////////////////
