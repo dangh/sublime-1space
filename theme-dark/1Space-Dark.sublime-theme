@@ -4,6 +4,7 @@
     "--bg": "hsl(216, 13%, 15%)",
     "--fg": "hsl(219, 13%, 66%)",
     "--border": "hsl(223, 13%, 11%)",
+    "--input.bg": "hsl(225, 13%, 12%)",
     "--icon_tint": "var(--fg)",
     "--accent_bg": "hsla(98, 34%, 83%, 0.05)",
     "--vcs_status@ignored": "hsla(219, 13%, 66%, 0.6)",
