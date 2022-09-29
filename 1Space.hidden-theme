@@ -1829,7 +1829,7 @@
     },
     {
       "class": "icon_regex",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_regex.tint@selected)",
     },
     {
@@ -1841,7 +1841,7 @@
     },
     {
       "class": "icon_case",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_case.tint@selected)",
     },
     {
@@ -1853,7 +1853,7 @@
     },
     {
       "class": "icon_whole_word",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_whole_word.tint@selected)",
     },
     {
@@ -1865,7 +1865,7 @@
     },
     {
       "class": "icon_wrap",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_wrap.tint@selected)",
     },
     {
@@ -1877,7 +1877,7 @@
     },
     {
       "class": "icon_in_selection",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_in_selection.tint@selected)",
     },
     {
@@ -1889,7 +1889,7 @@
     },
     {
       "class": "icon_highlight",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_highlight.tint@selected)",
     },
     {
@@ -1901,7 +1901,7 @@
     },
     {
       "class": "icon_preserve_case",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_preserve_case.tint@selected)",
     },
     {
@@ -1913,7 +1913,7 @@
     },
     {
       "class": "icon_context",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_context.tint@selected)",
     },
     {
@@ -1925,7 +1925,7 @@
     },
     {
       "class": "icon_use_buffer",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_use_buffer.tint@selected)",
     },
     {
@@ -1937,7 +1937,7 @@
     },
     {
       "class": "icon_use_gitignore",
-      "parents": [{ "class": "icon_button_control","attributes": ["selected"] }],
+      "parents": [{ "class": "icon_button_control", "attributes": ["selected"] }],
       "layer0.tint": "var(--icon_use_gitignore.tint@selected)",
     },
 
