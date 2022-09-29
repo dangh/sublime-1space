@@ -1778,7 +1778,7 @@
     },
     {
       "class": "icon_button_group",
-      //TODO
+      "spacing": 0,
     },
     {
       "class": "icon_button_control",
