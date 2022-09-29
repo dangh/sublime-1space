@@ -195,6 +195,7 @@
     "--show_tabs_dropdown_button.opacity": "var(--opacity$0.3)",
     "--show_tabs_dropdown_button.opacity@hover": "var(--opacity$1.0)",
     "--overlay_control.bg": "var(--background)",
+    "--quick_panel.bg": "var(--bg)",
     "--quick_panel_row.bg": "transparent",
     "--quick_panel_row.bg@selected": "var(--accent_bg)",
     "--quick_panel_row.border": "var(--accent_bg)",
@@ -1148,6 +1149,8 @@
     {
       "class": "quick_panel",
       "row_padding": [10, 9, 10, 8],
+      "layer0.tint": "var(--quick_panel.bg)",
+      "layer0.opacity": 1,
     },
     {
       "class": "mini_quick_panel_row",
