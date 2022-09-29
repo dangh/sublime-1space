@@ -1747,7 +1747,7 @@
     {
       "class": "button_control",
       "content_margin": [6, 6, 6, 5],
-      "min_size": [65, 18],
+      "min_size": [65, 16],
       "layer0.texture": "sublime-1space/img/rounded_rectangle--r4--border.png",
       "layer0.tint": "var(--button_control.border)",
       "layer0.inner_margin": 5,
