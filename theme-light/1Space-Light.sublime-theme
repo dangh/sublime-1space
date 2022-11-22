@@ -1,6 +1,7 @@
 {
   "extends": "1Space.hidden-theme",
   "variables": {
+    "--font_face": "Zed Sans Extended",
     "--bg": "hsl(0, 0%, 93%)",
     "--border": "hsl(0, 0%, 88%)",
     "--icon_tint": "hsl(0, 0%, 28%)",
