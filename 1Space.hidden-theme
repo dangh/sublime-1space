@@ -1520,6 +1520,11 @@
       "class": "panel_control switch_project_panel",
     },
     {
+      "class": "switch_project_window",
+      "layer0.tint": "var(--bg)",
+      "layer0.opacity": 1,
+    },
+    {
       "class": "panel_grid_control",
       "inside_spacing": 0,
       "outside_vspacing": 0,
@@ -1545,6 +1550,13 @@
       "inside_spacing": 4,
       "outside_vspacing": 4,
       "outside_hspacing": 1,
+    },
+    {
+      "class": "panel_grid_control",
+      "parents": [{ "class": "panel_control switch_project_panel" }],
+      "inside_spacing": 0,
+      "outside_vspacing": 8,
+      "outside_hspacing": 8,
     },
     {
       "class": "panel_grid_control",
