@@ -1,0 +1,26 @@
+{
+  "extends": "1Space.hidden-theme",
+  "variables": {
+    //base
+    "--font_face": "Zed Sans Extended",
+    "--fg": "var(--rp-text)",
+    "--bg": "var(--rp-base)",
+    "--border": "var(--rp-highlight-high)",
+    "--vcs_status@ignored": "var(--rp-muted)",
+    "--vcs_status@untracked": "var(--rp-rose)",
+    "--vcs_status@modified": "var(--rp-rose)",
+    "--vcs_status@missing": "var(--rp-love)",
+    "--vcs_status@added": "var(--rp-foam)",
+    "--vcs_status@staged": "var(--rp-iris)",
+    "--vcs_status@deleted": "var(--rp-love)",
+    "--vcs_status@unmerged": "var(--rp-iris)",
+    //elements
+    "--title_bar.bg": "var(--rp-overlay)",
+    "--tab_control.bg@selected": "var(--rp-overlay)",
+    "--tab_label.fg": "var(--rp-subtle)",
+    "--quick_panel.bg": "var(--rp-overlay)",
+    "--quick_panel_row.bg@selected": "var(--rp-highlight-low)",
+  },
+  "rules": [
+  ],
+}

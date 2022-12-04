@@ -1,0 +1,28 @@
+{
+  "extends": "Rosé Pine.hidden-theme",
+  "variables": {
+    //palette
+    "--rp-base": "hsl(32, 57%, 95%)",
+    "--rp-surface": "hsl(35, 100%, 98%)",
+    "--rp-overlay": "hsl(33, 43%, 91%)",
+    "--rp-muted": "hsl(257, 9%, 61%)",
+    "--rp-subtle": "hsl(248, 12%, 52%)",
+    "--rp-text": "hsl(248, 19%, 40%)",
+    "--rp-love": "hsl(343, 35%, 55%)",
+    "--rp-gold": "hsl(35, 81%, 56%)",
+    "--rp-rose": "hsl(3, 53%, 67%)",
+    "--rp-pine": "hsl(197, 53%, 34%)",
+    "--rp-foam": "hsl(189, 30%, 48%)",
+    "--rp-iris": "hsl(268, 21%, 57%)",
+    "--rp-highlight-low": "hsl(25, 35%, 93%)",
+    "--rp-highlight-low-alpha": "hsla(249, 12%, 47%, 0.05)",
+    "--rp-highlight-med": "hsl(10, 9%, 86%)",
+    "--rp-highlight-med-alpha": "hsla(249, 12%, 47%, 0.08)",
+    "--rp-highlight-high": "hsl(315, 4%, 80%)",
+    "--rp-highlight-high-alpha": "hsla(249, 12%, 47%, 0.15)",
+    //base
+    "--title_bar.style": "light",
+  },
+  "rules": [
+  ],
+}
