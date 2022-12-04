@@ -77,6 +77,7 @@
     //elements
     "--title_bar.fg": "var(--fg)",
     "--title_bar.bg": "var(--bg)",
+    "--title_bar.border": "var(--border)",
     "--title_bar.style": "system",
     "--sidebar_container.bg": "var(--bg)",
     "--sidebar_container.border": "var(--border)",
@@ -348,7 +349,7 @@
 
     {
       "class": "sidebar_container",
-      "content_margin": [0, 0, 1, 0],
+      "content_margin": [0, 1, 1, 0],
       //background, serve as gradient backdrop
       "layer0.tint": "var(--sidebar_container.bg)",
       "layer0.opacity": 1.0,
@@ -362,6 +363,20 @@
       "layer2.tint": "var(--sidebar_container.bg)",
       "layer2.inner_margin": [0, 0, 2, 0], //keep 2px on the right to prevent ST including the right most pixel (transparent) when stretching texture
       "layer2.opacity": 1.0,
+      //top border
+      "layer3.tint": "var(--title_bar.border)",
+      "layer3.opacity": 0.0,
+      "layer3.inner_margin": [0, 1, 0, 0],
+      "layer3.draw_center": false,
+    },
+    //SETTING: 1space.title_bar_border
+    {
+      "class": "sidebar_container",
+      "settings": ["themed_title_bar", "1space.title_bar_border"],
+      //top border
+      "layer3.opacity": 1.0,
+      //solid right border
+      "layer1.texture": null,
     },
     {
       "class": "sidebar_tree",
@@ -936,20 +951,32 @@
       "layer1.opacity": 1.0,
       "layer1.inner_margin": [0, 0, 0, 1],
       "layer1.draw_center": false,
+      "layer2.tint": "var(--title_bar.border)",
+      "layer2.opacity": 0.0,
+      "layer2.inner_margin": [0, 1, 0, 0],
+      "layer2.draw_center": false,
       "tab_overlap": 1,
       "tab_width": "var(--tabset_control.tab_width)",
       "tab_min_width": "var(--tabset_control.tab_min_width)",
       "tab_height": "var(--tabset_control.tab_height)",
       "mouse_wheel_switch": false,
-      "content_margin": [-1, -1, -1, 0], //overlap left-most, right-most tab borders
+      "content_margin": [-1, 0, -1, 0], //overlap left-most, right-most tab borders
     },
     //HACK
     //sometime ST failed to fill the tabset_control when even the tab_control width
-    //causing the un-overlapped right border of the right-most tab_control
+    //causing the un-overlapped right border of the right-most tab_control.
     //overlap 2px to work-around this issue
     {
       "class": "tabset_control",
-      "content_margin": [-1, -1, -2, 0],
+      "content_margin": [-1, 0, -2, 0],
+    },
+    //SETTING: 1space.title_bar_border
+    {
+      "class": "tabset_control",
+      "settings": ["themed_title_bar", "1space.title_bar_border"],
+      //top border
+      "layer2.opacity": 1.0,
+      "content_margin": [-1, 1, -2, 0],
     },
     {
       "class": "tabset_control",
@@ -958,34 +985,47 @@
     },
     {
       "class": "tab_control",
-      "content_margin": [8, 1, 8, 0], //push content down 1px for better aesthetic
-      //background, serve as backdrop for left/right border
+      "content_margin": [9, 1, 9, 0], //push content down 1px for better aesthetic
+      //background
+      // "layer3.texture": "sublime-1space/img/mask_pixel--center.png",
       "layer0.tint": "var(--tab_control.bg)",
       "layer0.opacity": 1.0,
+      // "layer0.inner_margin": 2,
       //bottom border
       "layer1.texture": "sublime-1space/img/mask_pixel--bottom.png",
-      "layer1.inner_margin": [0, 0, 0, 2],
+      "layer1.inner_margin": [0, 0, 0, 1],
       "layer1.tint": "var(--tab_control.border_gradient)",
       "layer1.opacity": 1.0,
       "layer1.draw_center": false,
-      //left/right border
-      "layer2.texture": "sublime-1space/img/tab_control.png",
+      //left/right border backdrop
+      "layer2.tint": "var(--tab_control.bg)",
       "layer2.inner_margin": [1, 0, 1, 0],
-      "layer2.tint": "var(--tab_control.border_gradient)",
       "layer2.opacity": 1.0,
       "layer2.draw_center": false,
-      //background
-      "layer3.texture": "sublime-1space/img/mask_pixel--center.png",
-      "layer3.tint": "var(--tab_control.bg)",
+      //left/right border
+      "layer3.texture": "sublime-1space/img/tab_control.png",
+      "layer3.inner_margin": [1, 0, 1, 0],
+      "layer3.tint": "var(--tab_control.border_gradient)",
       "layer3.opacity": 1.0,
-      "layer3.inner_margin": 2,
+      "layer3.draw_center": false,
     },
     {
       "class": "tab_control",
       "attributes": ["selected"],
-      "layer1.tint": "var(--tab_control.bg@selected)",
-      "layer3.tint": "var(--tab_control.bg@selected)",
+      //background
+      "layer0.tint": "var(--tab_control.bg@selected)",
+      //bottom border
+      "layer1.opacity": 0.0,
     },
+    //SETTING: 1space.title_bar_border
+    {
+      "class": "tab_control",
+      "settings": ["themed_title_bar", "1space.title_bar_border"],
+      //solid left/right border
+      "layer2.tint": "var(--tab_control.border_gradient)",
+      "layer3.opacity": 0.0,
+    },
+    //SETTING: show_tab_close_buttons_on_left
     {
       "class": "tab_control",
       "settings": ["show_tab_close_buttons_on_left"],
@@ -1144,7 +1184,7 @@
       "layer0.opacity": 1.0,
       "layer0.inner_margin": [23, 60, 23, 25],
       "layer0.tint": "var(--overlay_control.bg)",
-      "content_margin": [17, 52, 17, 21], //image size is 57x79. Top margin should be 48 but we add 4 pixels too be even with hardcoded 4px margin at the bottom of text_line_control
+      "content_margin": [17, 52, 17, 21], //image size is 57x79. Top margin should be 48 but we add 4 pixels to be even with hardcoded 4px margin at the bottom of text_line_control
       "hit_test_level": 0.0, //BUG: top/bottom margin of text_line_control is always click-through. hit_test_level has no effect here
     },
     {
