@@ -336,6 +336,7 @@
 
     {
       "class": "title_bar",
+      "settings": ["themed_title_bar"],
       "fg": "var(--title_bar.fg)",
       "bg": "var(--title_bar.bg)",
       "style": "var(--title_bar.style)",
