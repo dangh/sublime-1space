@@ -1,0 +1,23 @@
+{
+  "extends": "1Space-Light.sublime-theme",
+  "variables": {
+    "--font_face": "Zed Mono Extended",
+    "--bg": "#f3edda",
+    "--title_bar.bg": "#cfd0c4",
+    "--status_bar.bg": "#cfd0c4",
+    "--border": "#9faaa8",
+    "--border-light": "#dcdacb",
+    "--tab_control.border": "var(--border-light)",
+    "--status_bar.border": "var(--border)",
+    "--sidebar_container.border": "var(--border)",
+    "--button_control.bg": "var(--bg)",
+    "--button_control.bg@hover": "var(--border-light)",
+    "--button_control.border": "var(--border-light)",
+  },
+  "rules": [
+    {
+      "class": "sidebar_container",
+      "layer1.texture": null,
+    }
+  ],
+}

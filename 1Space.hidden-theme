@@ -73,15 +73,14 @@
     "--kind_variable.fg": "var(--kind_variable_tint)",
     //shared elements
     "--tab_buttons.tint": "color(var(--icon_tint) a(0.59))",
-    "--tab_control.border_gradient": "var(--border)",
+    "--tab_control.border": "var(--border)",
     //elements
     "--title_bar.fg": "var(--fg)",
     "--title_bar.bg": "var(--bg)",
     "--title_bar.border": "var(--border)",
     "--title_bar.style": "system",
     "--sidebar_container.bg": "var(--bg)",
-    "--sidebar_container.border": "var(--border)",
-    "--sidebar_container.tab_border_gradient": "var(--tab_control.border_gradient)",
+    "--sidebar_container.border": "var(--tab_control.border)",
     "--sidebar_tree.bg": "var(--sidebar_container.bg)",
     "--sidebar_tree.indent": 16, //indent between parent/child row
     "--tree_row.bg@selected": "color(var(--foreground) a(0.08))",
@@ -167,13 +166,12 @@
     "--vcs_status_badge.tint@deleted": "var(--vcs_status@deleted)",
     "--vcs_status_badge.tint@unmerged": "var(--vcs_status@unmerged)",
     "--tabset_control.bg": "var(--bg)",
-    "--tabset_control.border_bottom": "var(--border)",
+    "--tabset_control.border": "var(--tab_control.border)",
     "--tabset_control.tab_width": 225,
     "--tabset_control.tab_min_width": 48,
     "--tabset_control.tab_height": 28,
     "--tab_control.bg": "var(--tabset_control.bg)",
     "--tab_control.bg@selected": "var(--background)",
-    "--tab_control.border_bottom": "var(--tabset_control.border_bottom)",
     "--tab_label.fg": "color(var(--fg) a(0.6))", //fadeout 40%
     "--tab_label.fg@selected": "var(--foreground)",
     "--tab_label.fg@dirty": "var(--accent_fg)",
@@ -355,7 +353,7 @@
       "layer0.opacity": 1.0,
       //gradient as tabset_control right-top border
       "layer1.texture": "sublime-1space/img/tab_control_gradient.png",
-      "layer1.tint": "var(--sidebar_container.tab_border_gradient)",
+      "layer1.tint": "var(--sidebar_container.border)",
       "layer1.opacity": 1.0,
       "layer1.inner_margin": [0, 28, 0, 0],//tab_size
       //background
@@ -947,7 +945,7 @@
       "class": "tabset_control",
       "layer0.tint": "var(--tabset_control.bg)",
       "layer0.opacity": 1.0,
-      "layer1.tint": "var(--tabset_control.border_bottom)",
+      "layer1.tint": "var(--tabset_control.border)",
       "layer1.opacity": 1.0,
       "layer1.inner_margin": [0, 0, 0, 1],
       "layer1.draw_center": false,
@@ -994,7 +992,7 @@
       //bottom border
       "layer1.texture": "sublime-1space/img/mask_pixel--bottom.png",
       "layer1.inner_margin": [0, 0, 0, 1],
-      "layer1.tint": "var(--tab_control.border_gradient)",
+      "layer1.tint": "var(--tab_control.border)",
       "layer1.opacity": 1.0,
       "layer1.draw_center": false,
       //left/right border backdrop
@@ -1005,7 +1003,7 @@
       //left/right border
       "layer3.texture": "sublime-1space/img/tab_control.png",
       "layer3.inner_margin": [1, 0, 1, 0],
-      "layer3.tint": "var(--tab_control.border_gradient)",
+      "layer3.tint": "var(--tab_control.border)",
       "layer3.opacity": 1.0,
       "layer3.draw_center": false,
     },
@@ -1022,8 +1020,9 @@
       "class": "tab_control",
       "settings": ["themed_title_bar", "1space.title_bar_border"],
       //solid left/right border
-      "layer2.tint": "var(--tab_control.border_gradient)",
-      "layer3.opacity": 0.0,
+      "layer2.tint": "var(--tab_control.border)",
+      "layer3.texture": null,
+      "layer3.tint": "var(--tab_control.border)",
     },
     //SETTING: show_tab_close_buttons_on_left
     {
@@ -1831,7 +1830,6 @@
     },
     {
       "class": "icon_button_group",
-      "spacing": 0,
     },
     {
       "class": "icon_button_control",
