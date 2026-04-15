@@ -12,15 +12,13 @@ Array.prototype.mapJoin = function (mapFn, joinSep = '') {
 };
 
 const iconId = (s) => `icon-${require('crypto').createHash('md5').update(s).digest('hex')}`;
-let sharps = new WeakMap();
 const cropToFile = (buffer, box, path) => {
-  if(!sharps.has(buffer)) sharps.set(buffer, sharp(buffer));
-  return sharps.get(buffer).extract(box).toFile(path);
+  return sharp(buffer).extract(box).toFile(path);
 };
 
 class SVG {
   static async toPNG(tasks) {
-    let browser = await puppeteer.launch({ timeout: 0, headless: !DEBUG });
+    let browser = await puppeteer.launch({ timeout: 0, headless: !DEBUG, args: ['--disable-notifications'] });
     try {
       let batchSize = 10;
       for(let batchStart = 0; batchStart < tasks.length; batchStart += batchSize) {

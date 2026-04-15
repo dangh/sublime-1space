@@ -5,7 +5,8 @@
   "main": "build-icons.js",
   "scripts": {
     "build:icons": "node ./build-icons.js",
-    "build:textures": "node ./build-icons.js"
+    "build:textures": "node ./build-icons.js",
+    "postinstall": "puppeteer browsers install chrome"
   },
   "keywords": [],
   "author": "",
